@@ -1,0 +1,38 @@
+<table class="table">
+    <tr>
+        <th style="width:100px">User</th>
+        <th style="width:200px">Event</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Hours</th>
+        <th>Action</th>
+    </tr>
+    <tr ng-repeat="event in events">
+        <td>
+            <a href="/#/profile/{{::event.registrations.user_id}}">{{::event.registrations.user_name}}
+            </a>
+        </td>
+        <td>
+            <a href="/#/event/view/{{::event._id}}">{{::event.name}}</a>
+        </td>
+        <td>
+            {{::event.registrations.start_time}}
+        </td>
+        <td>
+            {{::event.registrations.end_time}}
+        </td>
+        <td>
+            <input type="tel" class="form-control" ng-model="event.registrations.hours" size="4" />
+        </td>
+        <td>
+            <span ng-if="canUpdate(event.registrations.user_id, event.organization_id)">
+                <update-status update-id="{{event.registrations._id}}" status="{{event.registrations.status}}" event-id="{{event._id}}" model-obj="Registration"></update-status>
+            </span>
+            <span ng-if="event.registrations.hours >= 0 && canUpdate(event.registrations.user_id, event.organization_id)">
+                <update-status update-id="{{event.registrations._id}}" status="{{event.registrations.hour_status}}" event-id="{{event._id}}" model-obj="Hour" label="Hours"></update-status>
+            </span>
+            <a target="_self" ng-click="saveHours(event, event.registrations)" class="btn btn-info" role="button">Save Hours</a>
+            <a target="_self" ng-click="unregister(event, event.registrations)" class="btn btn-default" role="button"><span class="glyphicon glyphicon-trash"></span>Unregister</a>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,55 @@
+<h1>User List</h1>
+<div class="panel-group" id="accordion" ng-if="Auth.isAdmin()">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" target="_self">
+         <span class ="glyphicon glyphicon-user"></span> Search for Users <span class ="spangglyph glyphicon glyphicon-chevron-down" ></span>
+        </a>
+      </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    <b-input model="searchParams.name"></b-input>
+                    <b-input type="select" source="interests" label="Interest" model="searchParams.interest_id"></b-input>
+                    <b-input model="searchParams.address"></b-input>
+                    <b-input model="searchParams.city"></b-input>
+                    <b-input type="select" source="states" label="State" model="searchParams.state"></b-input>
+                    <b-input model="searchParams.zip"></b-input>
+                    <b-input type="email" model="searchParams.email"></b-input>
+                    <b-input type="tel" model="searchParams.phone"></b-input>
+                </div>
+                <br />
+                <button class="btn btn-primary" ng-click="search()">Search</button>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table" ng-if="Auth.isAdmin()">
+    <tr>
+        <th>Name</th>
+        <th>Created</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Actions</th>
+    </tr>
+    <tr ng-repeat="user in users">
+        <td><a href="/#/profile/{{::user._id}}">{{::user.name}}</a></td>
+        <td>{{::user.createdAt | date:'MMM d, y'}}</td>
+        <td>{{::user.address}}</td>
+        <td>{{::user.city}}</td>
+        <td>{{::user.state}}</td>
+        <td>{{::user.zip}}</td>
+        <td>{{::user.email}}</td>
+        <td>{{::user.phone | tel}}</td>
+        <td>
+            <a href="/#/userEdit/{{::user._id}}" class="btn btn-default" role="button">Edit</a>
+        </td>
+    </tr>
+</table>
+<div ng-if="!Auth.isAdmin()">Only Admins can search users</div>
