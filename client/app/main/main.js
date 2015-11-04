@@ -10,5 +10,8 @@ angular.module('preserveusApp')
             }).state('team', {
                 url: '/team',
                 templateUrl: 'app/main/team.html'
+            }).state('privacy', {
+                url: '/privacy',
+                templateUrl: 'app/main/privacy.html'
             });
     });
