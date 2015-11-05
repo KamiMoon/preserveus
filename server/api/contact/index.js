@@ -9,11 +9,15 @@ var router = express.Router();
 
 router.post('/contactus', function(req, res) {
 
+    if (!req.body.name || !req.body.email || !req.body.message) {
+        return ControllerUtil.handleError(res, 'Invalid input');
+    }
+
     var mailOptions = {
-        from: req.email, // sender address
+        from: req.body.email, // sender address
         to: process.env.GMAIL, // list of receivers
-        subject: 'Contact US ', // Subject line
-        html: req.text // html body
+        subject: 'Website contact form - ' + req.body.name, // Subject line
+        html: req.body.message // html body
     };
 
     config.transporter.sendMail(mailOptions, function(error) {
@@ -21,7 +25,7 @@ router.post('/contactus', function(req, res) {
             return ControllerUtil.handleError(res, error);
         }
 
-        ControllerUtil.success(res, 'Sent');
+        return ControllerUtil.success(res, 'Sent');
     });
 });
 
