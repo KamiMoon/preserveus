@@ -13,5 +13,8 @@ angular.module('preserveusApp')
             }).state('privacy', {
                 url: '/privacy',
                 templateUrl: 'app/main/privacy.html'
+            }).state('terms', {
+                url: '/terms',
+                templateUrl: 'app/main/terms.html'
             });
     });
