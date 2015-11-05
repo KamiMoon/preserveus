@@ -2,19 +2,24 @@
 
 angular.module('preserveusApp')
     .controller('MainCtrl', function($scope, $http) {
-        $scope.awesomeThings = [];
 
-        $scope.addThing = function() {
-            if ($scope.newThing === '') {
-                return;
+    }).controller('ContactCtrl', function($scope, $http, ValidationService) {
+        $scope.contact = {
+            name: '',
+            email: '',
+            message: ''
+        };
+
+        $scope.save = function(form) {
+            $scope.submitted = true;
+
+            if (form.$valid) {
+                $http.post('api/contacts/contactus', $scope.contact).then(function() {
+                    ValidationService.success('Your message has been successfully sent.');
+                }, function(err) {
+                    ValidationService.error();
+                });
             }
-            $http.post('/api/things', {
-                name: $scope.newThing
-            });
-            $scope.newThing = '';
         };
 
-        $scope.deleteThing = function(thing) {
-            $http.delete('/api/things/' + thing._id);
-        };
     });

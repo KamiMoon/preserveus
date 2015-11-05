@@ -16,5 +16,9 @@ angular.module('preserveusApp')
             }).state('terms', {
                 url: '/terms',
                 templateUrl: 'app/main/terms.html'
+            }).state('contact', {
+                url: '/contact',
+                templateUrl: 'app/main/contact.html',
+                controller: 'ContactCtrl'
             });
     });
