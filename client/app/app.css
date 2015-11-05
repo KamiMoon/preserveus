@@ -202,6 +202,7 @@ bottom: 0;
     background-color: #011A43;
     border-color: #B79746;
     font-size: 18px;
+    color: #B79746;
 }
 
 #footer h3 {
@@ -209,8 +210,8 @@ bottom: 0;
 }
 
 #footer a {
-    color: #B79746;
     text-decoration: none;
+    color: #B79746;
 }
 
 #footer a:hover {
