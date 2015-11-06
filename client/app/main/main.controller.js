@@ -15,7 +15,7 @@ angular.module('preserveusApp')
 
             if (form.$valid) {
                 $http.post('api/contacts/contactus', $scope.contact).then(function() {
-                    ValidationService.success('Your message has been successfully sent.');
+                    ValidationService.success('Your Message Has Been Sent.');
                 }, function(err) {
                     ValidationService.error();
                 });
