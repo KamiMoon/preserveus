@@ -53,4 +53,9 @@ angular.module('preserveusApp', [
             }
         });
     });
+
+    $rootScope.$on('$stateChangeSuccess', function(event, next) {
+        $('html, body').scrollTop(0);
+    });
+
 });
