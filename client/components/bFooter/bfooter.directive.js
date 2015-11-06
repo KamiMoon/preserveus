@@ -10,7 +10,7 @@ angular.module('preserveusApp')
                 var $goToTop = $('#go-to-top');
 
                 //jQuery
-                $goToTop.click(function() {
+                $goToTop.on('touchstart click', function() {
                     $('html, body').animate({
                         scrollTop: 0
                     }, 600);
