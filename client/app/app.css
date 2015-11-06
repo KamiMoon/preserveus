@@ -45,7 +45,7 @@ body > .container-fluid {
 }
 
 #main-container {
-    padding-top: 60px;
+    padding-top: 120px;
 }
 
 .intro-message {
@@ -171,9 +171,9 @@ p.copyright {
 /* custom overrides */
 
 .navbar-default .navbar-nav>li>a {
-    padding-top: 20px;
+    padding-top: 52px;
     color: #B79746;
-    font-size: 18px;
+    font-size: 20px;
     cursor: pointer;
 }
 
@@ -189,8 +189,8 @@ p.copyright {
 .navbar-brand {
     content: '';
     width: 200px;
-    height: 60px;
-    background: url("/assets/images/golden_eagle_logo.jpg") no-repeat center center;
+    height: 125px;
+    background: url("/assets/images/Preserve_US_nav_bar.png") no-repeat center center;
 }
 
 #footer {

@@ -14,9 +14,9 @@ router.post('/contactus', function(req, res) {
     }
 
     var mailOptions = {
-        from: req.body.email, // sender address
-        to: process.env.GMAIL, // list of receivers
-        subject: 'Website contact form - ' + req.body.name, // Subject line
+        from: process.env.GMAIL, // sender address
+        to: [process.env.GMAIL, 'erickizaki@gmail.com'], // list of receivers
+        subject: 'Website contact from - ' + req.body.name + ' - ' + req.body.email, // Subject line
         html: req.body.message // html body
     };
 
