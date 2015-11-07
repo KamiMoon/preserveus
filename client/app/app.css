@@ -315,3 +315,7 @@ li {
 .container-fluid {
     padding: 0;
 }
+
+#navBarPayPal {
+    padding-top: 35px;
+}
