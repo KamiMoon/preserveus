@@ -29,13 +29,19 @@
                             <b-input model="contact.name" required="true"></b-input>
                             <b-input type="email" model="contact.email" required="true"></b-input>
                             <b-input type="textarea" rows="6" cols="5" model="contact.message" required="true"></b-input>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label"></label>
+                                <div class="col-lg-10">
+                                    <div vc-recaptcha key="'6Le_ghATAAAAAMM48AswiVMZleNQhJ27w8deJD7j'"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-md-12">
-                        <div align="right">
+                        <div align="center">
                             <b-input type="submit"></b-input>
                         </div>
                     </div>

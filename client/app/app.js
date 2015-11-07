@@ -8,7 +8,8 @@ angular.module('preserveusApp', [
         'ui.mask',
         'ngTouch',
         'ngFileUpload',
-        'ngStorage'
+        'ngStorage',
+        'vcRecaptcha'
     ])
     .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
         $urlRouterProvider

@@ -3,6 +3,7 @@
 var path = require('path');
 var _ = require('lodash');
 var nodemailer = require('nodemailer');
+var request = require('request');
 
 // create reusable transporter object using SMTP transport
 // NB! No need to recreate the transporter object. You can use
@@ -15,6 +16,37 @@ var transporter = nodemailer.createTransport({
         pass: process.env.GMAIL_PASSWORD
     }
 });
+
+var RECAPTCHA = process.env.RECAPTCHA;
+
+function verifyRecaptcha(req, callback) {
+
+    var remoteip = (req.connection.remoteAddress ? req.connection.remoteAddress : req.remoteAddress);
+    var response = req.body['g-recaptcha-response'];
+    var hostName = 'https://www.google.com/recaptcha/api/siteverify';
+
+    request.post(
+        hostName, {
+            form: {
+                secret: RECAPTCHA,
+                remoteip: remoteip,
+                response: response
+            }
+        },
+        function(error, response, body) {
+            if (error) {
+                callback(error);
+            }
+
+            if (response.statusCode === 200 && body.success) {
+                callback(false, 'success');
+            } else {
+                callback(body['error-codes']);
+            }
+        }
+    );
+
+}
 
 
 function requiredProcessEnv(name) {
@@ -70,7 +102,9 @@ var all = {
         callbackURL: (process.env.DOMAIN || '') + '/auth/google/callback'
     },
 
-    transporter: transporter
+    transporter: transporter,
+
+    verifyRecaptcha: verifyRecaptcha
 };
 
 // Export the config object based on the NODE_ENV
