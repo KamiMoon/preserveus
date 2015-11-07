@@ -11,7 +11,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Lato", "Helvetica Neue", "Helvetica, Arial", "sans-serif";
     font-weight: 700;
 }
 
@@ -33,6 +33,7 @@ body > .container-fluid {
 .lead {
     font-size: 18px;
     font-weight: 400;
+    text-align: justify;
 }
 
 .intro-header {
@@ -99,7 +100,7 @@ body > .container-fluid {
 
 .content-section-a {
     padding: 50px 0;
-    background-color: #f8f8f8;
+    background-color: rgba(248, 248, 248, 0.15);
 }
 
 .content-section-b {
@@ -113,9 +114,7 @@ body > .container-fluid {
 }
 
 .section-heading-spacer {
-    float: left;
-    width: 200px;
-    border-top: 3px solid #e7e7e7;
+    border-top: 6px solid rgba(14, 13, 13, 0.8);
 }
 
 .banner {
@@ -171,7 +170,7 @@ p.copyright {
 /* custom overrides */
 
 .navbar-default .navbar-nav>li>a {
-    padding-top: 52px;
+    padding-top: 45px;
     color: #B79746;
     font-size: 20px;
     cursor: pointer;
@@ -179,11 +178,19 @@ p.copyright {
 
 .navbar-default .navbar-nav>li>a:hover {
     color: #fff;
+    border-bottom-color: white;
+    border-bottom-style: solid;
+}
+
+.navbar-default .navbar-nav>li>a:focus {
+    color: white;
+    border-bottom-color: white;
+    border-bottom-style: solid;
 }
 
 .navbar-default {
-    background-color: #011A43;
-    border-color: #B79746;
+    background: rgba(10, 10, 10, 0.9);
+    -webkit-font-smoothing: antialiased;
 }
 
 .navbar-brand {
@@ -199,14 +206,15 @@ bottom: 0;
 */
     width: 100%;
     /* Set the fixed height of the footer here */
-    background-color: #011A43;
-    border-color: #B79746;
+    background: rgba(10, 10, 10, 0.9);
+    -webkit-font-smoothing: antialiased;
     font-size: 20px;
     color: #B79746;
 }
 
 #footer h3 {
     color: white;
+    text-decoration: underline;
 }
 
 #footer a {
@@ -302,4 +310,8 @@ li {
         width: 30px;
         background-size: cover;
     }
+}
+
+.container-fluid {
+    padding: 0;
 }
