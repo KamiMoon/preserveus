@@ -23,5 +23,8 @@ angular.module('preserveusApp')
             }).state('services', {
                 url: '/services',
                 templateUrl: 'app/main/services.html'
+            }).state('properties', {
+                url: '/properties',
+                templateUrl: 'app/main/properties.html'
             });
     });
