@@ -20,5 +20,8 @@ angular.module('preserveusApp')
                 url: '/contact',
                 templateUrl: 'app/main/contact.html',
                 controller: 'ContactCtrl'
+            }).state('services', {
+                url: '/services',
+                templateUrl: 'app/main/services.html'
             });
     });
