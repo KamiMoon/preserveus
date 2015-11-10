@@ -20,6 +20,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <!-- build:css(client) app/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
     <!-- injector:css -->
     <link rel="stylesheet" href="app/admin/admin.css">
@@ -27,10 +32,6 @@
     <link rel="stylesheet" href="components/modal/modal.css">
     <!-- endinjector -->
     <!-- endbuild -->
-    <!--
-    <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
-    <link rel="stylesheet" href="assets/boostrap-image-gallery/bootstrap-image-gallery.min.css">
-    -->
     <link rel="stylesheet" href="assets/swipebox-master/src/css/swipebox.css">
     <script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async defer></script>
 </head>
@@ -74,11 +75,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="assets/swipebox-master/src/js/jquery.swipebox.min.js"></script>
-    <!--<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
-    <script src="assets/boostrap-image-gallery/bootstrap-image-gallery.min.js"></script>-->
     <!-- build:js({client,node_modules}) app/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/Chart.js/Chart.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-recaptcha/release/angular-recaptcha.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -123,6 +124,9 @@
     <script src="components/validation/validationService.js"></script>
     <!-- endinjector -->
     <!-- endbuild -->
+    <script>
+    Chart.defaults.global.responsive = true;
+    </script>
 </body>
 
 </html>

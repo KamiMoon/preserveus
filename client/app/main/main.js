@@ -25,6 +25,7 @@ angular.module('preserveusApp')
                 templateUrl: 'app/main/services.html'
             }).state('properties', {
                 url: '/properties',
-                templateUrl: 'app/main/properties.html'
+                templateUrl: 'app/main/properties.html',
+                controller: 'PropertiesCtrl'
             });
     });
