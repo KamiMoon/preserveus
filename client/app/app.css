@@ -46,7 +46,7 @@ body > .container-fluid {
 }
 
 #main-container {
-    padding-top: 70px;
+    padding-top: 50px;
 }
 
 .intro-message {
@@ -170,7 +170,7 @@ p.copyright {
 /* custom overrides */
 
 .navbar-default .navbar-nav>li>a {
-    padding-top: 16px;
+    padding-top: 14px;
     color: #B79746;
     font-size: 20px;
     cursor: pointer;
@@ -195,12 +195,12 @@ p.copyright {
 }
 
 .navbar-brand {
-    height: 70px;
-    background: url("/assets/images/Preserve_US_nav_bar_copy.png") no-repeat left;
-    font-size: 35px;
+    height: 50px;
+    background: url("/assets/images/Preserve_US_nav_bar_small.png") no-repeat left;
+    font-size: 30px;
     color: #B79746 !important;
-    padding-left: 80px;
-    padding-top: 24px;
+    padding-left: 45px;
+    padding-top: 15px;
 }
 
 #footer {
