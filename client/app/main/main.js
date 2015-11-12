@@ -27,5 +27,8 @@ angular.module('preserveusApp')
                 url: '/properties',
                 templateUrl: 'app/main/properties.html',
                 controller: 'PropertiesCtrl'
+            }).state('news', {
+                url: '/news',
+                templateUrl: 'app/main/news.html'
             });
     });

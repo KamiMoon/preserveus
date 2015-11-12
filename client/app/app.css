@@ -41,7 +41,7 @@ body > .container-fluid {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url("/assets/images/capitol-inauguration2.jpg") no-repeat center center;
+    background: url("/assets/images/brick.jpg") no-repeat center center;
     background-size: cover;
 }
 
@@ -176,12 +176,6 @@ p.copyright {
     cursor: pointer;
 }
 
-.navbar-default .navbar-nav>li>a:hover {
-    color: black;
-    border-bottom-color: black;
-    border-bottom-style: solid;
-}
-
 .navbar-default .navbar-nav>li>a:focus {
     color: black;
     border-bottom-color: black;
@@ -201,6 +195,8 @@ p.copyright {
     color: #B79746 !important;
     padding-left: 45px;
     padding-top: 15px;
+    margin-left: 10px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 #footer {
@@ -321,4 +317,11 @@ bottom: 0;
 
 #navBarPayPal {
     padding-top: 35px;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+    margin-right: -4px;
 }
