@@ -32,6 +32,11 @@ module.exports = function(app) {
 
     app.use(cookieParser());
     app.use(passport.initialize());
+
+    //static resources for uploads etc
+    //http://expressjs.com/starter/static-files.html
+    app.use('/server/static', express.static(path.join(config.root, '/server/static')));
+
     if ('production' === env) {
         app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
         app.use(express.static(path.join(config.root, 'public')));

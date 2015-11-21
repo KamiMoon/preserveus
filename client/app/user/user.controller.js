@@ -37,9 +37,12 @@ angular.module('preserveusApp')
             }
         };
 
-    }).controller('UserEditCtrl', function($scope, $location, User, ControllerUtil) {
+    }).controller('UserEditCtrl', function($scope, $location, $stateParams, User, ControllerUtil) {
+        var id = $stateParams.id;
 
-        $scope.user = User.get();
+        $scope.user = User.profile({
+            id: id
+        });
 
         $scope.save = function(form) {
 

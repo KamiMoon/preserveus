@@ -103,8 +103,15 @@ UserSchema
     .virtual('profile')
     .get(function() {
         return {
-            'name': this.name,
-            'roles': this.roles
+            _id: this._id,
+            name: this.name,
+            roles: this.roles,
+            email: this.email,
+            phone: this.phone,
+            address: this.address,
+            city: this.city,
+            state: this.state,
+            zip: this.zip
         };
     });
 

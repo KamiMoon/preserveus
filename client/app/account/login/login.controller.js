@@ -3,7 +3,6 @@
 angular.module('preserveusApp')
     .controller('LoginCtrl', function($scope, Auth, $location, $window, ValidationService) {
         $scope.user = {};
-        $scope.errors = {};
 
         $scope.login = function(form) {
             $scope.submitted = true;
@@ -16,10 +15,12 @@ angular.module('preserveusApp')
                     .then(function() {
                         ValidationService.success('Logged In');
                         // Logged in, redirect to home
-                        $location.path('/');
+                        //var user = Auth.getCurrentUser();
+
+                        $location.path('/profile/');
                     })
                     .catch(function(err) {
-                        $scope.errors.other = err.message;
+                        ValidationService.error(err.message);
                     });
             }
         };

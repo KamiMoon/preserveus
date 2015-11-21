@@ -9,7 +9,7 @@ angular.module('preserveusApp')
                 controller: 'UserCtrl',
                 roles: ['admin']
             }).state('userEdit', {
-                url: '/user/edit',
+                url: '/user/edit/:id',
                 templateUrl: 'app/user/userEdit.html',
                 controller: 'UserEditCtrl',
             }).state('userView', {

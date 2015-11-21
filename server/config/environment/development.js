@@ -3,10 +3,10 @@
 // Development specific configuration
 // ==================================
 module.exports = {
-  // MongoDB connection options
-  mongo: {
-    uri: 'mongodb://localhost/preserveus-dev'
-  },
+    // MongoDB connection options
+    mongo: {
+        uri: 'mongodb://localhost/preserveus-dev'
+    },
 
-  seedDB: true
+    seedDB: false
 };

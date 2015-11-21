@@ -231,7 +231,7 @@ angular.module('preserveusApp')
         var populateSelect = function(attrs, scope) {
             switch (attrs.source) {
                 case 'states':
-                    populateDefault(attrs.source, scope);
+                    scope[attrs.source] = InputService.getStates();
                     attrs.options = "state.abbrev as state.abbrev for state in states";
                     break;
                 case 'categories':

@@ -4,6 +4,8 @@ var User = require('./user.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
+var ControllerUtil = require('../../components/controllerUtil');
+
 
 var validationError = function(res, err) {
     return res.status(422).json(err);
@@ -104,4 +106,22 @@ exports.me = function(req, res, next) {
  */
 exports.authCallback = function(req, res, next) {
     res.redirect('/');
+};
+
+
+exports.profile = function(req, res, next) {
+
+    var userId = req.params.id;
+
+    User.findOne({
+        _id: userId
+    }, '-salt -hashedPassword -activationHash').lean().exec(function(err, user) { // don't ever give out the password or salt
+        if (err) return next(err);
+        if (!user) return res.status(401).send('Unauthorized');
+        res.json(user);
+    });
+};
+
+exports.update = function(req, res) {
+    ControllerUtil.update(req, res, User, 'photo');
 };
