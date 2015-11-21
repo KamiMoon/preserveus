@@ -4,6 +4,7 @@ var path = require('path');
 var _ = require('lodash');
 var nodemailer = require('nodemailer');
 var request = require('request');
+var cloudinary = require('cloudinary');
 
 // create reusable transporter object using SMTP transport
 // NB! No need to recreate the transporter object. You can use
@@ -18,6 +19,12 @@ var transporter = nodemailer.createTransport({
 });
 
 var RECAPTCHA = process.env.RECAPTCHA;
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
 function verifyRecaptcha(req, callback) {
 
@@ -104,7 +111,10 @@ var all = {
 
     transporter: transporter,
 
-    verifyRecaptcha: verifyRecaptcha
+    verifyRecaptcha: verifyRecaptcha,
+
+    cloudinary: cloudinary
+
 };
 
 // Export the config object based on the NODE_ENV

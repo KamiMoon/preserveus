@@ -67,9 +67,11 @@ body > .container-fluid {
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
+
+/*
 .intro-message > h3 {
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
-}
+}*/
 
 @media(max-width:767px) {
     .intro-message {
@@ -88,6 +90,27 @@ body > .container-fluid {
     }
     .intro-divider {
         width: 100%;
+    }
+}
+
+#main-logo {
+    font-family: "Playfair Display SC";
+    color: gold;
+    font-size: 70px;
+    text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.mission-statement {
+    color: gold;
+    border: none;
+    font-family: "Playfair Display SC";
+    text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-size: 30px;
+}
+
+@media only screen and (max-width: 400px) {
+    .mission-statement {
+        font-size: 25px;
     }
 }
 
@@ -197,6 +220,7 @@ p.copyright {
     padding-top: 15px;
     margin-left: 10px;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    font-family: "Playfair Display SC";
 }
 
 #footer {

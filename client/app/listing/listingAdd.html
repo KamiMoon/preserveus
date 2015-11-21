@@ -1,0 +1,22 @@
+<div class="container">
+    <h1>Create Post</h1>
+    <form name="form" ng-submit="save(form)" novalidate>
+        <div class="row">
+            <div class="col-md-12">
+                <h3><span class="glyphicon glyphicon-globe"></span> Post Info:</h3>
+                <div class="form-horizontal">
+                    <b-input model="post.title" required="true"></b-input>
+                    <b-input type="file" model="photo"></b-input>
+                    <b-input type="textarea" rows="6" cols="5" model="post.postHtml"></b-input>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div align="right">
+                    <b-input type="submit"></b-input>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

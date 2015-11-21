@@ -4,6 +4,7 @@
   "main": "server/app.js",
   "dependencies": {
     "body-parser": "~1.5.0",
+    "cloudinary": "^1.2.6",
     "composable-middleware": "^0.3.0",
     "compression": "~1.0.1",
     "connect-busboy": "0.0.2",
@@ -31,6 +32,7 @@
     "passport-google-oauth": "latest",
     "passport-local": "~0.1.6",
     "passport-twitter": "latest",
+    "prerender-node": "^2.1.0",
     "request": "^2.65.0",
     "serve-favicon": "~2.0.1",
     "stripe": "^4.0.0"

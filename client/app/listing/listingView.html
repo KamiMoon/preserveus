@@ -1,0 +1,96 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div align="center">
+                <img ng-src="{{listing.photo}}" alt="{{listing.name}}" class="img-responsive">
+            </div>
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <h2>{{::listing.address}}, {{::listing.city}}, {{::listing.state}} {{::listing.zip}}
+            </h2>
+            <h3>{{::listing.beds}} beds, {{::listing.baths}} baths, {{::listing.sqft}} sqft</h3>
+            <p>
+                {{::listing.description}}
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2>${{::listing.cost}}</h2>
+            <h3>Est. Mortgage</h3>
+            <h4>${{::listing.mortgage}}</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12"
+>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Features
+            </button>
+            <br>
+            <br>
+        </div>
+    </div>
+    <div id="collapseExample" class="row collapse">
+        <div>
+            
+            
+        </div>
+        <div class="col-md-8 well">
+            <div class="col-md-4">
+                <ul>
+                    <li>Lot: 7,230 sqft</li>
+                    <li>Multi Family</li>
+                    <li>Built in 1913</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <ul>
+                    <li>Cable Ready</li>
+                    <li>Ceiling Fan</li>
+                    <li>Deck</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <ul>
+                    <li>Hardwood, Linoleum/Vinyl, Tile</li>
+                    <li>Parking Garage - Detached</li>
+                    <li>Patio</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">PROJECTED INVESTOR CASH ON CASH RETURN (%)</div>
+                <div class="panel-body">
+                    <canvas id="line" class="chart chart-bar" chart-data="data" chart-options="options" chart-labels="labels" chart-legend="true" chart-series="series" chart-colours="colours" chart-click="onClick">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h3>Financial Summary</h3>
+            <ul>
+                <li ng-repeat="text in financialSummary">{{::text}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row" ng-repeat="row in listing.photoRows">
+        <div class="col-xs-6 col-md-3" ng-repeat="photo in row">
+            <a href="{{photo}}" class="thumbnail swipebox" target="_self">
+                <img ng-src="{{photo}}" class="image-property-listing" alt="image">
+            </a>
+        </div>
+    </div>
+</div>
+<script>
+$(document).ready(function() {
+    $('.swipebox').swipebox();
+});
+</script>
