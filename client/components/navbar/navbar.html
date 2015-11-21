@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
-    <div class="container topnav">
+    <div class="container-fluid topnav" id="navcontainer">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#js-navbar-collapse" target="_self">
                 <span class="sr-only">Toggle navigation</span>
@@ -29,17 +29,14 @@
                 <li>
                     <a href="/contact">CONTACT</a>
                 </li>
-                <!--
                 <li ng-if="isLoggedIn()">
                     <a href="/#/profile/{{getCurrentUser()._id}}">
-                        <img ng-if="getCurrentUser() && getCurrentUser().photo" ng-src="{{getCurrentUser().photo}}" width="20px" height="20px" class="img-circle">
-                        <span ng-if="!getCurrentUser().photo" class="glyphicon glyphicon-user"></span>{{ getCurrentUser().name }}
+                        <img ng-if="getCurrentUser() && getCurrentUser().photo" ng-src="{{getCurrentUser().photo}}" width="20px" height="20px" class="img-circle">PROFILE
                     </a>
                 </li>
-                <li ng-if="isLoggedIn()"><a href="" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
-                <li ng-hide="isLoggedIn()"><a href="/#/signup"><span class="glyphicon glyphicon-new-window"></span> Register</a></li>
-                <li ng-hide="isLoggedIn()"><a href="/#/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                -->
+                <li ng-if="isLoggedIn()"><a href="" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> LOGOUT</a></li>
+                <li ng-hide="isLoggedIn()"><a href="/#/signup"><span class="glyphicon glyphicon-new-window"></span> REGISTER</a></li>
+                <li ng-hide="isLoggedIn()"><a href="/#/login"><span class="glyphicon glyphicon-log-in"></span> LOGIN</a></li>
             </ul>
         </div>
         <!--/.navbar-collapse -->

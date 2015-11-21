@@ -329,8 +329,8 @@ bottom: 0;
 
 @media only screen and (max-width: 767px) {
     #go-to-top {
-        height: 30px;
-        width: 30px;
+        height: 40px;
+        width: 40px;
         background-size: cover;
     }
 }
@@ -339,8 +339,16 @@ bottom: 0;
     padding: 0;
 }
 
-#navBarPayPal {
-    padding-top: 35px;
+.navbar-fixed-bottom .navbar-collapse,
+.navbar-fixed-top .navbar-collapse {
+    max-height: 400px;
+}
+
+#navcontainer {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 25px;
+    padding-right: 20px;
 }
 
 .vcenter {
@@ -348,4 +356,8 @@ bottom: 0;
     vertical-align: middle;
     float: none;
     margin-right: -4px;
+}
+
+#footer-author {
+    padding-left: 15px;
 }
