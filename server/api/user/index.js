@@ -19,8 +19,9 @@ router.post('/:id', upload.single('file'), controller.update);
 
 
 router.get('/:id', auth.isAuthenticated(), controller.show);
-router.post('/', controller.create);
 
+router.post('/', controller.create);
+router.get('/activate/:id/:activationHash', controller.activate);
 
 router.get('/profile/:id', auth.isAuthenticated(), controller.show);
 

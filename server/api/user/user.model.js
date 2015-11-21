@@ -12,8 +12,7 @@ var MemberSchema = require('../member/member.model');
 var UserSchema = new Schema({
     roles: [MemberSchema],
     name: {
-        type: String,
-        required: true
+        type: String
     },
     email: {
         type: String,

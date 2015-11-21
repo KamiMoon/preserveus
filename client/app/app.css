@@ -361,3 +361,7 @@ bottom: 0;
 #footer-author {
     padding-left: 15px;
 }
+
+legend {
+    text-align: center;
+}

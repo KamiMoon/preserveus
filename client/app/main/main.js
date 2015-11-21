@@ -30,5 +30,8 @@ angular.module('preserveusApp')
             }).state('news', {
                 url: '/news',
                 templateUrl: 'app/main/news.html'
+            }).state('notAuthorized', {
+                url: '/notAuthorized',
+                templateUrl: 'app/main/notAuthorized.html'
             });
     });

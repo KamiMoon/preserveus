@@ -150,7 +150,7 @@ angular.module('preserveusApp')
             var html = '';
 
             if (attrs.type === 'submit') {
-                html += '<button type="submit" class="btn btn-primary">' + attrs.label + '</button>';
+                html += '<button type="submit" class="btn btn-lg btn-success">' + attrs.label + '</button>';
             } else if (attrs.type === 'file') {
 
                 html += '<input type="file" ngf-select ';

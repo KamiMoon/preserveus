@@ -11,15 +11,35 @@ var validationError = function(res, err) {
     return res.status(422).json(err);
 };
 
-/**
- * Get list of users
- * restriction: 'admin'
- */
+var createConfirmationEmail = function(req, user) {
+    var host = ControllerUtil.getHostFromRequest(req);
+
+    if (host) {
+
+        var linkAddress = 'http://' + host + '/api/users/activate/' + encodeURIComponent(user._id) + '/' + encodeURIComponent(user.activationHash);
+
+        var body = 'Welcome, <br/>You are registered for Preserve US. <br/><br/>';
+        body += 'To activate your account click this link: <a href="' + linkAddress + '">Activate Account</a>';
+
+        var mailOptions = {
+            from: process.env.GMAIL, // sender address
+            to: user.email, // list of receivers
+            subject: 'Confirm Registration', // Subject line
+            html: body // html body
+        };
+
+        config.transporter.sendMail(mailOptions, function(error) {
+            if (error) {
+                return console.log(error);
+            }
+        });
+    }
+
+
+};
+
 exports.index = function(req, res) {
-    User.find({}, '-salt -hashedPassword', function(err, users) {
-        if (err) return res.status(500).send(err);
-        res.status(200).json(users);
-    });
+    ControllerUtil.find(req, res, User, '-salt -hashedPassword -activationHash')
 };
 
 /**
@@ -28,14 +48,17 @@ exports.index = function(req, res) {
 exports.create = function(req, res, next) {
     var newUser = new User(req.body);
     newUser.provider = 'local';
-    newUser.role = 'user';
     newUser.save(function(err, user) {
         if (err) return validationError(res, err);
         var token = jwt.sign({
             _id: user._id
         }, config.secrets.session, {
-            expiresInMinutes: 60 * 5
+            expiresIn: 60 * 60 * 5
         });
+
+        //create an email with the activation hash in it
+        createConfirmationEmail(req, user);
+
         res.json({
             token: token
         });
@@ -124,4 +147,50 @@ exports.profile = function(req, res, next) {
 
 exports.update = function(req, res) {
     ControllerUtil.update(req, res, User, 'photo');
+};
+
+
+
+exports.activate = function(req, res) {
+    var id = decodeURIComponent(req.params.id);
+    var activationHash = decodeURIComponent(req.params.activationHash);
+
+    console.log('Activate');
+
+    //get the User
+    User.findById(id, function(err, user) {
+        console.log('FindById');
+
+        if (err) {
+            return ControllerUtil.handleError(res, err);
+        }
+        if (!user) {
+            return res.status(404).send('Not Found');
+        }
+
+        //read his activationHash
+        var userActivationHash = user.activationHash;
+
+        if (activationHash === userActivationHash) {
+            //if they are the same then flag him as activated
+            user.activated = true;
+
+            user.save(function(err) {
+                if (err) {
+                    return ControllerUtil.handleError(res, err);
+                }
+                //TODO: Success flash
+
+                //redirect to login page
+                ControllerUtil.redirect(req, res, '/login');
+            });
+
+
+        } else {
+            //Didn't match - forbidden
+            res.status(403).send('Forbidden');
+        }
+
+
+    });
 };

@@ -45,18 +45,23 @@ angular.module('preserveusApp', [
     };
 })
 
-.run(function($rootScope, $location, Auth) {
+.run(function($rootScope, $location, $timeout, Auth) {
+    $rootScope.Auth = Auth;
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function(event, next, toParams, fromState, fromParams) {
         Auth.isLoggedInAsync(function(loggedIn) {
             if (next.authenticate || next.roles && !loggedIn) {
                 event.preventDefault();
-                return $location.path('/login');
-            }
 
-            if (next.roles && !Auth.hasRoles(next.roles)) {
+
+                $timeout(function() {
+                    $location.path('/login');
+                });
+            } else if (next.roles && !Auth.hasRoles(next.roles)) {
                 event.preventDefault();
-                return $location.path('/notAuthorized').replace();
+                $timeout(function() {
+                    $location.path('/notAuthorized').replace();
+                });
             }
 
             /*
