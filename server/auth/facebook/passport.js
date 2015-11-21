@@ -2,7 +2,6 @@ var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 
 exports.setup = function(User, config) {
-    console.log(config);
 
     passport.use(new FacebookStrategy({
             clientID: config.facebook.clientID,
@@ -27,7 +26,6 @@ exports.setup = function(User, config) {
                         user = new User({
                             name: profile.displayName,
                             email: profile.emails[0].value,
-                            role: 'user',
                             username: profile.username,
                             provider: 'facebook',
                             facebook: profile._json
