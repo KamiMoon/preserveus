@@ -365,3 +365,8 @@ bottom: 0;
 legend {
     text-align: center;
 }
+
+.img-blog {
+    width: 150px;
+    height: 150px;
+}

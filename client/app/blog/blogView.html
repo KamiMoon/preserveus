@@ -1,8 +1,21 @@
+<br>
 <div class="container">
-    <h1 ng-bind="post.title"></h1>
-    <br>
-    <img ng-src="{{post.photo}}" alt="{{post.title}}">
-    <br>
-    <p ng-bind="post.postHtml">
-    </p>
+    <div class="row">
+        <div class="col-md-12">
+            <a href="/blog"> ← Back to Blog</a>
+            <br>
+            <div ng-if="::Auth.isAdmin()">
+                <a href="/blog/edit/{{post._id}}">Edit</a>
+                <br>
+                <a ng-click="delete(post._id)">Delete</a>
+                <br>
+            </div>
+            <h1 ng-bind="post.title"></h1>
+            <h6>Posted on: {{::post.createdAt | date:'MM/dd/yyyy h:mm a'}}</h6>
+            <img ng-src="{{post.photo}}" alt="{{post.title}}">
+            <br>
+            <p ng-bind-html="post.postHtml | sanitize">
+            </p>
+        </div>
+    </div>
 </div>

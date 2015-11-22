@@ -25,6 +25,8 @@ angular.module('preserveusApp')
 
         var user = Auth.getCurrentUser();
 
+        $scope.showSlug = true;
+
         $scope.post = {
             user_id: user._id
         };
@@ -56,6 +58,8 @@ angular.module('preserveusApp')
 
         var id = $stateParams.id;
 
+        $scope.showSlug = false;
+
         $scope.post = BlogService.get({
             id: id
         });
@@ -75,7 +79,7 @@ angular.module('preserveusApp')
             }
         };
 
-    }).controller('BlogViewCtrl', function($scope, $stateParams, Auth, BlogService) {
+    }).controller('BlogViewCtrl', function($scope, $stateParams, Auth, BlogService, ValidationService, $location) {
 
         var id = $stateParams.id;
 
@@ -84,5 +88,25 @@ angular.module('preserveusApp')
         }).$promise.then(function(post) {
             $scope.post = post;
         });
+
+        $scope.delete = function(id) {
+            if (id) {
+
+                var r = confirm('Are you sure you want to delete?');
+                if (r == true) {
+                    BlogService.delete({
+                        id: id
+                    }).$promise.then(function() {
+                        ValidationService.success('Post deleted.');
+
+                        $location.path('/blog');
+
+                    }, function() {
+                        ValidationService.error('Delete Failed');
+                    });
+                }
+
+            }
+        };
 
     });

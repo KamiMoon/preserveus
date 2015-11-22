@@ -1,14 +1,22 @@
 <div class="container">
-    <h1>Create Post</h1>
+    <h1 ng-if="showSlug">Create Post</h1>
+    <h1 ng-if="!showSlug">Edit Post: {{::post.title}}</h1>
     <form name="form" ng-submit="save(form)" novalidate>
         <div class="row">
             <div class="col-md-12">
                 <h3><span class="glyphicon glyphicon-globe"></span> Post Info:</h3>
                 <div class="form-horizontal">
-                    <b-input model="post.title" required="true" change="updateSlug()"></b-input>
-                    <b-input model="post.slug" required="true"></b-input>
+                    <div ng-if="showSlug">
+                        <b-input model="post.title" required="true" change="updateSlug()"></b-input>
+                        <b-input model="post.slug" required="true"></b-input>
+                    </div>
                     <b-input type="file" model="photo"></b-input>
-                    <b-input type="textarea" rows="6" cols="5" model="post.postHtml" label="Content" required="true"></b-input>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Content</label>
+                        <div class="col-lg-10">
+                            <summernote ng-model="post.postHtml"></summernote>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

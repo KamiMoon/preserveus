@@ -10,7 +10,8 @@ angular.module('preserveusApp', [
         'ngFileUpload',
         'ngStorage',
         'vcRecaptcha',
-        'chart.js'
+        'chart.js',
+        'summernote'
     ])
     .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
         $urlRouterProvider
@@ -78,3 +79,9 @@ angular.module('preserveusApp', [
     });
 
 });
+
+angular.module('preserveusApp').filter("sanitize", ['$sce', function($sce) {
+    return function(htmlCode) {
+        return $sce.trustAsHtml(htmlCode);
+    };
+}]);

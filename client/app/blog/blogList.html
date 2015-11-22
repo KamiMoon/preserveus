@@ -5,6 +5,7 @@
         <div class="col-md-12">
             <a href="/blog/add">Add Post</a>
             <br>
+            <br>
         </div>
     </div>
     <div class="row" ng-repeat="post in posts">
@@ -12,15 +13,20 @@
             <div class="media">
                 <div class="media-left">
                     <a href="/#/blog/{{post._id}}">
-                        <img class="media-object" ng-src="{{post.photo}}" alt="{{post.title}}">
+                        <img class="media-object img-blog" ng-src="{{post.photo}}" alt="{{post.title}}">
                     </a>
                 </div>
                 <div class="media-body">
                     <h3 class="media-heading">
                     <a href="/#/blog/{{post._id}}">{{::post.title}}</a>
-                    </h3> {{::post.postHtml}}
+                    <h6>Posted on {{::post.createdAt | date:'MM/dd/yyyy'}}</h6>
+
+                    </h3>
+                    <div ng-bind-html="post.postHtml | sanitize"></div>
                 </div>
             </div>
+            <br>
+            <br>
         </div>
     </div>
 </div>
