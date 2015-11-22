@@ -31,7 +31,7 @@
                 </li>
                 <li ng-if="isLoggedIn()">
                     <a href="/#/profile/{{getCurrentUser()._id}}">
-                        <img ng-if="getCurrentUser() && getCurrentUser().photo" ng-src="{{getCurrentUser().photo}}" width="20px" height="20px" class="img-circle">PROFILE
+                        PROFILE
                     </a>
                 </li>
                 <li ng-if="isLoggedIn()"><a href="" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> LOGOUT</a></li>

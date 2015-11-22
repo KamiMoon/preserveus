@@ -77,8 +77,8 @@
                     <ul>
                         <li><a href="/#/organization">Invest in Properties</a>
                         </li>
-                        <li><a href="/#/organization/add">Rent</a>
-                        </li>
+                        <li><a href="/#/organization/add">Rent</a></li>
+                        <li ng-if="::Auth.isAdmin()"><a href="/user">Administer Users</a></li>
                     </ul>
                 </div>
             </div>

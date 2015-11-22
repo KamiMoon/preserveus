@@ -5,6 +5,7 @@ var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 var ControllerUtil = require('../../components/controllerUtil');
+var config = require('../../config/environment');
 
 
 var validationError = function(res, err) {
@@ -46,23 +47,31 @@ exports.index = function(req, res) {
  * Creates a new user
  */
 exports.create = function(req, res, next) {
-    var newUser = new User(req.body);
-    newUser.provider = 'local';
-    newUser.save(function(err, user) {
-        if (err) return validationError(res, err);
-        var token = jwt.sign({
-            _id: user._id
-        }, config.secrets.session, {
-            expiresIn: 60 * 60 * 5
-        });
 
-        //create an email with the activation hash in it
-        createConfirmationEmail(req, user);
+    config.verifyRecaptcha(req, function(error, result) {
+        if (error) {
+            return ControllerUtil.handleError(res, 'Invalid Captcha');
+        }
 
-        res.json({
-            token: token
+        var newUser = new User(req.body);
+        newUser.provider = 'local';
+        newUser.save(function(err, user) {
+            if (err) return validationError(res, err);
+            var token = jwt.sign({
+                _id: user._id
+            }, config.secrets.session, {
+                expiresIn: 60 * 60 * 5
+            });
+
+            //create an email with the activation hash in it
+            createConfirmationEmail(req, user);
+
+            res.json({
+                token: token
+            });
         });
     });
+
 };
 
 /**

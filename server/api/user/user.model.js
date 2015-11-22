@@ -136,8 +136,9 @@ UserSchema
         return hashedPassword.length;
     }, 'Password cannot be blank');
 
+
 // Validate email is not taken
-UserSchema
+/*UserSchema
     .path('email')
     .validate(function(value, respond) {
         var self = this;
@@ -152,7 +153,7 @@ UserSchema
             respond(true);
         });
     }, 'The specified email address is already in use.');
-
+*/
 var validatePresenceOf = function(value) {
     return value && value.length;
 };

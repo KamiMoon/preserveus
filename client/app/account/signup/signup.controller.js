@@ -1,23 +1,23 @@
 'use strict';
 
 angular.module('preserveusApp')
-    .controller('SignupCtrl', function($scope, Auth, $location, $window, ValidationService) {
+    .controller('SignupCtrl', function($scope, Auth, $location, $window, ValidationService, vcRecaptchaService) {
         $scope.user = {};
 
         $scope.register = function(form) {
-            $scope.submitted = true;
 
-            if (form.$valid) {
+            var captchaResponse = vcRecaptchaService.getResponse();
 
-                if ($scope.user.password !== $scope.user.confirmPassword) {
-                    ValidationService.error('Confirmation password must match password.');
-                } else {
+            if (captchaResponse === '') { //if string is empty
+                ValidationService.error('Please resolve the captcha and submit!');
+            } else {
+                $scope.user['g-recaptcha-response'] = vcRecaptchaService.getResponse();
 
-                    Auth.createUser({
-                            name: $scope.user.name,
-                            email: $scope.user.email,
-                            password: $scope.user.password
-                        })
+                $scope.submitted = true;
+
+                if (form.$valid) {
+
+                    Auth.createUser($scope.user)
                         .then(function() {
                             ValidationService.success('You have been registered. Check your email to verify.');
                             // Account created, redirect to home
@@ -27,6 +27,8 @@ angular.module('preserveusApp')
                         });
                 }
             }
+
+
         };
 
         $scope.loginOauth = function(provider) {

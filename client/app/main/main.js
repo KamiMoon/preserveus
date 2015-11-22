@@ -33,5 +33,8 @@ angular.module('preserveusApp')
             }).state('notAuthorized', {
                 url: '/notAuthorized',
                 templateUrl: 'app/main/notAuthorized.html'
+            }).state('thanks', {
+                url: '/thanks',
+                templateUrl: 'app/main/thanks.html'
             });
     });
