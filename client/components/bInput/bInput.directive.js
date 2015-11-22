@@ -143,6 +143,11 @@ angular.module('preserveusApp')
                 html += getAttribute('style', attrs.style);
             }
 
+            //any ng- attributes copy them over
+            if (attrs.change) {
+                html += getAttribute('ng-change', attrs.change);
+            }
+
             return html;
         };
 

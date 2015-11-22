@@ -3,10 +3,11 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var validate = require('mongoose-validator');
-//var timestamps = require('mongoose-timestamp');
-//var uniqueValidator = require('mongoose-unique-validator');
+var timestamps = require('mongoose-timestamp');
+var uniqueValidator = require('mongoose-unique-validator');
 
 var PostSchema = new Schema({
+    _id: String,
     title: {
         type: String,
         required: 'A title is required',
@@ -19,13 +20,15 @@ var PostSchema = new Schema({
             })
         ]
     },
+    slug: {
+        type: String,
+        required: 'A slug is required.',
+        unique: true
+    },
+
     description: {
         type: String
     },
-    link: {
-        type: String
-    },
-
     // author: {
     //     type: String,
     //     required: 'An author is required'
@@ -39,10 +42,22 @@ var PostSchema = new Schema({
     }
 });
 
+PostSchema
+    .pre('save', function(next) {
+        if (!this.isNew) return next();
+
+        if (!this.slug) {
+            next(new Error('Slug is required.'));
+        } else {
+            this._id = this.slug;
+            next();
+        }
+    });
+
 //TODO - refactor - this is becoming repetitive
-//PostSchema.plugin(timestamps);
-//PostSchema.plugin(uniqueValidator, {
-//    message: 'Error, expected {PATH} to be unique.'
-//});
+PostSchema.plugin(timestamps);
+PostSchema.plugin(uniqueValidator, {
+    message: 'Error, expected {PATH} to be unique.'
+});
 
 module.exports = mongoose.model('Post', PostSchema);

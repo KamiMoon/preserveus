@@ -5,9 +5,10 @@
             <div class="col-md-12">
                 <h3><span class="glyphicon glyphicon-globe"></span> Post Info:</h3>
                 <div class="form-horizontal">
-                    <b-input model="post.title" required="true"></b-input>
+                    <b-input model="post.title" required="true" change="updateSlug()"></b-input>
+                    <b-input model="post.slug" required="true"></b-input>
                     <b-input type="file" model="photo"></b-input>
-                    <b-input type="textarea" rows="6" cols="5" model="post.postHtml"></b-input>
+                    <b-input type="textarea" rows="6" cols="5" model="post.postHtml" label="Content" required="true"></b-input>
                 </div>
             </div>
         </div>

@@ -30,7 +30,7 @@ angular.module('preserveusApp')
                         });
 
                     }, function() {
-                        alert('Delete Failed');
+                        ValidationService.error('Delete Failed');
                     });
                 }
 

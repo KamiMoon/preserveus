@@ -122,6 +122,9 @@ exports.update = function(req, res, modelObj) {
     });
 };
 
+
+
+
 exports.findByIdAndRemove = function(req, res, modelObj) {
     modelObj.findByIdAndRemove(req.params.id, function(err) {
         if (err) return res.status(500).send(err);
@@ -171,4 +174,28 @@ exports.create = function(req, res, modelObj) {
         }
         return res.status(201).json(obj);
     });
+};
+
+exports.createWithPhoto = function(req, res, modelObj) {
+
+    var postedObj;
+
+    if (req.body.data) {
+        //isDataMode = true;
+        postedObj = JSON.parse(req.body.data);
+    } else {
+        postedObj = req.body;
+    }
+
+    if (req.file) {
+        postedObj.photo = req.file.path;
+    }
+
+    modelObj.create(postedObj, function(err, obj) {
+        if (err) {
+            return handleError(res, err);
+        }
+        return res.status(201).json(obj);
+    });
+
 };

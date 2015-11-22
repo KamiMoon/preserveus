@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('preserveusApp')
-    .factory('PostService', function($resource) {
-        return $resource('/api/posts/:id/:controller', {
+    .factory('BlogService', function($resource) {
+        return $resource('/api/blog/:id/:controller', {
             id: '@_id'
         }, {
             update: {

@@ -23,12 +23,7 @@ exports.show = function(req, res) {
 
 // Creates a new event in the DB.
 exports.create = function(req, res) {
-    Post.create(req.body, function(err, event) {
-        if (err) {
-            return ControllerUtil.handleError(res, err);
-        }
-        return res.status(201).json(event);
-    });
+    ControllerUtil.createWithPhoto(req, res, Post, 'photo');
 };
 
 // Updates an existing event in the DB.

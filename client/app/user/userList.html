@@ -49,6 +49,7 @@
             <td>{{::user.phone | tel}}</td>
             <td>
                 <a href="/#/user/edit/{{::user._id}}" class="btn btn-default" role="button">Edit</a>
+                <a ng-click="delete(user._id)" class="btn btn-default" role="button">Delete</a>
             </td>
         </tr>
     </table>

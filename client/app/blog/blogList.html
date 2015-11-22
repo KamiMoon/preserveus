@@ -1,17 +1,23 @@
 <br>
 <br>
 <div class="container">
+    <div class="row" ng-if="::Auth.isAdmin()">
+        <div class="col-md-12">
+            <a href="/blog/add">Add Post</a>
+            <br>
+        </div>
+    </div>
     <div class="row" ng-repeat="post in posts">
         <div class="col-md-12">
             <div class="media">
                 <div class="media-left">
-                    <a href="/#/post/view/{{post._id}}">
+                    <a href="/#/blog/{{post._id}}">
                         <img class="media-object" ng-src="{{post.photo}}" alt="{{post.title}}">
                     </a>
                 </div>
                 <div class="media-body">
                     <h3 class="media-heading">
-                    <a href="/#/post/view/{{post._id}}" target="_blank">{{::post.title}}</a>
+                    <a href="/#/blog/{{post._id}}">{{::post.title}}</a>
                     </h3> {{::post.postHtml}}
                 </div>
             </div>
