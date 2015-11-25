@@ -23,7 +23,6 @@ exports.setup = function(User, config) {
                     });
                 }
 
-                console.log('Checking if user is activated');
                 if (!user.activated) {
                     return done(null, false, {
                         message: 'Your account is not activated.  Check your email for an activation link.'

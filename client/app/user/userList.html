@@ -26,32 +26,34 @@
             </div>
         </div>
     </div>
-    <table class="table" ng-if="Auth.isAdmin()">
-        <tr>
-            <th>Name</th>
-            <th>Created</th>
-            <th>Address</th>
-            <th>City</th>
-            <th>State</th>
-            <th>Zip</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Actions</th>
-        </tr>
-        <tr ng-repeat="user in users">
-            <td><a href="/#/profile/{{::user._id}}">{{::user.name}}</a></td>
-            <td>{{::user.createdAt | date:'MMM d, y'}}</td>
-            <td>{{::user.address}}</td>
-            <td>{{::user.city}}</td>
-            <td>{{::user.state}}</td>
-            <td>{{::user.zip}}</td>
-            <td>{{::user.email}}</td>
-            <td>{{::user.phone | tel}}</td>
-            <td>
-                <a href="/#/user/edit/{{::user._id}}" class="btn btn-default" role="button">Edit</a>
-                <a ng-click="delete(user._id)" class="btn btn-default" role="button">Delete</a>
-            </td>
-        </tr>
-    </table>
+    <div class="table-responsive">
+        <table class="table" ng-if="Auth.isAdmin()">
+            <tr>
+                <th>Name</th>
+                <th>Created</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Actions</th>
+            </tr>
+            <tr ng-repeat="user in users">
+                <td><a href="/#/profile/{{::user._id}}">{{::user.name}}</a></td>
+                <td>{{::user.createdAt | date:'MMM d, y'}}</td>
+                <td>{{::user.address}}</td>
+                <td>{{::user.city}}</td>
+                <td>{{::user.state}}</td>
+                <td>{{::user.zip}}</td>
+                <td>{{::user.email}}</td>
+                <td>{{::user.phone | tel}}</td>
+                <td>
+                    <a href="/#/user/edit/{{::user._id}}" class="btn btn-default" role="button">Edit</a>
+                    <a ng-click="delete(user._id)" class="btn btn-default" role="button">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
     <div ng-if="!Auth.isAdmin()">Only Admins can search users</div>
 </div>

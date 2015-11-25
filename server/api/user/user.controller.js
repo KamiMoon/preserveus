@@ -7,36 +7,12 @@ var jwt = require('jsonwebtoken');
 var ControllerUtil = require('../../components/controllerUtil');
 var config = require('../../config/environment');
 
+var EmailUtil = require('../../components/emailUtil');
+
+
 
 var validationError = function(res, err) {
     return res.status(422).json(err);
-};
-
-var createConfirmationEmail = function(req, user) {
-    var host = ControllerUtil.getHostFromRequest(req);
-
-    if (host) {
-
-        var linkAddress = 'http://' + host + '/api/users/activate/' + encodeURIComponent(user._id) + '/' + encodeURIComponent(user.activationHash);
-
-        var body = 'Welcome, <br/>You are registered for Preserve US. <br/><br/>';
-        body += 'To activate your account click this link: <a href="' + linkAddress + '">Activate Account</a>';
-
-        var mailOptions = {
-            from: process.env.GMAIL, // sender address
-            to: user.email, // list of receivers
-            subject: 'Confirm Registration', // Subject line
-            html: body // html body
-        };
-
-        config.transporter.sendMail(mailOptions, function(error) {
-            if (error) {
-                return console.log(error);
-            }
-        });
-    }
-
-
 };
 
 exports.index = function(req, res) {
@@ -64,7 +40,7 @@ exports.create = function(req, res, next) {
             });
 
             //create an email with the activation hash in it
-            createConfirmationEmail(req, user);
+            EmailUtil.createConfirmationEmail(req, user);
 
             res.json({
                 token: token

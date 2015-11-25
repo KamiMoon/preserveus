@@ -1,3 +1,5 @@
+'use strict';
+
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 
@@ -22,19 +24,21 @@ exports.setup = function(User, config) {
                     if (!user) {
                         console.log(profile);
 
-
                         user = new User({
                             name: profile.displayName,
                             email: profile.emails[0].value,
                             username: profile.username,
                             provider: 'facebook',
+                            activated: true,
                             facebook: profile._json
                         });
                         user.save(function(err) {
                             if (err) return done(err);
+
                             done(err, user);
                         });
                     } else {
+
                         return done(err, user);
                     }
                 })

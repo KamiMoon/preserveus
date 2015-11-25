@@ -2,6 +2,8 @@
 
 var Post = require('./post.model');
 var ControllerUtil = require('../../components/controllerUtil');
+var config = require('../../config/environment');
+
 
 // Get list of events
 exports.index = function(req, res) {
@@ -47,4 +49,14 @@ exports.destroy = function(req, res) {
             return res.status(204).send('No Content');
         });
     });
+};
+
+exports.uploadTest = function(req, res) {
+    config.cloudinary.uploader.upload('http://www.online-image-editor.com//styles/2014/images/example_image.png', function(result) {
+        console.log(result);
+        res.json('hi');
+
+    });
+
+
 };
