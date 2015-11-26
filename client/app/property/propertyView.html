@@ -101,7 +101,8 @@
         <div class="col-md-4">
             <h3>Financial Summary</h3>
             <ul>
-                <li ng-repeat="text in financialSummary">{{::text}}</li>
+                <li ng-repeat="financialFact in property.financialSummary
+">{{::financialFact.text}}</li>
             </ul>
         </div>
     </div>

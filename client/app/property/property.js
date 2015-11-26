@@ -6,14 +6,10 @@ angular.module('preserveusApp')
             url: '/property',
             templateUrl: 'app/property/propertyList.html',
             controller: 'PropertyCtrl'
-        }).state('propertyAdd', {
-            url: '/property/add',
+        }).state('propertyAddEdit', {
+            url: '/property/:action/:id',
             templateUrl: 'app/property/propertyAdd.html',
-            controller: 'PropertyAddCtrl'
-        }).state('propertyEdit', {
-            url: '/property/edit/:id',
-            templateUrl: 'app/property/propertyAdd.html',
-            controller: 'PropertyEditCtrl'
+            controller: 'PropertyAddEditCtrl'
         }).state('propertyView', {
             url: '/property/:id',
             templateUrl: 'app/property/propertyView.html',
