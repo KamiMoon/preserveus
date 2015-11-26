@@ -1,0 +1,120 @@
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="/property" class="btn btn-default btn-lg" role="button"> ← Back to Properties</a>
+            <br>
+            <br>
+            <div ng-if="::Auth.isAdmin()">
+                <a href="/property/edit/{{property._id}}" class="btn btn-warning
+ btn-lg" role="button">Edit</a>
+                <br>
+                <br>
+                <a href="#" ng-click="delete(property._id)" class="btn btn-danger btn-lg" role="button">Delete</a>
+                <br>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>{{::property.name}}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div align="center">
+                <img ng-src="{{property.photo}}" alt="{{property.name}}" class="img-responsive">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div ng-if="property.allowInvest">
+                <h4>Invest in this property</h4>
+                <button class="btn btn-success btn-lg" type="button">Invest</button>
+                <br>
+                <br>
+            </div>
+            <div ng-if="property.allowRent">
+                <h4>Apply to become a renter at this property</h4>
+                <button class="btn btn-warning btn-lg" type="button">Rent</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <h2>{{::property.address}}<span ng-if="property.city">,</span> {{::property.city}}<span ng-if="property.state">,</span> {{::property.state}} {{::property.zip}}
+            </h2>
+            <h3><span ng-if="property.beds">{{::property.beds}} beds,</span> <span ng-if="property.baths">{{::property.baths}} baths,</span> <span ng-if="property.sqft">{{::property.sqft}} sqft</span></h3>
+            <p>
+                {{::property.description}}
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2 ng-if="property.cost">${{::property.cost}}</h2>
+            <h3 ng-if="property.mortgage">Est. Mortgage</h3>
+            <h4 ng-if="property.mortgage">${{::property.mortgage}}</h4>
+        </div>
+    </div>
+    <div class="row" ng-if="property.features.length">
+        <div class="col-md-12">
+            <button class="btn btn-primary btn-lg" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Features
+            </button>
+            <br>
+            <br>
+        </div>
+    </div>
+    <div id="collapseExample" class="row collapse" ng-if="property.features.length">
+        <div class="row" ng-repeat="featureRow in property.features">
+            <div class="col-md-8">
+                <div class="col-md-4">
+                    <ul>
+                        <li>{{::featureRow[0].text}}</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul>
+                        <li>{{::featureRow[1].text}}</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul>
+                        <li>{{::featureRow[2].text}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">PROJECTED INVESTOR CASH ON CASH RETURN (%)</div>
+                <div class="panel-body">
+                    <canvas id="line" class="chart chart-bar" chart-data="data" chart-options="options" chart-labels="labels" chart-legend="true" chart-series="series" chart-colours="colours" chart-click="onClick">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h3>Financial Summary</h3>
+            <ul>
+                <li ng-repeat="text in financialSummary">{{::text}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row" ng-repeat="row in property.photoRows">
+        <div class="col-xs-6 col-md-3" ng-repeat="photo in row">
+            <a href="{{photo}}" class="thumbnail swipebox" target="_self">
+                <img ng-src="{{photo}}" class="image-property-property" alt="image">
+            </a>
+        </div>
+    </div>
+</div>
+<script>
+$(document).ready(function() {
+    $('.swipebox').swipebox();
+});
+</script>

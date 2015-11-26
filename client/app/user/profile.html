@@ -68,17 +68,14 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" ng-if="Auth.isAdmin()">
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="glyphicon glyphicon-globe"></i>Actions</h3>
                 </div>
                 <div class="panel-body">
                     <ul>
-                        <li><a href="/#/organization">Invest in Properties</a>
-                        </li>
-                        <li><a href="/#/organization/add">Rent</a></li>
-                        <li ng-if="Auth.isAdmin()"><a href="/user">Administer Users</a></li>
+                        <li><a href="/user">Administer Users</a></li>
                     </ul>
                 </div>
             </div>

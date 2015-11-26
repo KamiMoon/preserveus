@@ -1,0 +1,105 @@
+<div class="container">
+    <h1>Create Property Listing</h1>
+    <form name="form" ng-submit="save(form)" novalidate>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel-heading">
+                    <h3><span class="glyphicon glyphicon-globe"></span> Basic Info:</h3>
+                </div>
+                <div class="form-horizontal">
+                    <b-input model="property.name" required="true"></b-input>
+                    <b-input type="file" model="photo"></b-input>
+                    <b-input type="textarea" rows="6" cols="5" model="property.description"></b-input>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel-heading">
+                    <h3><span class="glyphicon glyphicon-home"></span> Address:</h3>
+                </div>
+                <div class="form-horizontal">
+                    <b-input model="property.address"></b-input>
+                    <b-input model="property.city"></b-input>
+                    <b-input type="select" source="states" label="State" model="property.state">
+                    </b-input>
+                    <b-input model="property.zip"></b-input>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel-heading">
+                    <h3><span class="glyphicon glyphicon-lamp"></span> Property Features:</h3>
+                </div>
+                <div class="form-horizontal">
+                    <b-input type="number" model="property.beds"></b-input>
+                    <b-input type="number" model="property.baths"></b-input>
+                    <b-input type="number" model="property.sqft"></b-input>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel-heading">
+                    <h3><span class="glyphicon glyphicon-stats"></span> Investment Features:</h3>
+                </div>
+                <div class="form-horizontal">
+                    <b-input type="number" model="property.cost"></b-input>
+                    <b-input type="number" model="property.mortgage"></b-input>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel-heading">
+                    <h3>Additional Features:</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr ng-repeat="featureRow in property.features">
+                            <td>
+                                <input type="text" ng-model="featureRow[0].text" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" ng-model="featureRow[1].text" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" ng-model="featureRow[2].text" class="form-control">
+                            </td>
+                            <td>
+                                <button class="btn btn-danger" type="button" ng-click="deleteFeature(featureRow)">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" ng-model="featureToAddRow[0].text" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" ng-model="featureToAddRow[1].text" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" ng-model="featureToAddRow[2].text" class="form-control">
+                            </td>
+                            <td>
+                                <button class="btn btn-info" type="button" ng-click="addMoreFeatures()">Add</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel-heading">
+                    <h3><span class="glyphicon glyphicon-camera"></span> Photo Gallery:</h3>
+                </div>
+                <div class="form-horizontal">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div align="right">
+                    <b-input type="submit"></b-input>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

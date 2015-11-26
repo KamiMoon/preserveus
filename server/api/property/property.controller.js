@@ -1,16 +1,16 @@
 'use strict';
 
-var Listing = require('./listing.model');
+var Property = require('./property.model');
 var ControllerUtil = require('../../components/controllerUtil');
 
 // Get list of events
 exports.index = function(req, res) {
-    ControllerUtil.find(req, res, Listing);
+    ControllerUtil.find(req, res, Property);
 };
 
 // Get a single event
 exports.show = function(req, res) {
-    Listing.findById(req.params.id).exec(function(err, event) {
+    Property.findById(req.params.id).exec(function(err, event) {
         if (err) {
             return ControllerUtil.handleError(res, err);
         }
@@ -23,7 +23,7 @@ exports.show = function(req, res) {
 
 // Creates a new event in the DB.
 exports.create = function(req, res) {
-    Listing.create(req.body, function(err, event) {
+    Property.create(req.body, function(err, event) {
         if (err) {
             return ControllerUtil.handleError(res, err);
         }
@@ -33,12 +33,12 @@ exports.create = function(req, res) {
 
 // Updates an existing event in the DB.
 exports.update = function(req, res) {
-    ControllerUtil.update(req, res, Listing);
+    ControllerUtil.update(req, res, Property);
 };
 
 // Deletes a event from the DB.
 exports.destroy = function(req, res) {
-    Listing.findById(req.params.id, function(err, event) {
+    Property.findById(req.params.id, function(err, event) {
         if (err) {
             return ControllerUtil.handleError(res, err);
         }
