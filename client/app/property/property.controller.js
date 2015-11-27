@@ -3,18 +3,42 @@
 angular.module('preserveusApp')
     .controller('PropertyCtrl', function($scope, PropertyService, uiGmapGoogleMapApi) {
 
-        $scope.properties = PropertyService.query();
+        PropertyService.query().$promise.then(function(properties) {
+            $scope.properties = properties;
+
+            uiGmapGoogleMapApi.then(function(maps) {
+
+                if ($scope.properties.length) {
+                    var firstLocation = $scope.properties[0].geoLocation;
+
+                    $scope.map = {
+                        center: {
+                            latitude: firstLocation.lat,
+                            longitude: firstLocation.lng
+                        },
+                        zoom: 14
+                    };
+
+                    $scope.mapMarkers = $scope.properties.map(function(property) {
+                        return {
+                            latitude: property.geoLocation.lat,
+                            longitude: property.geoLocation.lng,
+                            id: property._id,
+                            title: property.name,
+                            show: false
+                        };
+                    });
+
+                    $scope.markerClick = function(marker, eventName, model) {
+                        console.log("Clicked!");
+                        model.show = !model.show;
+                    };
+                }
+                //TODO else
 
 
 
-        uiGmapGoogleMapApi.then(function(maps) {
-            $scope.map = {
-                center: {
-                    latitude: 45,
-                    longitude: -73
-                },
-                zoom: 8
-            };
+            });
         });
 
 

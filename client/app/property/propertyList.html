@@ -3,7 +3,13 @@
 <div class="container">
     <div class="row">
         <div class="col-md-9">
-            <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+            <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+                <ui-gmap-markers models="mapMarkers" coords="'self'" icon="'icon'" click="markerClick">
+                    <ui-gmap-windows show="show">
+                        <div ng-non-bindable>{{title}}</div>
+                    </ui-gmap-windows>
+                </ui-gmap-markers>
+            </ui-gmap-google-map>
         </div>
         <div class="col-md-3">
             <div class="row" ng-if="::Auth.isAdmin()">
