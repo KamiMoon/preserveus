@@ -1,9 +1,22 @@
 'use strict';
 
 angular.module('preserveusApp')
-    .controller('PropertyCtrl', function($scope, PropertyService, ValidationService) {
+    .controller('PropertyCtrl', function($scope, PropertyService, uiGmapGoogleMapApi) {
 
         $scope.properties = PropertyService.query();
+
+
+
+        uiGmapGoogleMapApi.then(function(maps) {
+            $scope.map = {
+                center: {
+                    latitude: 45,
+                    longitude: -73
+                },
+                zoom: 8
+            };
+        });
+
 
     }).controller('PropertyAddEditCtrl', function($scope, $stateParams, $location, PropertyService, ValidationService) {
 

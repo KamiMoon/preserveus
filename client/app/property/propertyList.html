@@ -1,15 +1,18 @@
 <br>
 <br>
 <div class="container">
-    <div class="row" ng-if="::Auth.isAdmin()">
-        <div class="col-md-12">
-            <a href="/property/add/1" class="btn btn-default btn-lg" role="button">Add Property</a>
-            <br>
-            <br>
-        </div>
-    </div>
     <div class="row" ng-repeat="property in properties">
-        <div class="col-md-12">
+        <div class="col-md-9">
+            <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+        </div>
+        <div class="col-md-3">
+            <div class="row" ng-if="::Auth.isAdmin()">
+                <div class="col-md-12">
+                    <a href="/property/add/1" class="btn btn-default btn-lg" role="button">Add Property</a>
+                    <br>
+                    <br>
+                </div>
+            </div>
             <div class="media">
                 <div class="media-left">
                     <a href="/property/{{property._id}}">
@@ -30,3 +33,8 @@
         </div>
     </div>
 </div>
+<style type="text/css">
+.angular-google-map-container {
+    height: 400px;
+}
+</style>

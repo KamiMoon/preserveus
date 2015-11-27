@@ -11,14 +11,21 @@ angular.module('preserveusApp', [
         'ngStorage',
         'vcRecaptcha',
         'chart.js',
-        'summernote'
+        'summernote',
+        'uiGmapgoogle-maps'
     ])
-    .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+    .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, uiGmapGoogleMapApiProvider) {
         $urlRouterProvider
             .otherwise('/');
 
         $locationProvider.html5Mode(true);
         $httpProvider.interceptors.push('authInterceptor');
+
+        uiGmapGoogleMapApiProvider.configure({
+            key: 'AIzaSyAH097-AkYDvIY7AAU42AlvFbxmUs69CRM',
+            //v: '3.20', //defaults to latest 3.X anyhow
+            //libraries: 'weather,geometry,visualization'
+        });
     })
 
 .factory('authInterceptor', function($rootScope, $q, $cookieStore, $location) {
