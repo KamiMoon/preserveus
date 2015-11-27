@@ -4,6 +4,8 @@ var path = require('path');
 var _ = require('lodash');
 var nodemailer = require('nodemailer');
 var request = require('request');
+var GoogleMapsAPI = require('googlemaps')
+
 
 // create reusable transporter object using SMTP transport
 // NB! No need to recreate the transporter object. You can use
@@ -16,6 +18,16 @@ var transporter = nodemailer.createTransport({
         pass: process.env.GMAIL_PASSWORD
     }
 });
+
+var googleMapsConfig = {
+    key: process.env.GOOGLE_API,
+    stagger_time: 1000, // for elevationPath
+    encode_polylines: false,
+    secure: true //, // use https
+        //proxy:              'http://127.0.0.1:9999' // optional, set a proxy for HTTP requests
+};
+var googleMapsApi = new GoogleMapsAPI(googleMapsConfig);
+
 
 var RECAPTCHA = process.env.RECAPTCHA;
 
@@ -104,7 +116,9 @@ var all = {
 
     transporter: transporter,
 
-    verifyRecaptcha: verifyRecaptcha
+    verifyRecaptcha: verifyRecaptcha,
+
+    googleMapsApi: googleMapsApi
 
 };
 

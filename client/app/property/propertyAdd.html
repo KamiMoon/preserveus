@@ -17,11 +17,11 @@
                     <h3><span class="glyphicon glyphicon-home"></span> Address:</h3>
                 </div>
                 <div class="form-horizontal">
-                    <b-input model="property.address"></b-input>
-                    <b-input model="property.city"></b-input>
-                    <b-input type="select" source="states" label="State" model="property.state">
+                    <b-input model="property.address" require="true"></b-input>
+                    <b-input model="property.city" require="true"></b-input>
+                    <b-input type="select" source="states" label="State" model="property.state" require="true">
                     </b-input>
-                    <b-input model="property.zip"></b-input>
+                    <b-input model="property.zip" require="true"></b-input>
                 </div>
             </div>
         </div>

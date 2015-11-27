@@ -6,6 +6,7 @@ var validate = require('mongoose-validator');
 var timestamps = require('mongoose-timestamp');
 var uniqueValidator = require('mongoose-unique-validator');
 var TextUtil = require('../../components/textUtil');
+var config = require('../../config/environment');
 
 
 var PropertySchema = new Schema({
@@ -87,7 +88,8 @@ var PropertySchema = new Schema({
         default: true
     },
     minimumInvestmentAmount: Number,
-    maximumInvestmentAmount: Number
+    maximumInvestmentAmount: Number,
+    geoLocation: {}
 
 });
 
@@ -97,16 +99,43 @@ PropertySchema.plugin(uniqueValidator, {
     message: 'Error, expected {PATH} to be unique.'
 });
 
+var setGeolocation = function(context, next) {
+    var geocodeParams = {
+        'address': context.address + ' ' + context.city + ', ' + context.state + ' ' + context.zip
+    };
+
+    //TODO - optimize by only calling this is address etc changed
+    config.googleMapsApi.geocode(geocodeParams, function(err, result) {
+        console.log('ran geolocation');
+        if (err) {
+            next(new Error('Not a valid address to on Google'));
+        }
+
+        var geoLocation = result.results[0].geometry.location;
+        context.geoLocation = geoLocation;
+
+        next();
+
+    });
+
+};
+
 PropertySchema
     .pre('save', function(next) {
-        if (!this.isNew) return next();
+        if (!this.isNew) {
 
-        if (!this.name) {
-            next(new Error('Name is required.'));
+            setGeolocation(this, next);
+
         } else {
-            this._id = TextUtil.slugify(this.name);
-            next();
+            if (!this.name) {
+                next(new Error('Name is required.'));
+            } else {
+                this._id = TextUtil.slugify(this.name);
+
+                setGeolocation(this, next);
+            }
         }
+
     });
 
 module.exports = mongoose.model('Property', PropertySchema);
