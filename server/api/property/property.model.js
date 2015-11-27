@@ -76,14 +76,18 @@ var PropertySchema = new Schema({
     projectedReturnsByYear: [],
     //array of arrays
     photoRows: [],
+    totalRenters: Number,
+    totalRentersAvailable: Number,
+    allowRent: {
+        type: Boolean,
+        default: true
+    },
     allowInvest: {
         type: Boolean,
         default: true
     },
-    allowRent: {
-        type: Boolean,
-        default: true
-    }
+    minimumInvestmentAmount: Number,
+    maximumInvestmentAmount: Number
 
 });
 
