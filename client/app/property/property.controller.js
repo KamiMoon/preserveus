@@ -33,6 +33,16 @@ angular.module('preserveusApp')
                         console.log("Clicked!");
                         model.show = !model.show;
                     };
+
+                    $scope.zoomToLocation = function(property) {
+                        $scope.map = {
+                            center: {
+                                latitude: property.geoLocation.lat,
+                                longitude: property.geoLocation.lng
+                            },
+                            zoom: 14
+                        };
+                    };
                 }
                 //TODO else
 
