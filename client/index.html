@@ -25,15 +25,17 @@
 -->
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="https://maxcdn.bootstrap
-cdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrap
+cdn.com/font-awesome/4.4.0/css/font-awesome.min.css">-->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Playfair Display SC:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
     <!-- build:css(client) app/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" href="bower_components/summernote/dist/summernote.css" />
+    <link rel="stylesheet" href="bower_components/swipebox/src/css/swipebox.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -43,9 +45,7 @@ cdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="components/modal/modal.css">
     <!-- endinjector -->
     <!-- endbuild -->
-    <link rel="stylesheet" href="assets/swipebox-master/src/css/swipebox.css">
     <script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async defer></script>
-
 </head>
 
 <body ng-app="preserveusApp">
@@ -106,7 +106,6 @@ cdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
-    <!--<script src="assets/summernote/summernote.min.js"></script>-->
     <!-- build:js({client,node_modules}) app/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -129,6 +128,7 @@ cdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
     <script src="bower_components/ngstorage/ngStorage.js"></script>
+    <script src="bower_components/swipebox/src/js/jquery.swipebox.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js({.tmp,client}) app/app.js -->
@@ -171,13 +171,6 @@ cdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script>
     Chart.defaults.global.responsive = true;
     </script>
-    <script src="assets/swipebox-master/src/js/jquery.swipebox.min.js"></script>
-    <!--<script src="assets/summernote/angular-summernote.min.js"></script>-->
-    <!--
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAH097-AkYDvIY7AAU42AlvFbxmUs69CRM">
-    </script>
-
-    -->
 </body>
 
 </html>
