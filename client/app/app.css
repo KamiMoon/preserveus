@@ -370,3 +370,12 @@ legend {
     width: 150px;
     height: 150px;
 }
+
+.img-property {
+    width: 100px;
+    height: 100px;
+}
+
+.map-window {
+    width: 300px;
+}

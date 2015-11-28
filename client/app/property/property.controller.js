@@ -3,51 +3,56 @@
 angular.module('preserveusApp')
     .controller('PropertyCtrl', function($scope, PropertyService, uiGmapGoogleMapApi) {
 
-        PropertyService.query().$promise.then(function(properties) {
-            $scope.properties = properties;
 
-            uiGmapGoogleMapApi.then(function(maps) {
+        var buildMap = function() {
+            if ($scope.properties.length) {
+                var firstLocation = $scope.properties[0].geoLocation;
 
-                if ($scope.properties.length) {
-                    var firstLocation = $scope.properties[0].geoLocation;
+                $scope.map = {
+                    center: {
+                        latitude: firstLocation.lat,
+                        longitude: firstLocation.lng
+                    },
+                    zoom: 14
+                };
 
+                $scope.mapMarkers = $scope.properties.map(function(property) {
+                    return {
+                        latitude: property.geoLocation.lat,
+                        longitude: property.geoLocation.lng,
+                        id: property._id,
+                        title: property.name,
+                        show: false,
+                        address: property.fullAddress,
+                        description: property.description,
+                        photo: property.photo
+                    };
+                });
+
+                $scope.markerClick = function(marker, eventName, model) {
+                    console.log("Clicked!");
+                    model.show = !model.show;
+                };
+
+                $scope.zoomToLocation = function(property) {
                     $scope.map = {
                         center: {
-                            latitude: firstLocation.lat,
-                            longitude: firstLocation.lng
+                            latitude: property.geoLocation.lat,
+                            longitude: property.geoLocation.lng
                         },
                         zoom: 14
                     };
 
-                    $scope.mapMarkers = $scope.properties.map(function(property) {
-                        return {
-                            latitude: property.geoLocation.lat,
-                            longitude: property.geoLocation.lng,
-                            id: property._id,
-                            title: property.name,
-                            show: false
-                        };
-                    });
+                    $('#mapTop')[0].scrollIntoView();
+                };
+            }
+        };
 
-                    $scope.markerClick = function(marker, eventName, model) {
-                        console.log("Clicked!");
-                        model.show = !model.show;
-                    };
+        PropertyService.query().$promise.then(function(properties) {
+            $scope.properties = properties;
 
-                    $scope.zoomToLocation = function(property) {
-                        $scope.map = {
-                            center: {
-                                latitude: property.geoLocation.lat,
-                                longitude: property.geoLocation.lng
-                            },
-                            zoom: 14
-                        };
-                    };
-                }
-                //TODO else
-
-
-
+            uiGmapGoogleMapApi.then(function(maps) {
+                buildMap();
             });
         });
 

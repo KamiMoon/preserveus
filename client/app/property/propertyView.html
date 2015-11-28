@@ -43,7 +43,7 @@
     </div>
     <div class="row">
         <div class="col-md-8">
-            <h2>{{::property.address}}<span ng-if="property.city">,</span> {{::property.city}}<span ng-if="property.state">,</span> {{::property.state}} {{::property.zip}}
+            <h2>{{::property.fullAddress}}
             </h2>
             <h3><span ng-if="property.beds">{{::property.beds}} beds,</span> <span ng-if="property.baths">{{::property.baths}} baths,</span> <span ng-if="property.sqft">{{::property.sqft}} sqft</span></h3>
             <p>
