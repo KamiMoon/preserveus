@@ -227,8 +227,10 @@ module.exports = function(grunt) {
                     src: [
                         '<%= yeoman.dist %>/public/{,*/}*.js',
                         '<%= yeoman.dist %>/public/{,*/}*.css',
-                        '<%= yeoman.dist %>/public/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-                        '<%= yeoman.dist %>/public/assets/fonts/*'
+                        '!<%= yeoman.dist %>/public/bower_components/Chart.js',
+                        '!<%= yeoman.dist %>/public/bower_components/angular-chart.js',
+                        '<%= yeoman.dist %>/public/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}' //,
+                        //'<%= yeoman.dist %>/public/assets/fonts/*'
                     ]
                 }
             }
@@ -248,7 +250,10 @@ module.exports = function(grunt) {
         usemin: {
             html: ['<%= yeoman.dist %>/public/{,*/}*.html'],
             css: ['<%= yeoman.dist %>/public/{,*/}*.css'],
-            js: ['<%= yeoman.dist %>/public/{,*/}*.js'],
+            js: ['<%= yeoman.dist %>/public/{,*/}*.js',
+                '!<%= yeoman.dist %>/public/bower_components/Chart.js',
+                '!<%= yeoman.dist %>/public/bower_components/angular-chart.js'
+            ],
             options: {
                 assetsDirs: [
                     '<%= yeoman.dist %>/public',
@@ -338,32 +343,41 @@ module.exports = function(grunt) {
         copy: {
             dist: {
                 files: [{
-                    expand: true,
-                    dot: true,
-                    cwd: '<%= yeoman.client %>',
-                    dest: '<%= yeoman.dist %>/public',
-                    src: [
-                        '*.{ico,png,txt}',
-                        '.htaccess',
-                        'sitemap.xml',
-                        'bower_components/**/*',
-                        'components/**/*',
-                        'assets/**/*',
-                        'index.html'
-                    ]
-                }, {
-                    expand: true,
-                    cwd: '.tmp/images',
-                    dest: '<%= yeoman.dist %>/public/assets/images',
-                    src: ['generated/*']
-                }, {
-                    expand: true,
-                    dest: '<%= yeoman.dist %>',
-                    src: [
-                        'package.json',
-                        'server/**/*'
-                    ]
-                }]
+                        expand: true,
+                        dot: true,
+                        cwd: '<%= yeoman.client %>',
+                        dest: '<%= yeoman.dist %>/public',
+                        src: [
+                            '*.{ico,png,txt}',
+                            '.htaccess',
+                            'sitemap.xml',
+                            'bower_components/**/*',
+                            'components/**/*',
+                            'assets/**/*',
+                            'index.html'
+                        ]
+                    }, {
+                        expand: true,
+                        cwd: '.tmp/images',
+                        dest: '<%= yeoman.dist %>/public/assets/images',
+                        src: ['generated/*']
+                    }, {
+                        expand: true,
+                        dest: '<%= yeoman.dist %>',
+                        src: [
+                            'package.json',
+                            'server/**/*'
+                        ]
+                    }
+                    /*, {
+                                        expand: true,
+                                        flatten: true,
+                                        cwd: '<%= yeoman.client %>/bower_components/font-awesome/fonts',
+                                        dest: '<%= yeoman.dist %>/public/fonts',
+                                        src: ['*.*'],
+                                        filter: 'isFile'
+                                    }*/
+                ]
             },
             styles: {
                 expand: true,
@@ -495,7 +509,7 @@ module.exports = function(grunt) {
                 files: {
                     '<%= yeoman.client %>/index.html': [
                         '<%= yeoman.client %>/{app,components}/**/*.css',
-                        '<%= yeoman.client %>/assets/fonts/*.css',
+                        '<%= yeoman.client %>/assets/fonts/*.css'
                     ]
                 }
             }
@@ -599,7 +613,7 @@ module.exports = function(grunt) {
         'concat',
         'ngAnnotate',
         'copy:dist',
-        'cdnify',
+        //'cdnify',
         'cssmin',
         'uglify',
         'rev',
