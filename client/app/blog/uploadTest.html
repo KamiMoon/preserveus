@@ -43,4 +43,38 @@
     </div>
 </div>
 <a href="#/photos" class="back_link">Back to list</a>
-<input type="file" ngf-select="" ng-model="photo" name="photo" class="" accept="image/*" ngf-max-size="2MB">
+<br>
+<br>
+<br>
+<div class="fileUpload">
+    <button class="btn btn-default btn-lg" role="button" type="file" ngf-select="uploadFile($file, $invalidFiles)" accept="image/*" ngf-max-height="1000" ngf-resize="{width: 100, height: 100}" ngf-max-size="2MB">
+        Select File</button>
+    <br>
+    <br>
+    <div>
+        <span>{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
+
+    <span class="progress" ng-show="f.progress >= 0">
+          <div style="width:{{f.progress}}%"  
+               ng-bind="f.progress + '%'"></div>
+      </span>
+        </span>
+        {{errorMsg}}
+    </div>
+</div>
+{{f}}
+<img ngf-src="f.result.url || f">
+<style>
+.fileUpload .progress {
+    display: inline-block;
+    width: 100px;
+    border: 3px groove #CCC;
+    margin-bottom: 0px;
+    margin-left: 15px;
+}
+
+.fileUpload .progress div {
+    background: lightgreen;
+    width: 0;
+}
+</style>

@@ -109,7 +109,7 @@ angular.module('preserveusApp')
             }
         };
 
-    }).controller('UploadTestCtrl', function($scope, $rootScope, Upload) {
+    }).controller('UploadTestCtrl', function($scope, $rootScope, $timeout, Upload) {
         var d = new Date();
 
         $scope.title = "Image (" + d.getDate() + " - " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + ")";
@@ -149,6 +149,39 @@ angular.module('preserveusApp')
             });
         };
         //});
+
+        $scope.uploadFile = function(file, errFiles) {
+            $scope.f = file;
+            $scope.errFile = errFiles && errFiles[0];
+            if (file) {
+                file.upload = Upload.upload({
+                    skipAuthorization: true,
+                    url: "https://api.cloudinary.com/v1_1/" + "ddovrks1z" + "/upload",
+                    fields: {
+                        upload_preset: 'saogp2ap',
+                        tags: 'myphotoalbum',
+                        context: 'photo=' + $scope.title
+                    },
+
+                    file: file
+                });
+
+                file.upload.then(function(response) {
+                    $timeout(function() {
+                        file.result = response.data;
+                    });
+                }, function(response) {
+                    if (response.status > 0) {
+                        $scope.errorMsg = response.status + ': ' + response.data;
+                    }
+                }, function(evt) {
+                    file.progress = Math.min(100, parseInt(100.0 *
+                        evt.loaded / evt.total));
+                });
+            }
+        };
+
+
 
         /* Modify the look and fill of the dropzone when files are being dragged over it */
         $scope.dragOverClass = function($event) {
