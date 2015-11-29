@@ -18,5 +18,9 @@ angular.module('preserveusApp')
             url: '/blog/:id',
             templateUrl: 'app/blog/blogView.html',
             controller: 'BlogViewCtrl'
+        }).state('uploadTest', {
+            url: '/uploadTest',
+            templateUrl: 'app/blog/uploadTest.html',
+            controller: 'UploadTestCtrl'
         });
     });

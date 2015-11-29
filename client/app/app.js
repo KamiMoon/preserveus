@@ -12,7 +12,8 @@ angular.module('preserveusApp', [
         'vcRecaptcha',
         'chart.js',
         'summernote',
-        'uiGmapgoogle-maps'
+        'uiGmapgoogle-maps',
+        'cloudinary'
     ])
     .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, uiGmapGoogleMapApiProvider) {
         $urlRouterProvider
@@ -33,7 +34,7 @@ angular.module('preserveusApp', [
         // Add authorization token to headers
         request: function(config) {
             config.headers = config.headers || {};
-            if ($cookieStore.get('token')) {
+            if ($cookieStore.get('token') && !config.skipAuthorization) {
                 config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
             }
             return config;

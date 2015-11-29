@@ -109,4 +109,62 @@ angular.module('preserveusApp')
             }
         };
 
+    }).controller('UploadTestCtrl', function($scope, $rootScope, Upload) {
+        var d = new Date();
+
+        $scope.title = "Image (" + d.getDate() + " - " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + ")";
+        //$scope.$watch('files', function() {
+        $scope.uploadFiles = function(files) {
+            $scope.files = files;
+            if (!$scope.files) {
+                return;
+            }
+            angular.forEach(files, function(file) {
+                if (file && !file.$error) {
+                    file.upload = Upload.upload({
+                        skipAuthorization: true,
+                        url: "https://api.cloudinary.com/v1_1/" + "ddovrks1z" + "/upload",
+                        fields: {
+                            upload_preset: 'saogp2ap',
+                            tags: 'myphotoalbum',
+                            context: 'photo=' + $scope.title
+                        },
+                        file: file
+                    }).progress(function(e) {
+                        file.progress = Math.round((e.loaded * 100.0) / e.total);
+                        file.status = "Uploading... " + file.progress + "%";
+                    }).success(function(data, status, headers, config) {
+                        $rootScope.photos = $rootScope.photos || [];
+                        data.context = {
+                            custom: {
+                                photo: $scope.title
+                            }
+                        };
+                        file.result = data;
+                        $rootScope.photos.push(data);
+                    }).error(function(data, status, headers, config) {
+                        file.result = data;
+                    });
+                }
+            });
+        };
+        //});
+
+        /* Modify the look and fill of the dropzone when files are being dragged over it */
+        $scope.dragOverClass = function($event) {
+            var items = $event.dataTransfer.items;
+            var hasFile = false;
+            if (items != null) {
+                for (var i = 0; i < items.length; i++) {
+                    if (items[i].kind == 'file') {
+                        hasFile = true;
+                        break;
+                    }
+                }
+            } else {
+                hasFile = true;
+            }
+            return hasFile ? "dragover" : "dragover-err";
+        };
+
     });
