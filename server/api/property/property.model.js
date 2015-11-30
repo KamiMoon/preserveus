@@ -69,6 +69,10 @@ var PropertySchema = new Schema({
         },
         beds: Number,
         baths: Number,
+        //new
+        units: Number,
+        garages: Number,
+
         sqft: Number,
         cost: Number,
         mortgage: Number,
@@ -89,7 +93,8 @@ var PropertySchema = new Schema({
         },
         minimumInvestmentAmount: Number,
         maximumInvestmentAmount: Number,
-        geoLocation: {}
+        geoLocation: {},
+
 
     }, {
         toObject: {

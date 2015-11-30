@@ -55,7 +55,4 @@ angular.module('preserveusApp')
         };
 
         $scope.colours = ['#0000FF', '#FF0000'];
-        $scope.onClick = function(points, evt) {
-            console.log(points, evt);
-        };
     });
