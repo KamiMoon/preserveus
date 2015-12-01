@@ -169,6 +169,20 @@ angular.module('preserveusApp')
                 file.upload.then(function(response) {
                     $timeout(function() {
                         file.result = response.data;
+
+                        var transformation = 'w_100,h_100,c_thumb,g_face'; //+ 'w_100,h100,c_thumb,g_face';
+
+                        var public_id = file.result.public_id;
+
+                        var url = 'https://res.cloudinary.com/ddovrks1z/image/upload/';
+
+                        if (transformation) {
+                            url += transformation + '/';
+                        }
+
+                        url += public_id + '.' + file.result.format;
+
+                        $scope.resultUrl = url;
                     });
                 }, function(response) {
                     if (response.status > 0) {
