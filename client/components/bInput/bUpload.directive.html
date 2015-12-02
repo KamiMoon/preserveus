@@ -1,0 +1,25 @@
+<div class="fileUpload">
+    <button class="btn btn-default btn-lg" role="button" type="file" ngf-select="uploadFile($file, $invalidFiles)" accept="image/*" ngf-max-height="1000" ngf-resize="{width: 100, height: 100}" ngf-max-size="2MB">
+        Select File</button>
+    <br>
+    <br>
+    <div>
+        <span>{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
+<!--
+    <span class="progress" ng-show="f.progress >= 0">
+          <div style="width:{{f.progress}}%"  
+               ng-bind="f.progress + '%'"></div>
+      </span>
+        </span>-->
+        <div class="progress" ng-show="f.progress >= 0">
+            <div class="progress-bar progress-bar-success" ng-class="{'progress-bar-striped active': f.progress < 100}" role="progressbar" aria-valuenow="{{f.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{f.progress}}%;">
+                {{f.progress}}%
+            </div>
+        </div>
+        {{errorMsg}}
+        <img ngf-src="resultUrl">
+        <button type="button" class="btn btn-default btn-lg" ng-show="f.progress === 100">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+    </div>
+</div>

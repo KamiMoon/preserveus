@@ -150,52 +150,53 @@ angular.module('preserveusApp')
         };
         //});
 
-        $scope.uploadFile = function(file, errFiles) {
-            $scope.f = file;
-            $scope.errFile = errFiles && errFiles[0];
-            if (file) {
-                file.upload = Upload.upload({
-                    skipAuthorization: true,
-                    url: "https://api.cloudinary.com/v1_1/" + "ddovrks1z" + "/upload",
-                    fields: {
-                        upload_preset: 'saogp2ap',
-                        tags: 'myphotoalbum',
-                        context: 'photo=' + $scope.title
-                    },
+        /*
+                $scope.uploadFile = function(file, errFiles) {
+                    $scope.f = file;
+                    $scope.errFile = errFiles && errFiles[0];
+                    if (file) {
+                        file.upload = Upload.upload({
+                            skipAuthorization: true,
+                            url: "https://api.cloudinary.com/v1_1/" + "ddovrks1z" + "/upload",
+                            fields: {
+                                upload_preset: 'saogp2ap',
+                                tags: 'myphotoalbum',
+                                context: 'photo=' + $scope.title
+                            },
 
-                    file: file
-                });
+                            file: file
+                        });
 
-                file.upload.then(function(response) {
-                    $timeout(function() {
-                        file.result = response.data;
+                        file.upload.then(function(response) {
+                            $timeout(function() {
+                                file.result = response.data;
 
-                        var transformation = 'w_100,h_100,c_thumb,g_face'; //+ 'w_100,h100,c_thumb,g_face';
+                                var transformation = 'w_100,h_100,c_thumb,g_face'; //+ 'w_100,h100,c_thumb,g_face';
 
-                        var public_id = file.result.public_id;
+                                var public_id = file.result.public_id;
 
-                        var url = 'https://res.cloudinary.com/ddovrks1z/image/upload/';
+                                var url = 'https://res.cloudinary.com/ddovrks1z/image/upload/';
 
-                        if (transformation) {
-                            url += transformation + '/';
-                        }
+                                if (transformation) {
+                                    url += transformation + '/';
+                                }
 
-                        url += public_id + '.' + file.result.format;
+                                url += public_id + '.' + file.result.format;
 
-                        $scope.resultUrl = url;
-                    });
-                }, function(response) {
-                    if (response.status > 0) {
-                        $scope.errorMsg = response.status + ': ' + response.data;
+                                $scope.resultUrl = url;
+                            });
+                        }, function(response) {
+                            if (response.status > 0) {
+                                $scope.errorMsg = response.status + ': ' + response.data;
+                            }
+                        }, function(evt) {
+                            file.progress = Math.min(100, parseInt(100.0 *
+                                evt.loaded / evt.total));
+                        });
                     }
-                }, function(evt) {
-                    file.progress = Math.min(100, parseInt(100.0 *
-                        evt.loaded / evt.total));
-                });
-            }
-        };
+                };
 
-
+        */
 
         /* Modify the look and fill of the dropzone when files are being dragged over it */
         $scope.dragOverClass = function($event) {
@@ -212,6 +213,14 @@ angular.module('preserveusApp')
                 hasFile = true;
             }
             return hasFile ? "dragover" : "dragover-err";
+        };
+
+        $scope.exampleModel = {
+            photo: ''
+        };
+
+        $scope.dump = function() {
+            console.log($scope.exampleModel);
         };
 
     });

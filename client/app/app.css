@@ -379,3 +379,17 @@ legend {
 .map-window {
     width: 300px;
 }
+
+.fileUpload .progress {
+    display: inline-block;
+    width: 100px;
+    /*border: 3px groove #CCC;*/
+    margin-bottom: 0px;
+}
+
+.img-upload-container {
+    border-width: 1px;
+    border-radius: 4px 4px 0 0;
+    border-color: #e5e5e5 #eee #eee;
+    border-style: solid;
+}
