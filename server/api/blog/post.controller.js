@@ -2,8 +2,6 @@
 
 var Post = require('./post.model');
 var ControllerUtil = require('../../components/controllerUtil');
-var config = require('../../config/environment');
-
 
 // Get list of events
 exports.index = function(req, res) {
@@ -27,7 +25,7 @@ exports.show = function(req, res) {
 
 // Creates a new event in the DB.
 exports.create = function(req, res) {
-    ControllerUtil.createWithPhoto(req, res, Post, 'photo');
+    ControllerUtil.create(req, res, Post, 'photo');
 };
 
 // Updates an existing event in the DB.

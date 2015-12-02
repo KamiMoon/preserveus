@@ -178,8 +178,6 @@ exports.findById = function(req, res, modelObj, populateString) {
 
 exports.create = function(req, res, modelObj) {
 
-    console.log(req.body);
-
     modelObj.create(req.body, function(err, obj) {
         if (err) {
             return handleError(res, err);
