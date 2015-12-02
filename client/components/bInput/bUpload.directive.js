@@ -11,11 +11,6 @@ angular.module('preserveusApp')
             restrict: 'E',
             link: function(scope, element, attrs) {
 
-                console.log(scope);
-
-                console.log('attrs');
-                console.log(attrs);
-
                 scope.uploadFile = function(file, errFiles) {
                     scope.f = file;
                     scope.errFile = errFiles && errFiles[0];
@@ -64,6 +59,15 @@ angular.module('preserveusApp')
                         });
                     }
                 };
+
+                scope.remove = function() {
+                    scope.f = null;
+                    scope.errFile = null;
+                    scope.errorMsg = null;
+                    scope.ngModel = null;
+                    scope.resultUrl = null;
+                };
+
             }
         };
     });
