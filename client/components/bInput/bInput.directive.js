@@ -118,7 +118,7 @@ angular.module('preserveusApp')
             return ' ' + name + '="' + value + '" ';
         };
 
-        var getBasicAttributes = function(attrs) {
+        var getBasicAttributes = function(attrs, doNotAddFormControl) {
             var html = '';
 
             if (attrs.required) {
@@ -133,10 +133,12 @@ angular.module('preserveusApp')
                 html += getAttribute('name', attrs.name);
             }
 
-            if (attrs.class) {
-                html += ' class="form-control ' + attrs.class + '" ';
-            } else {
-                html += ' class="form-control" ';
+            if (!doNotAddFormControl) {
+                if (attrs.class) {
+                    html += ' class="form-control ' + attrs.class + '" ';
+                } else {
+                    html += ' class="form-control" ';
+                }
             }
 
             if (attrs.style) {
@@ -158,9 +160,12 @@ angular.module('preserveusApp')
                 html += '<button type="submit" class="btn btn-lg btn-success">' + attrs.label + '</button>';
             } else if (attrs.type === 'file') {
 
-                html += '<input type="file" ngf-select ';
-                html += getBasicAttributes(attrs);
-                html += ' accept="image/*" ngf-max-size="2MB" />';
+                html += '<b-upload ';
+                html += getBasicAttributes(attrs, true);
+                if (attrs.transformation) {
+                    html += getAttribute('transformation', attrs.transformation);
+                }
+                html += ' ></b-upload>';
 
                 html = wrapInBoostrapForm(attrs, html);
             } else if (attrs.type === 'select') {

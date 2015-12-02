@@ -7,7 +7,9 @@ var config = require('../../config/environment');
 
 // Get list of events
 exports.index = function(req, res) {
-    ControllerUtil.find(req, res, Post);
+    ControllerUtil.find(req, res, Post, {}, {
+        'createdAt': -1
+    });
 };
 
 // Get a single event
@@ -49,14 +51,4 @@ exports.destroy = function(req, res) {
             return res.status(204).send('No Content');
         });
     });
-};
-
-exports.uploadTest = function(req, res) {
-    config.cloudinary.uploader.upload('http://www.online-image-editor.com//styles/2014/images/example_image.png', function(result) {
-        console.log(result);
-        res.json('hi');
-
-    });
-
-
 };

@@ -21,7 +21,7 @@ angular.module('preserveusApp')
         $scope.posts = BlogService.query();
 
 
-    }).controller('BlogAddCtrl', function($scope, $stateParams, $location, Auth, ControllerUtil) {
+    }).controller('BlogAddCtrl', function($scope, $stateParams, $location, Auth, ControllerUtil, BlogService) {
 
         var user = Auth.getCurrentUser();
 
@@ -32,7 +32,6 @@ angular.module('preserveusApp')
         };
 
         $scope.updateSlug = function() {
-            console.log('updateSlug');
             $scope.post.slug = slugify($scope.post.title);
         };
 
@@ -40,12 +39,7 @@ angular.module('preserveusApp')
 
             if (ControllerUtil.validate($scope, form)) {
 
-                var request = ControllerUtil.upload({
-                    url: '/api/blog/',
-                    method: 'POST',
-                    file: $scope.photo,
-                    data: $scope.post
-                });
+                var request = BlogService.save($scope.post).$promise;
 
                 ControllerUtil.handle(request, form).then(function(data) {
                     $location.path('/blog/' + data.data._id);

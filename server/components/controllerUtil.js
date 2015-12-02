@@ -132,17 +132,29 @@ exports.findByIdAndRemove = function(req, res, modelObj) {
     });
 };
 
-exports.find = function(req, res, modelObj, projection) {
+exports.find = function(req, res, modelObj, projection, sort) {
     var query = getQuery(req);
 
     projection = projection || {};
 
-    modelObj.find(query, projection, function(err, data) {
-        if (err) {
-            return handleError(res, err);
-        }
-        return res.status(200).json(data);
-    });
+    sort = sort || {};
+
+    if (sort) {
+        modelObj.find(query, projection).sort(sort).exec(function(err, data) {
+            if (err) {
+                return handleError(res, err);
+            }
+            return res.status(200).json(data);
+        });
+    } else {
+        modelObj.find(query, projection, function(err, data) {
+            if (err) {
+                return handleError(res, err);
+            }
+            return res.status(200).json(data);
+        });
+    }
+
 };
 
 exports.findById = function(req, res, modelObj, populateString) {
