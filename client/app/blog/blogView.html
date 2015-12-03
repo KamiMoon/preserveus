@@ -12,8 +12,7 @@
             </div>
             <h1 ng-bind="post.title"></h1>
             <h6>Posted on: {{::post.createdAt | date:'MM/dd/yyyy h:mm a'}}</h6>
-            <img ng-src="{{post.photo}}" alt="{{post.title}}" class="img-responsive team-pic"> {{post.photo}}
-            <b-img public-id="{{post.photo}}" transformation="w_100,h_100,c_thumb,g_face" alt="{{post.title}}"></b-img>
+            <b-img public-id="{{post.photo}}" transformation="w_300,h_300,c_fill" class="img-responsive team-pic" alt="{{post.title}}"></b-img>
             <br>
             <p ng-bind-html="post.postHtml | sanitize">
             </p>

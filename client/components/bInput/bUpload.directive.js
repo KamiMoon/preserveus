@@ -31,8 +31,6 @@ angular.module('preserveusApp')
                             $timeout(function() {
                                 file.result = response.data;
 
-                                //var transformation = 'w_100,h_100,c_thumb,g_face'; //+ 'w_100,h100,c_thumb,g_face';
-
                                 var public_id = file.result.public_id;
 
                                 var url = 'https://res.cloudinary.com/ddovrks1z/image/upload/';
@@ -46,7 +44,6 @@ angular.module('preserveusApp')
                                 scope.resultUrl = url;
                                 //set on the user API
                                 scope.ngModel = public_id;
-
 
                             });
                         }, function(response) {

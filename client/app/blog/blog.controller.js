@@ -42,7 +42,7 @@ angular.module('preserveusApp')
                 var request = BlogService.save($scope.post).$promise;
 
                 ControllerUtil.handle(request, form).then(function(data) {
-                    $location.path('/blog/' + data.data._id);
+                    $location.path('/blog/' + data._id);
                 });
             }
 

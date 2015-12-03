@@ -12,8 +12,12 @@
             </div>
         </div>
         {{errorMsg}}
-        <img ngf-src="resultUrl">
-        <button type="button" ng-click="remove()" class="btn btn-default btn-lg" ng-show="f.progress === 100">
+        <!--<img ngf-src="resultUrl">-->
+
+        
+        <b-img ng-if="ngModel" public-id="{{ngModel}}" transformation="{{transformation}}" alt="Upload Preview"></b-img>
+
+        <button type="button" ng-click="remove()" class="btn btn-default btn-lg" ng-show="ngModel || f.progress === 100">
             <span class="glyphicon glyphicon-remove"></span>
         </button>
     </div>
