@@ -9,7 +9,7 @@
                     <ui-gmap-windows show="show">
                         <div class="map-window">
                             <a ng-non-bindable href="/property/{{id}}">
-                                <img ng-non-bindable class="media-object img-property" ng-src="{{photo}}" alt="{{title}}">
+                                <img ng-non-bindable class="media-object img-property" src="https://res.cloudinary.com/ddovrks1z/image/upload/w_100,h_100,c_fill/{{photo}}.jpg" alt="{{title}}">
                             </a>
                             <h4 ng-non-bindable>{{title}}</h4>
                             <h6 ng-non-bindable>{{address}}</h6>
@@ -31,7 +31,7 @@
             <div class="media" ng-repeat="property in properties">
                 <div class="media-left">
                     <a href="/property/{{property._id}}">
-                        <img class="media-object img-property" ng-src="{{property.photo}}" alt="{{property.name}}">
+                        <b-img public-id="{{property.photo}}" transformation="w_100,h_100,c_fill" alt="{{property.name}}" class="media-object img-property"></b-img>
                     </a>
                     <p>
                         <a href="#" ng-click="zoomToLocation(property)">Show on Map</a>
