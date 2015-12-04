@@ -1,11 +1,11 @@
 <div>
-    <button class="btn btn-default btn-lg" role="button" type="file" ngf-select="uploadFile($file, $invalidFiles)" accept="image/*" ngf-max-height="1000" ngf-resize="{width: 100, height: 100}" ngf-max-size="2MB">
-        Select File</button>
+    <button class="btn btn-default btn-lg" role="button" ngf-select="uploadFiles($files, $invalidFiles)" ngf-resize="{width: 100, height: 100}" multiple accept="image/*" ngf-max-size="2MB">
+        Select Files</button>
     <br>
     <br>
-    <div>
+    <div ng-repeat="f in files">
         <ul class="list-inline">
-            <li>{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}</li>
+            <li>{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
             <li>
                 <div class="progress file-upload-progress" ng-show="f.progress >= 0">
                     <div class="progress-bar progress-bar-success" ng-class="{'progress-bar-striped active': f.progress < 100}" role="progressbar" aria-valuenow="{{f.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{f.progress}}%;">
@@ -14,14 +14,14 @@
                 </div>
             </li>
             <li>
-                <b-img ng-if="ngModel" public-id="{{ngModel}}" transformation="{{transformation}}" alt="Upload Preview"></b-img>
+                <b-img ng-if="ngModel" public-id="{{ngModel[$index]}}" transformation="{{transformation}}" alt="Upload Preview"></b-img>
             </li>
             <li>
-                <button type="button" ng-click="remove()" class="btn btn-default btn-lg" ng-show="ngModel || f.progress === 100">
+                <button type="button" ng-click="remove($index)" class="btn btn-default btn-lg" ng-show="ngModel || f.progress === 100">
                     <span class="glyphicon glyphicon-remove"></span>
                 </button>
             </li>
         </ul>
-        {{errorMsg}}
     </div>
+    {{errorMsg}}
 </div>

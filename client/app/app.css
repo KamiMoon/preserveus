@@ -380,10 +380,8 @@ legend {
     width: 300px;
 }
 
-.fileUpload .progress {
-    display: inline-block;
+.file-upload-progress {
     width: 100px;
-    /*border: 3px groove #CCC;*/
     margin-bottom: 0px;
 }
 

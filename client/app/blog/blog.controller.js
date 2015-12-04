@@ -210,7 +210,8 @@ angular.module('preserveusApp')
         };
 
         $scope.exampleModel = {
-            photo: ''
+            photo: '',
+            photos: []
         };
 
         $scope.dump = function() {
