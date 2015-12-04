@@ -172,7 +172,9 @@ angular.module('preserveusApp')
 
         } else {
             //add
-            $scope.property = {};
+            $scope.property = {
+                photos: []
+            };
 
             //initialize defaults
             setDefaultFeatures();

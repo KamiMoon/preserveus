@@ -74,14 +74,25 @@ angular.module('preserveusApp')
                 ngModel: '=',
                 transformation: '@'
             },
-
             restrict: 'E',
             link: function(scope, element, attrs) {
 
+                var unwatch = scope.$watch('ngModel', function(ngModel) {
+                    if (ngModel) {
+                        //initialize
+                        if (scope.ngModel && scope.ngModel.length > 0 && !scope.files) {
+                            scope.files = angular.copy(scope.ngModel);
+                        }
 
+                        unwatch(); //Remove the watch
 
+                    }
+                });
 
                 scope.uploadFiles = function(files, errFiles) {
+                    //reset ngModel
+                    scope.ngModel = [];
+
                     scope.files = files;
                     scope.errFiles = errFiles;
 

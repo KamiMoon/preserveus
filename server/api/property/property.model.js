@@ -80,7 +80,7 @@ var PropertySchema = new Schema({
         financialSummary: [],
         projectedReturnsByYear: [],
         //array of arrays
-        photoRows: [],
+        photos: [],
         totalRenters: Number,
         totalRentersAvailable: Number,
         allowRent: {
