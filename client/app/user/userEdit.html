@@ -3,12 +3,6 @@
         <div class="col-md-10">
             <h1>Edit Profile</h1>
         </div>
-        <div class="col-md-2" align="center">
-            <img ng-if="user && user.photo" ng-src="{{user.photo}}" width="60px" height="60px" class="img-thumbnail">
-            <font ng-if="!user.photo" size="45" class="glyphicon glyphicon-user"></font>
-            <br>
-            <p style="font-size:10px">Choose File for Profile Picture*</p>
-        </div>
     </div>
     <form name="form" ng-submit="save(form)" novalidate>
         <div class="row">
@@ -17,7 +11,7 @@
             <div class="col-md-12">
                 <div class="form-horizontal">
                     <b-input model="user.name"></b-input>
-                    <b-input type="file" model="photo"></b-input>
+                    <b-input type="file" model="user.photo" transformation="w_100,h_100,c_thumb,g_face"></b-input>
                     <b-input type="tel" model="user.phone"></b-input>
                 </div>
             </div>

@@ -131,7 +131,7 @@ exports.profile = function(req, res, next) {
 };
 
 exports.update = function(req, res) {
-    ControllerUtil.update(req, res, User, 'photo');
+    ControllerUtil.update(req, res, User);
 };
 
 

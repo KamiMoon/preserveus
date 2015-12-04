@@ -2,8 +2,7 @@
     <!-- First Row contains Profile Name and Picture of Omaha -->
     <div class="row">
         <div class="col-md-6">
-            <h1>Profile for <strong ng-bind="user.name">
-            </strong></h1>
+            <h1>Profile for {{::user.name}}</h1>
         </div>
     </div>
     <br>
@@ -11,13 +10,12 @@
         <div class="col-md-6">
             <div class="panel panel-danger">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><i class="glyphicon glyphicon-user"></i> Basic Info</h3>
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> Basic Info</h3>
                 </div>
                 <div class="panel-body">
-                    <center>
-                        <img ng-if="user && user.photo" ng-src="{{user.photo}}" width="100px" height="100px" class="img-thumbnail">
-                        <font ng-if="!user.photo" size="45" class="glyphicon glyphicon-user"></font>
-                    </center>
+                    <div class="text-center">
+                        <b-img public-id="{{user.photo}}" transformation="w_100,h_100,c_thumb,g_face" alt="Profile Picture" class="img-thumbnail"></b-img>
+                    </div>
                     <br>
                     <div class="row">
                         <div class="col-md-4">

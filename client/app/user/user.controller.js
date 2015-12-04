@@ -48,14 +48,12 @@ angular.module('preserveusApp')
 
             if (ControllerUtil.validate($scope, form)) {
 
-                var request = ControllerUtil.upload({
-                    url: '/api/users/' + $scope.user._id,
-                    file: $scope.photo,
-                    data: $scope.user
-                });
+                var request = User.update({
+                    id: id
+                }, $scope.user).$promise;
 
                 ControllerUtil.handle(request, form).then(function() {
-                    $location.path('/profile/' + $scope.user._id);
+                    $location.path('/profile/' + id);
                 });
             }
 
