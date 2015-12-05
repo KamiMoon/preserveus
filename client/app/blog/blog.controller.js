@@ -94,7 +94,7 @@ angular.module('preserveusApp')
             }
         }
 
-    }).controller('BlogViewCtrl', function($scope, $stateParams, Auth, BlogService, ValidationService, $location) {
+    }).controller('BlogViewCtrl', function($scope, $stateParams, Auth, BlogService, ValidationService, $location, ControllerUtil) {
 
         var id = $stateParams.id;
 
@@ -104,24 +104,8 @@ angular.module('preserveusApp')
             $scope.post = post;
         });
 
-        $scope.delete = function(id) {
-            if (id) {
-
-                var r = confirm('Are you sure you want to delete?');
-                if (r == true) {
-                    BlogService.delete({
-                        id: id
-                    }).$promise.then(function() {
-                        ValidationService.success('Post deleted.');
-
-                        $location.path('/blog');
-
-                    }, function() {
-                        ValidationService.error('Delete Failed');
-                    });
-                }
-
-            }
+        $scope.delete = function() {
+            ControllerUtil.delete(id, BlogService, '/blog');
         };
 
     });

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('preserveusApp')
-    .controller('UserCtrl', function($scope, User, ValidationService) {
+    .controller('UserCtrl', function($scope, User, ValidationService, ControllerUtil) {
 
         $scope.users = User.query();
 

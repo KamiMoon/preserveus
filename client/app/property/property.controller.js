@@ -211,7 +211,7 @@ angular.module('preserveusApp')
 
         };
 
-    }).controller('PropertyViewCtrl', function($scope, $stateParams, $location, Auth, PropertyService, ValidationService) {
+    }).controller('PropertyViewCtrl', function($scope, $stateParams, $location, Auth, PropertyService, ValidationService, ControllerUtil) {
 
         var id = $stateParams.id;
 
@@ -223,24 +223,8 @@ angular.module('preserveusApp')
             $scope.property.photoRows = _.chunk($scope.property.photos, 4);
         });
 
-        $scope.delete = function(id) {
-            if (id) {
-
-                var r = confirm('Are you sure you want to delete?');
-                if (r == true) {
-                    PropertyService.delete({
-                        id: id
-                    }).$promise.then(function() {
-                        ValidationService.success('Post deleted.');
-
-                        $location.path('/property');
-
-                    }, function() {
-                        ValidationService.error('Delete Failed');
-                    });
-                }
-
-            }
+        $scope.delete = function() {
+            ControllerUtil.delete(id, PropertyService, '/property');
         };
 
     });

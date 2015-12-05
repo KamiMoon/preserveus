@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('preserveusApp')
-    .service('ControllerUtil', function(Upload, ValidationService, $q, $http, $localStorage) {
+    .service('ControllerUtil', function(Upload, ValidationService, $q, $http, $localStorage, $location) {
 
         this.upload = function(uploadObj) {
             return Upload.upload(uploadObj);
@@ -43,5 +43,22 @@ angular.module('preserveusApp')
             return deferred.promise;
         };
 
+        this.delete = function(id, service, path) {
+            if (id) {
+
+                var r = confirm('Are you sure you want to delete?');
+                if (r == true) {
+                    service.delete({
+                        id: id
+                    }).$promise.then(function() {
+                        ValidationService.success('Successfully deleted.');
+                        $location.path(path);
+                    }, function() {
+                        ValidationService.error('Delete Failed');
+                    });
+                }
+
+            }
+        };
 
     });
