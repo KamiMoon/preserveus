@@ -6,21 +6,13 @@ angular.module('preserveusApp')
             url: '/blog',
             templateUrl: 'app/blog/blogList.html',
             controller: 'BlogCtrl'
-        }).state('blogAdd', {
-            url: '/blog/add',
+        }).state('blogAddEdit', {
+            url: '/blog/:action/:id',
             templateUrl: 'app/blog/blogAdd.html',
-            controller: 'BlogAddCtrl'
-        }).state('blogEdit', {
-            url: '/blog/edit/:id',
-            templateUrl: 'app/blog/blogAdd.html',
-            controller: 'BlogEditCtrl'
+            controller: 'BlogAddEditCtrl'
         }).state('blogView', {
             url: '/blog/:id',
             templateUrl: 'app/blog/blogView.html',
             controller: 'BlogViewCtrl'
-        }).state('uploadTest', {
-            url: '/uploadTest',
-            templateUrl: 'app/blog/uploadTest.html',
-            controller: 'UploadTestCtrl'
         });
     });
