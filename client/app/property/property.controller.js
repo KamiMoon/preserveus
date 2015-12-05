@@ -215,55 +215,13 @@ angular.module('preserveusApp')
 
         var id = $stateParams.id;
 
-        var createGraph = function() {
-            $scope.labels = ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5', 'Exit'];
-            $scope.series = ['S&P 500', 'Preserve US'];
-            $scope.options = {
-                scaleBeginAtZero: true
-            };
-
-            if ($scope.property.projectedReturnsByYear) {
-                var returnData = $scope.property.projectedReturnsByYear.map(function(obj) {
-                    return obj.text;
-                });
-
-                var sp = [];
-                for (var i = 0; i < returnData.length; i++) {
-                    sp.push(10.00);
-                }
-
-                $scope.data = [
-                    sp,
-                    returnData
-                ];
-            } else {
-                $scope.data = [
-                    [10.00, 10.00, 10.00, 10.00, 10.00, 10.00],
-                    [10.00, 10.00, 11.00, 13.90, 14.80, 24.20]
-
-                ];
-            }
-
-
-            $scope.colours = ['#0000FF', '#FF0000'];
-            $scope.onClick = function(points, evt) {
-                console.log(points, evt);
-            };
-
-        };
-
-
-
-
         PropertyService.get({
             id: id
         }).$promise.then(function(property) {
             $scope.property = property;
             //photoRows
             $scope.property.photoRows = _.chunk($scope.property.photos, 4);
-            createGraph();
         });
-
 
         $scope.delete = function(id) {
             if (id) {

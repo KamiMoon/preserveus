@@ -31,7 +31,7 @@
         <div class="col-md-4">
             <div ng-if="property.allowInvest">
                 <h4>Invest in this property</h4>
-                <a href="/propertyInvestment/{{property._id}}" class="btn btn-success btn-lg" role="button">Invest</a>
+                <a href="/propertyInvestment/view/{{property._id}}" class="btn btn-success btn-lg" role="button">Invest</a>
                 <br>
                 <br>
             </div>
@@ -90,13 +90,7 @@
     </div>
     <div class="row">
         <div class="col-md-8">
-            <div class="panel panel-default">
-                <div class="panel-heading">PROJECTED INVESTOR CASH ON CASH RETURN (%)</div>
-                <div class="panel-body">
-                    <canvas id="line" class="chart chart-bar" chart-data="data" chart-options="options" chart-labels="labels" chart-legend="true" chart-series="series" chart-colours="colours" chart-click="onClick">
-                    </canvas>
-                </div>
-            </div>
+            <property-graph projected-returns-by-year="property.projectedReturnsByYear"></property-graph>
         </div>
         <div class="col-md-4">
             <h3>Financial Summary</h3>

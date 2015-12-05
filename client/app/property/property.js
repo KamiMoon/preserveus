@@ -15,7 +15,7 @@ angular.module('preserveusApp')
             templateUrl: 'app/property/propertyView.html',
             controller: 'PropertyViewCtrl'
         }).state('propertyInvestment', {
-            url: '/propertyInvestment/:id',
+            url: '/propertyInvestment/:action/:id',
             templateUrl: 'app/property/propertyInvestment.html',
             controller: 'PropertyInvestmentCtrl'
         });

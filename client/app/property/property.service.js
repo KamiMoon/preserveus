@@ -6,7 +6,8 @@ angular.module('preserveusApp')
             id: '@_id'
         }, {
             update: {
-                method: 'PUT'
+                method: 'PUT',
+
             }
         });
     });

@@ -283,23 +283,14 @@
                 <div class="panel-heading">Financial Summary</div>
                 <div class="panel-body">
                     <ul>
-                        <li>Anticipated hold period: 5 years</li>
-                        <li>Average Return per year: $45,637.16</li>
-                        <li>Internal Rate of return: 19%</li>
-                        <li>Return on investment: 130%</li>
-                        <li>Cap Rate: 12%</li>
+                        <li ng-repeat="financialFact in property.financialSummary
+">{{::financialFact.text}}</li>
                     </ul>
                 </div>
             </div>
             <br>
             <br>
-            <div class="panel panel-default">
-                <div class="panel-heading">Investor Return ($) Per Year</div>
-                <div class="panel-body">
-                    <canvas id="line" class="chart chart-bar" chart-data="data" chart-options="options" chart-labels="labels" chart-legend="true" chart-series="series" chart-colours="colours" chart-click="onClick">
-                    </canvas>
-                </div>
-            </div>
+            <property-graph projected-returns-by-year="property.projectedReturnsByYear"></property-graph>
             <br>
             <br>
             <a href="/contact" class="btn btn-default btn-lg" role="button">Contact Us</a>
