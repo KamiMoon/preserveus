@@ -20,6 +20,7 @@
     "lodash": "~2.4.1",
     "method-override": "~1.0.0",
     "mkdirp": "^0.5.1",
+    "money-math": "^2.2.0",
     "mongoose": "^4.2.2",
     "mongoose-relationship": "^0.1.4",
     "mongoose-timestamp": "^0.4.0",

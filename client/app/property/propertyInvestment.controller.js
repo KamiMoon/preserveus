@@ -5,14 +5,13 @@ angular.module('preserveusApp')
         var action = $stateParams.action;
         var id = $stateParams.id;
 
-        if (action === 'view' || action === 'edit') {
-            PropertyService.get({
-                id: id
-            }).$promise.then(function(property) {
-                $scope.property = property;
-            });
-        } else {
+        //in all cases a property must exist before adding
+        PropertyService.get({
+            id: id
+        }).$promise.then(function(property) {
+            $scope.property = property;
+        });
 
-        }
+        //it is always an update against an existing property or purely view mode
 
     });

@@ -1,0 +1,70 @@
+{
+  "name": "money-math",
+  "version": "2.2.0",
+  "description": "jsbn-based arbitrary precision operations on currency amounts \"XXX.YY\"; because floats are BAD for representing money",
+  "main": "money.js",
+  "scripts": {
+    "pretest": "eslint ./*.js ./spec/*.js",
+    "test": "mocha ./spec/*.spec.js",
+    "tdd": "mocha -b -R min -w ./spec/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ikr/money-math.git"
+  },
+  "keywords": [
+    "money",
+    "gmp",
+    "currency",
+    "bigint",
+    "bignum",
+    "jsbn",
+    "browser",
+    "browserify",
+    "arithmetic",
+    "arbitrary",
+    "precision",
+    "format"
+  ],
+  "dependencies": {
+    "jsbn": "0.0.0"
+  },
+  "directories": {
+    "lib": ".",
+    "test": "spec"
+  },
+  "devDependencies": {
+    "eslint": "^0.23.0",
+    "mocha": "^2.2.5"
+  },
+  "author": {
+    "name": "Ivan Krechetov",
+    "email": "ikr@ikr.su"
+  },
+  "license": "MIT",
+  "gitHead": "1e7cc1b1196f4687afd14e2666f52289c2a6dfed",
+  "bugs": {
+    "url": "https://github.com/ikr/money-math/issues"
+  },
+  "homepage": "https://github.com/ikr/money-math#readme",
+  "_id": "money-math@2.2.0",
+  "_shasum": "d900576ac7dc9b29064866e711ef7682208a5847",
+  "_from": "money-math@*",
+  "_npmVersion": "3.3.4",
+  "_nodeVersion": "0.12.7",
+  "_npmUser": {
+    "name": "ikr",
+    "email": "ivan.krechetov@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "ikr",
+      "email": "ivan.krechetov@gmail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "d900576ac7dc9b29064866e711ef7682208a5847",
+    "tarball": "http://registry.npmjs.org/money-math/-/money-math-2.2.0.tgz"
+  },
+  "_resolved": "http://registry.npmjs.org/money-math/-/money-math-2.2.0.tgz"
+}

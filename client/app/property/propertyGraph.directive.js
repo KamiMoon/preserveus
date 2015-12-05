@@ -11,7 +11,6 @@ angular.module('preserveusApp')
             link: function postLink(scope, element, attrs) {
 
                 var buildGraph = function() {
-                    //scope.labels = ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5', 'Exit'];
                     scope.series = ['S&P 500', 'Preserve US'];
 
                     scope.options = {
@@ -38,10 +37,10 @@ angular.module('preserveusApp')
                             return obj.text;
                         });
 
-                        //TODO - flat S&P returns
                         var sp = [];
                         scope.labels = [];
                         for (var i = 0; i < returnData.length; i++) {
+                            //TODO - flat S&P returns need to be configurable
                             sp.push(10000.00);
 
                             if (i === returnData.length - 1) {
