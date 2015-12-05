@@ -48,7 +48,13 @@ angular.module('preserveusApp')
 
         };
 
-    }).controller('BlogEditCtrl', function($scope, $stateParams, $location, BlogService, ValidationService) {
+
+        $scope.imageUpload = function(files) {
+            console.log('image upload:', files);
+            console.log('image upload\'s editable:', $scope.editable);
+        };
+
+    }).controller('BlogEditCtrl', function($scope, $stateParams, $location, BlogService, ValidationService, Upload) {
 
         var id = $stateParams.id;
 
@@ -72,6 +78,45 @@ angular.module('preserveusApp')
                 });
             }
         };
+
+        $scope.imageUpload = function(files) {
+            uploadEditorImage(files);
+        };
+
+        var editor = $.summernote.eventHandler.getModule();
+
+        function uploadEditorImage(files) {
+            if (files) {
+
+                angular.forEach(files, function(file) {
+
+                    if (file) {
+
+                        Upload.upload({
+                            skipAuthorization: true,
+                            url: "https://api.cloudinary.com/v1_1/" + "ddovrks1z" + "/upload",
+                            fields: {
+                                upload_preset: 'saogp2ap' //,
+                                    //tags: 'myphotoalbum',
+                                    //context: 'photo=' + scope.title
+                            },
+
+                            file: file
+                        }).success(function(data, status, headers, config) {
+
+                            // The image has been uploaded to your server.
+                            // Now we need to insert the image back into the text editor.
+                            //var uploaded_file_name = data.secure_url; // this is the filename as stored on your server.
+                            var file_location = data.secure_url; //'https://res.cloudinary.com/ddovrks1z/image/upload/' + uploaded_file_name;
+
+                            editor.insertImage($scope.editable, file_location, file_location);
+                        });
+
+                    }
+
+                });
+            }
+        }
 
     }).controller('BlogViewCtrl', function($scope, $stateParams, Auth, BlogService, ValidationService, $location) {
 
