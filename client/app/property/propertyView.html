@@ -108,8 +108,8 @@
     </div>
     <div class="row" ng-repeat="row in property.photoRows">
         <div class="col-xs-6 col-md-3" ng-repeat="photo in row">
-            <a href="{{photo}}" class="thumbnail swipebox" target="_self">
-                <img ng-src="{{photo}}" class="image-property-property" alt="image">
+            <a href="https://res.cloudinary.com/ddovrks1z/image/upload/w_500,h_500,c_fill/{{photo}}.jpg" class="thumbnail swipebox" target="_self">
+                <img ng-src="https://res.cloudinary.com/ddovrks1z/image/upload/w_300,h_300,c_fill/{{photo}}.jpg" class="image-property-property" alt="image">
             </a>
         </div>
     </div>

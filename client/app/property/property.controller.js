@@ -252,12 +252,18 @@ angular.module('preserveusApp')
 
         };
 
+
+
+
         PropertyService.get({
             id: id
         }).$promise.then(function(property) {
             $scope.property = property;
+            //photoRows
+            $scope.property.photoRows = _.chunk($scope.property.photos, 4);
             createGraph();
         });
+
 
         $scope.delete = function(id) {
             if (id) {
