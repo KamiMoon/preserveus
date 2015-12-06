@@ -1,10 +1,75 @@
 'use strict';
 
+function IRR(values, guess) {
+    // Credits: algorithm inspired by Apache OpenOffice
+
+    // Calculates the resulting amount
+    var irrResult = function(values, dates, rate) {
+        var r = rate + 1;
+        var result = values[0];
+        for (var i = 1; i < values.length; i++) {
+            result += values[i] / Math.pow(r, (dates[i] - dates[0]) / 365);
+        }
+        return result;
+    }
+
+    // Calculates the first derivation
+    var irrResultDeriv = function(values, dates, rate) {
+        var r = rate + 1;
+        var result = 0;
+        for (var i = 1; i < values.length; i++) {
+            var frac = (dates[i] - dates[0]) / 365;
+            result -= frac * values[i] / Math.pow(r, frac + 1);
+        }
+        return result;
+    }
+
+    // Initialize dates and check that values contains at least one positive value and one negative value
+    var dates = [];
+    var positive = false;
+    var negative = false;
+    for (var i = 0; i < values.length; i++) {
+        dates[i] = (i === 0) ? 0 : dates[i - 1] + 365;
+        if (values[i] > 0) positive = true;
+        if (values[i] < 0) negative = true;
+    }
+
+    // Return error if values does not contain at least one positive value and one negative value
+    if (!positive || !negative) return '#NUM!';
+
+    // Initialize guess and resultRate
+    var guess = (typeof guess === 'undefined') ? 0.1 : guess;
+    var resultRate = guess;
+
+    // Set maximum epsilon for end of iteration
+    var epsMax = 1e-10;
+
+    // Set maximum number of iterations
+    var iterMax = 50;
+
+    // Implement Newton's method
+    var newRate, epsRate, resultValue;
+    var iteration = 0;
+    var contLoop = true;
+    do {
+        resultValue = irrResult(values, dates, resultRate);
+        newRate = resultRate - resultValue / irrResultDeriv(values, dates, resultRate);
+        epsRate = Math.abs(newRate - resultRate);
+        resultRate = newRate;
+        contLoop = (epsRate > epsMax) && (Math.abs(resultValue) > epsMax);
+    } while (contLoop && (++iteration < iterMax));
+
+    if (contLoop) return '#NUM!';
+
+    // Return internal rate of return
+    return resultRate;
+}
+
+
 angular.module('preserveusApp')
     .controller('PropertyInvestmentCtrl', function($scope, $stateParams, PropertyService) {
         var action = $stateParams.action;
         var id = $stateParams.id;
-
 
 
         //in all cases a property must exist before adding
@@ -86,13 +151,28 @@ angular.module('preserveusApp')
 
             $scope.property.projectedReturnsByYear = [$scope.property.currentYearlyProfit, $scope.property.currentYearlyProfit, $scope.property.projectedYearlyProfit, $scope.property.projectedYearlyProfit, $scope.property.exitTotal];
 
-            var sum = -1 * $scope.property.equityInvested;
+            var sum = 0;
+            var netPresentValue = 0;
             for (var i = 0; i < $scope.property.projectedReturnsByYear.length; i++) {
                 sum += $scope.property.projectedReturnsByYear[i];
+
+
+                netPresentValue += $scope.property.projectedReturnsByYear[i] / (Math.pow(1.05, i + 1));
+
             }
+            console.log(netPresentValue);
+            netPresentValue -= $scope.property.equityInvested;
 
-            $scope.property.finalTotal = sum;
+            $scope.property.finalTotal = sum - $scope.property.equityInvested;
 
+            $scope.property.returnOnInvestmentPercent = Math.round(($scope.property.finalTotal / $scope.property.equityInvested) * 100);
+            $scope.property.avgReturnPerYear = sum / $scope.property.yearsToHold;
+
+            var irrArray = angular.copy($scope.property.projectedReturnsByYear); //.unshift(-1 * $scope.property.equityInvested);
+            irrArray.unshift(-1 * $scope.property.equityInvested);
+            console.log(irrArray);
+            $scope.property.irr = Math.round(IRR(irrArray) * 100);
+            $scope.property.netPresentValue = netPresentValue;
         };
 
 

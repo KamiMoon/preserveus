@@ -322,6 +322,10 @@
                     <ul>
                         <li ng-repeat="financialFact in property.financialSummary
 ">{{::financialFact.text}}</li>
+                        <li>{{property.returnOnInvestmentPercent}}%</li>
+                        <li>{{property.avgReturnPerYear | currency:"$"}}</li>
+                        <li>{{property.irr}}%</li>
+                        <li>{{property.netPresentValue | currency:"$"}}</li>
                     </ul>
                 </div>
             </div>
