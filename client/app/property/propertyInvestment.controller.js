@@ -84,9 +84,9 @@ angular.module('preserveusApp')
             $scope.property.projectedProfitAtFinal = ($scope.property.avgCompSalePrice * 0.96) - ($scope.property.debtHeld - $scope.property.projectedAmountOfDebt) - $scope.property.equityInvested - $scope.property.totalValueToAdd;
             $scope.property.exitTotal = $scope.property.projectedProfitAtFinal * (1 - 0.12) + $scope.property.equityInvested;
 
-            $scope.property.projectedReturnsByYear = [-1 * $scope.property.equityInvested, $scope.property.currentYearlyProfit, $scope.property.currentYearlyProfit, $scope.property.projectedYearlyProfit, $scope.property.projectedYearlyProfit, $scope.property.exitTotal];
+            $scope.property.projectedReturnsByYear = [$scope.property.currentYearlyProfit, $scope.property.currentYearlyProfit, $scope.property.projectedYearlyProfit, $scope.property.projectedYearlyProfit, $scope.property.exitTotal];
 
-            var sum = 0;
+            var sum = -1 * $scope.property.equityInvested;
             for (var i = 0; i < $scope.property.projectedReturnsByYear.length; i++) {
                 sum += $scope.property.projectedReturnsByYear[i];
             }

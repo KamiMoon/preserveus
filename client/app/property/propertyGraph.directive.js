@@ -34,7 +34,13 @@ angular.module('preserveusApp')
                 scope.$watch('projectedReturnsByYear', function(newValue, oldValue) {
                     if (scope.projectedReturnsByYear) {
                         var returnData = scope.projectedReturnsByYear.map(function(obj) {
-                            return obj.text;
+                            //TODO remove this
+                            if (obj.text) {
+                                return obj.text.toFixed(2);
+                            } else {
+                                return obj.toFixed(2);
+                            }
+
                         });
 
                         var sp = [];
