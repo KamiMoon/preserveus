@@ -96,23 +96,27 @@ var PropertySchema = new Schema({
         geoLocation: {},
         //investment info
 
-        investmentInfo: {
-            equityInvested: Number,
-            debtHeld: Number,
-            avgCompSalePrice: Number,
-            currentRentalRevenue: Number,
-            projectedRentalRevenue: Number,
-            mortgagePrinciple: Number,
-            taxes: Number,
-            insurance: Number,
-            monthlyRemodelExpense: Number,
-            monthlyManagementFee: Number,
-            projectedMonthlyProfit: Number,
-            yearsToHold: Number,
-            totalValueToAdd: Number,
-            projectedAmountOfDebt: Number,
-            projectedProfitAtFinal: Number
-        }
+        pricePerSqft: Number,
+        equityInvested: Number,
+        equityInvestedPercent: Number,
+        debtHeld: Number,
+        avgCompSalePrice: Number,
+        monthlyRentalRevenue: Number,
+        currentRentalRevenue: Number,
+        projectedRentalRevenue: Number,
+        mortgagePrinciple: Number,
+        taxes: Number,
+        insurance: Number,
+        monthlyRemodelExpense: Number,
+        monthlyManagementFee: Number,
+        projectedManagementFee: Number,
+        currentMonthlyProfit: Number,
+        projectedMonthlyProfit: Number,
+        yearsToHold: Number,
+        totalValueToAdd: Number,
+        projectedAmountOfDebt: Number,
+        projectedProfitAtFinal: Number
+
 
     }, {
         toObject: {
