@@ -59,9 +59,10 @@ angular.module('preserveusApp')
 
         $scope.monthlyRevenueChange = function() {
             $scope.property.currentRentalRevenue = $scope.property.monthlyRentalRevenue * 12;
-            $scope.property.projectedMonthlyRentalRevenue = Math.round($scope.property.monthlyRentalRevenue * 1.1);
-            $scope.property.projectedRentalRevenue = $scope.property.currentRentalRevenue * 1.12;
-            $scope.property.monthlyManagementFee = $scope.property.monthlyRentalRevenue * 0.08;
+            $scope.property.projectedMonthlyRentalRevenue = $scope.property.units * 1250;
+            $scope.property.projectedRentalRevenue = $scope.property.currentRentalRevenue * 12;
+
+            $scope.property.monthlyManagementFee = $scope.property.monthlyRentalRevenue * 0.12;
             $scope.property.projectedManagementFee = $scope.property.projectedMonthlyRentalRevenue * 0.12;
 
             $scope.calculateTotalMonthlyProfits();
@@ -71,8 +72,9 @@ angular.module('preserveusApp')
             var totalCost = $scope.property.mortgagePrinciple + $scope.property.taxes + $scope.property.insurance + $scope.property.monthlyRemodelExpense;
             $scope.property.currentMonthlyProfit = $scope.property.monthlyRentalRevenue - (totalCost + $scope.property.monthlyManagementFee);
             $scope.property.projectedMonthlyProfit = $scope.property.projectedMonthlyRentalRevenue - (totalCost + $scope.property.projectedManagementFee);
+
             $scope.property.currentYearlyProfit = $scope.property.currentMonthlyProfit * 12;
-            $scope.property.projectedMonthlyProfit = $scope.property.projectedMonthlyProfit * 12;
+            $scope.property.projectedYearlyProfit = $scope.property.projectedMonthlyProfit * 12;
             $scope.calculateYearBasedData();
         };
 
@@ -82,7 +84,7 @@ angular.module('preserveusApp')
             $scope.property.projectedProfitAtFinal = ($scope.property.avgCompSalePrice * 0.96) - ($scope.property.debtHeld - $scope.property.projectedAmountOfDebt) - $scope.property.equityInvested - $scope.property.totalValueToAdd;
             $scope.property.exitTotal = $scope.property.projectedProfitAtFinal * (1 - 0.12) + $scope.property.equityInvested;
 
-            $scope.property.projectedReturnsByYear = [-1 * $scope.property.equityInvested, $scope.property.currentYearlyProfit, $scope.property.currentYearlyProfit, $scope.property.projectedMonthlyProfit, $scope.property.projectedMonthlyProfit, $scope.property.exitTotal];
+            $scope.property.projectedReturnsByYear = [-1 * $scope.property.equityInvested, $scope.property.currentYearlyProfit, $scope.property.currentYearlyProfit, $scope.property.projectedYearlyProfit, $scope.property.projectedYearlyProfit, $scope.property.exitTotal];
 
             var sum = 0;
             for (var i = 0; i < $scope.property.projectedReturnsByYear.length; i++) {
