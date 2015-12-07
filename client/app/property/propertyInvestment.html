@@ -1,5 +1,18 @@
 <br>
 <div class="container">
+    <div class="row" ng-if="::Auth.isAdmin()">
+        <div class="col-md-12">
+            <div ng-switch="action">
+                <div ng-switch-when="edit">
+                    <a href="/propertyInvestment/view/{{property._id}}" class="btn btn-default btn-lg" role="button">View</a>
+                </div>
+                <div ng-switch-when="view">
+                    <a href="/propertyInvestment/edit/{{property._id}}" class="btn btn-default btn-lg" role="button">Edit</a>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
     <div class="row">
         <div class="col-lg-12">
             <h1>Investment Information</h1>
@@ -85,14 +98,17 @@
                                     <td>
                                         <label>Equity Invested</label>:
                                     </td>
-                                    <td>
-                                        <div class="form-inline">
+                                    <td ng-switch="action">
+                                        <div ng-switch-when="edit" class="form-inline">
                                             <div class="form-group">
                                                 <label>$</label>
                                                 <input ng-model="property.equityInvested" type="number" step="0.01" min="0" class="form-control" size="10" ng-change="changeEquityPercent()" />
                                                 <input ng-model="property.equityInvestedPercent" type="number" step="1" min="0" class="form-control" size="3" maxlength="3" ng-change="changeEquity()" />
                                                 <label>%</label>
                                             </div>
+                                        </div>
+                                        <div ng-switch-when="view">
+                                            {{property.equityInvested | currency:"$"}} at {{property.equityInvestedPercent}}%
                                         </div>
                                     </td>
                                 </tr>
@@ -108,12 +124,15 @@
                                     <td>
                                         <label>Avg Comp Sale Price</label>:
                                     </td>
-                                    <td>
-                                        <div class="form-inline">
+                                    <td ng-switch="action">
+                                        <div ng-switch-when="edit" class="form-inline">
                                             <div class="form-group">
                                                 <label>$</label>
                                                 <input ng-model="property.avgCompSalePrice" type="number" step="0.01" min="0" class="form-control" size="10" ng-change="calculateYearBasedData()" />
                                             </div>
+                                        </div>
+                                        <div ng-switch-when="view">
+                                            {{property.avgCompSalePrice | currency:"$"}}
                                         </div>
                                     </td>
                                 </tr>
@@ -121,13 +140,16 @@
                                     <td>
                                         <label>Current Rental Revenue</label>:
                                     </td>
-                                    <td>
-                                        <div class="form-inline">
+                                    <td ng-switch="action">
+                                        <div ng-switch-when="edit" class="form-inline">
                                             <div class="form-group">
                                                 <label>$</label>
                                                 <input ng-model="property.monthlyRentalRevenue" type="number" step="0.01" min="0" class="form-control" size="5" ng-change="monthlyRevenueChange()" />
                                                 <label>/month or {{property.currentRentalRevenue | currency:"$"}}/year</label>
                                             </div>
+                                        </div>
+                                        <div ng-switch-when="view">
+                                            {{property.monthlyRentalRevenue | currency:"$"}}/month or {{property.currentRentalRevenue | currency:"$"}}/year
                                         </div>
                                     </td>
                                 </tr>
@@ -136,7 +158,7 @@
                                         <label>Projected Rental Revenue</label>:
                                     </td>
                                     <td>
-                                        <div class="form-inline">
+                                        <div>
                                             {{property.projectedMonthlyRentalRevenue | currency:"$"}} /month or {{property.projectedRentalRevenue | currency:"$"}}/year
                                         </div>
                                     </td>
@@ -145,12 +167,15 @@
                                     <td>
                                         <label>Mortgage Principle & Interest</label>:
                                     </td>
-                                    <td>
-                                        <div class="form-inline">
+                                    <td ng-switch="action">
+                                        <div ng-switch-when="edit" class="form-inline">
                                             <div class="form-group">
                                                 <label>$</label>
                                                 <input ng-model="property.mortgagePrinciple" type="number" step="0.01" min="0" class="form-control" size="5" ng-change="calculateTotalMonthlyProfits()" />
                                             </div>
+                                        </div>
+                                        <div ng-switch-when="view">
+                                            {{property.mortgagePrinciple | currency:"$"}}
                                         </div>
                                     </td>
                                 </tr>
@@ -158,12 +183,15 @@
                                     <td>
                                         <label>Taxes</label>:
                                     </td>
-                                    <td>
-                                        <div class="form-inline">
+                                    <td ng-switch="action">
+                                        <div ng-switch-when="edit" class="form-inline">
                                             <div class="form-group">
                                                 <label>$</label>
                                                 <input ng-model="property.taxes" type="number" step="0.01" min="0" class="form-control" size="5" ng-change="calculateTotalMonthlyProfits()" />
                                             </div>
+                                        </div>
+                                        <div ng-switch-when="view">
+                                            {{property.taxes | currency:"$"}}
                                         </div>
                                     </td>
                                 </tr>
@@ -171,12 +199,15 @@
                                     <td>
                                         <label>Insurance</label>:
                                     </td>
-                                    <td>
-                                        <div class="form-inline">
+                                    <td ng-switch="action">
+                                        <div ng-switch-when="edit" class="form-inline">
                                             <div class="form-group">
                                                 <label>$</label>
                                                 <input ng-model="property.insurance" type="number" step="0.01" min="0" class="form-control" size="5" ng-change="calculateTotalMonthlyProfits()" />
                                             </div>
+                                        </div>
+                                        <div ng-switch-when="view">
+                                            {{property.insurance | currency:"$"}}
                                         </div>
                                     </td>
                                 </tr>
@@ -184,12 +215,15 @@
                                     <td>
                                         <label>Monthly Remodel Expense</label>:
                                     </td>
-                                    <td>
-                                        <div class="form-inline">
+                                    <td ng-switch="action">
+                                        <div ng-switch-when="edit" class="form-inline">
                                             <div class="form-group">
                                                 <label>$</label>
                                                 <input ng-model="property.monthlyRemodelExpense" type="number" step="0.01" min="0" class="form-control" size="5" ng-change="calculateTotalMonthlyProfits()" />
                                             </div>
+                                        </div>
+                                        <div ng-switch-when="view">
+                                            {{property.monthlyRemodelExpense | currency:"$"}}
                                         </div>
                                     </td>
                                 </tr>
@@ -229,12 +263,15 @@
                                     <td>
                                         <label>Years to Hold</label>:
                                     </td>
-                                    <td>
-                                        <div class="form-inline">
+                                    <td ng-switch="action">
+                                        <div ng-switch-when="edit" class="form-inline">
                                             <div class="form-group">
                                                 <label>$</label>
                                                 <input ng-model="property.yearsToHold" type="number" step="1" min="0" class="form-control" size="3" maxlength="3" ng-change="calculateYearBasedData()" />
                                             </div>
+                                        </div>
+                                        <div ng-switch-when="view">
+                                            {{property.yearsToHold}}
                                         </div>
                                     </td>
                                 </tr>
@@ -319,20 +356,46 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Financial Summary</div>
                 <div class="panel-body">
-                    <ul>
-                        <li ng-repeat="financialFact in property.financialSummary
-">{{::financialFact.text}}</li>
-                        <li>{{property.returnOnInvestmentPercent}}%</li>
-                        <li>{{property.avgReturnPerYear | currency:"$"}}</li>
-                        <li>{{property.irr}}%</li>
-                        <li>{{property.netPresentValue | currency:"$"}}</li>
-                    </ul>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover">
+                            <tbody>
+                                <tr>
+                                    <td>Anticipated hold period</td>
+                                    <td>{{property.yearsToHold}} years</td>
+                                </tr>
+                                <tr>
+                                    <td>Average return per year</td>
+                                    <td>{{property.avgReturnPerYear | currency:"$"}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Internal rate of return</td>
+                                    <td>{{property.irr}}%</td>
+                                </tr>
+                                <tr>
+                                    <td>Return on investment</td>
+                                    <td>{{property.returnOnInvestmentPercent}}%</td>
+                                </tr>
+                                <tr>
+                                    <td>Net present value</td>
+                                    <td>{{property.netPresentValue | currency:"$"}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Cap Rate</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <br>
             <br>
             <property-graph projected-returns-by-year="property.projectedReturnsByYear"></property-graph>
             <br>
+            <div ng-if="action === 'edit'">
+                <button class="btn btn-success btn-lg" role="button">Save</button>
+                <br>
+            </div>
             <br>
             <a href="/contact" class="btn btn-default btn-lg" role="button">Contact Us</a>
         </div>

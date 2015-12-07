@@ -102,6 +102,7 @@ var PropertySchema = new Schema({
         debtHeld: Number,
         avgCompSalePrice: Number,
         monthlyRentalRevenue: Number,
+        projectedMonthlyRentalRevenue: Number,
         currentRentalRevenue: Number,
         projectedRentalRevenue: Number,
         mortgagePrinciple: Number,
@@ -109,15 +110,22 @@ var PropertySchema = new Schema({
         insurance: Number,
         monthlyRemodelExpense: Number,
         monthlyManagementFee: Number,
+        totalCost: Number,
         projectedManagementFee: Number,
         currentMonthlyProfit: Number,
         projectedMonthlyProfit: Number,
+        currentYearlyProfit: Number,
+        projectedYearlyProfit: Number,
         yearsToHold: Number,
         totalValueToAdd: Number,
         projectedAmountOfDebt: Number,
-        projectedProfitAtFinal: Number
-
-
+        projectedProfitAtFinal: Number,
+        exitTotal: Number,
+        finalTotal: Number,
+        returnOnInvestmentPercent: Number,
+        avgReturnPerYear: Number,
+        irr: Number,
+        netPresentValue: Number
     }, {
         toObject: {
             virtuals: true
