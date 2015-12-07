@@ -35,10 +35,10 @@
                 <br>
                 <br>
             </div>
-            <div ng-if="property.allowRent">
+            <!--<div ng-if="property.allowRent">
                 <h4>Apply to become a renter at this property</h4>
                 <button class="btn btn-warning btn-lg" type="button">Rent</button>
-            </div>
+            </div>-->
         </div>
     </div>
     <div class="row">
@@ -93,11 +93,7 @@
             <property-graph projected-returns-by-year="property.projectedReturnsByYear"></property-graph>
         </div>
         <div class="col-md-4">
-            <h3>Financial Summary</h3>
-            <ul>
-                <li ng-repeat="financialFact in property.financialSummary
-">{{::financialFact.text}}</li>
-            </ul>
+            <property-financial-summary></property-financial-summary>
         </div>
     </div>
     <div class="row" ng-repeat="row in property.photoRows">

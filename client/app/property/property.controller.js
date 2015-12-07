@@ -64,13 +64,7 @@ angular.module('preserveusApp')
 
         //features
         var createPropertyFeatureRow = function() {
-            return [{
-                text: ''
-            }, {
-                text: ''
-            }, {
-                text: ''
-            }];
+            return [];
         };
 
         var setDefaultFeatures = function() {
@@ -94,65 +88,6 @@ angular.module('preserveusApp')
             $scope.featureToAddRow = createPropertyFeatureRow();
         };
 
-        //financial summary
-        var createFinancialFact = function() {
-            return {
-                text: ''
-            };
-        };
-
-        var setDefaultFinancialSummary = function() {
-            $scope.property.financialSummary = [createFinancialFact(), createFinancialFact(), createFinancialFact()];
-
-        };
-
-        $scope.financialFactToAdd = createFinancialFact();
-
-
-        $scope.deleteFinancialFact = function(feature) {
-            for (var i = 0; i < $scope.property.financialSummary.length; i++) {
-                if ($scope.property.financialSummary[i].$$hashKey === feature.$$hashKey) {
-                    $scope.property.financialSummary.splice(i, 1);
-                    break;
-                }
-            }
-        };
-
-        $scope.addFinancialFact = function() {
-            $scope.property.financialSummary.push($scope.financialFactToAdd);
-
-            $scope.financialFactToAdd = createFinancialFact();
-        };
-
-        //projected returns
-        var createProjectionItem = function() {
-            return {
-                text: ''
-            };
-        };
-
-        var setDefaultProjectedReturns = function() {
-            $scope.property.projectedReturnsByYear = [createProjectionItem(), createProjectionItem(), createProjectionItem(), createProjectionItem(), createProjectionItem(), createProjectionItem()];
-        };
-
-        $scope.projectionItemToAdd = createProjectionItem();
-
-
-        $scope.deleteProjectionItem = function(feature) {
-            for (var i = 0; i < $scope.property.projectedReturnsByYear.length; i++) {
-                if ($scope.property.projectedReturnsByYear[i].$$hashKey === feature.$$hashKey) {
-                    $scope.property.projectedReturnsByYear.splice(i, 1);
-                    break;
-                }
-            }
-        };
-
-        $scope.addProjectionItem = function() {
-            $scope.property.projectedReturnsByYear.push($scope.projectionItemToAdd);
-
-            $scope.projectionItemToAdd = createProjectionItem();
-        };
-
         if (action === 'edit') {
             $scope.property = PropertyService.get({
                 id: id
@@ -160,14 +95,6 @@ angular.module('preserveusApp')
 
             if (!$scope.features || !$scope.features.length) {
                 setDefaultFeatures();
-            }
-
-            if (!$scope.financialSummary || !$scope.financialSummary.length) {
-                setDefaultFinancialSummary();
-            }
-
-            if (!$scope.projectedReturnsByYear || !$scope.projectedReturnsByYear.length) {
-                setDefaultProjectedReturns();
             }
 
         } else {
@@ -178,8 +105,6 @@ angular.module('preserveusApp')
 
             //initialize defaults
             setDefaultFeatures();
-            setDefaultFinancialSummary();
-            setDefaultProjectedReturns();
         }
 
         $scope.save = function(form) {
@@ -206,7 +131,6 @@ angular.module('preserveusApp')
                     });
 
                 }
-
             }
 
         };

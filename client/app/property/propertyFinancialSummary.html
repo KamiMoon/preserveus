@@ -1,0 +1,35 @@
+<div class="panel panel-default">
+    <div class="panel-heading">Financial Summary</div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <tbody>
+                    <tr>
+                        <td>Anticipated hold period</td>
+                        <td>{{property.yearsToHold}} years</td>
+                    </tr>
+                    <tr>
+                        <td>Average return per year</td>
+                        <td>{{property.avgReturnPerYear | currency:"$"}}</td>
+                    </tr>
+                    <tr>
+                        <td>Internal rate of return</td>
+                        <td>{{property.irr}}%</td>
+                    </tr>
+                    <tr>
+                        <td>Return on investment</td>
+                        <td>{{property.returnOnInvestmentPercent}}%</td>
+                    </tr>
+                    <tr>
+                        <td>Net present value</td>
+                        <td>{{property.netPresentValue | currency:"$"}}</td>
+                    </tr>
+                    <tr>
+                        <td>Cap Rate</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
