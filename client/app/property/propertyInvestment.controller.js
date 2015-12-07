@@ -13,7 +13,9 @@ angular.module('preserveusApp')
         }).$promise.then(function(property) {
             $scope.property = property;
 
-            PropertyInvestmentService.calculateInitialData($scope.property);
+            if ($scope.action === 'edit') {
+                PropertyInvestmentService.calculateInitialData($scope.property);
+            }
         });
 
         $scope.changeEquity = function() {
