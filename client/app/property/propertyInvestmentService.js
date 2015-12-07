@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('preserveusApp')
-    .service('PropertyInvestmentService', function() {
+    .service('PropertyInvestmentService', function($timeout) {
 
         this.IRR = function(values, guess) {
             // Credits: algorithm inspired by Apache OpenOffice
@@ -87,13 +87,13 @@ angular.module('preserveusApp')
             property.avgCompSalePrice = 140 * property.sqft;
             property.debtHeld = property.cost - property.equityInvested;
 
-            //hardcode for right now
-            property.monthlyRentalRevenue = 4075.00;
-            property.mortgagePrinciple = property.mortgagePrinciple || 2100.00;
-            property.taxes = property.taxes || 671.25;
-            property.insurance = property.insurance || 166.67;
-            property.monthlyRemodelExpense = property.monthlyRemodelExpense || 500.00;
-            property.yearsToHold = property.yearsToHold || 5;
+            //defaults
+            property.monthlyRentalRevenue = property.monthlyRentalRevenue || 0;
+            property.mortgagePrinciple = property.mortgagePrinciple || 0;
+            property.taxes = property.taxes || 0;
+            property.insurance = property.insurance || 0;
+            property.monthlyRemodelExpense = property.monthlyRemodelExpense || 0;
+            property.yearsToHold = 5;
 
             this.monthlyRevenueChange(property);
         };
@@ -119,8 +119,9 @@ angular.module('preserveusApp')
 
         this.monthlyRevenueChange = function(property) {
             property.currentRentalRevenue = property.monthlyRentalRevenue * 12;
-            property.projectedMonthlyRentalRevenue = property.units * 1250;
-            property.projectedRentalRevenue = property.currentRentalRevenue * 12;
+            //property.projectedMonthlyRentalRevenue = property.units * 1250;
+            property.projectedMonthlyRentalRevenue = property.monthlyRentalRevenue * 1.1;
+            property.projectedRentalRevenue = property.projectedMonthlyRentalRevenue * 12;
 
             property.monthlyManagementFee = property.monthlyRentalRevenue * 0.12;
             property.projectedManagementFee = property.projectedMonthlyRentalRevenue * 0.12;
@@ -152,9 +153,7 @@ angular.module('preserveusApp')
             for (var i = 0; i < property.projectedReturnsByYear.length; i++) {
                 sum += property.projectedReturnsByYear[i];
 
-
                 netPresentValue += property.projectedReturnsByYear[i] / (Math.pow(1.05, i + 1));
-
             }
             netPresentValue -= property.equityInvested;
 
@@ -167,6 +166,12 @@ angular.module('preserveusApp')
             irrArray.unshift(-1 * property.equityInvested);
             property.irr = Math.round(this.IRR(irrArray) * 100);
             property.netPresentValue = netPresentValue;
+
+            //fix graph
+            $timeout(function() {
+                property.projectedReturnsByYear = [property.currentYearlyProfit, property.currentYearlyProfit, property.projectedYearlyProfit, property.projectedYearlyProfit, property.exitTotal];
+            }, 30);
+
         };
 
 

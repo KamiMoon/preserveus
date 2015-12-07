@@ -68,7 +68,7 @@ angular.module('preserveusApp')
         };
 
         var setDefaultFeatures = function() {
-            $scope.property.features = [createPropertyFeatureRow(), createPropertyFeatureRow(), createPropertyFeatureRow()];
+            $scope.property.features = [];
         };
 
         $scope.featureToAddRow = createPropertyFeatureRow();

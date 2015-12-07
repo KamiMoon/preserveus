@@ -17,11 +17,11 @@
                     <h3><span class="glyphicon glyphicon-home"></span> Address:</h3>
                 </div>
                 <div class="form-horizontal">
-                    <b-input model="property.address" require="true"></b-input>
-                    <b-input model="property.city" require="true"></b-input>
+                    <b-input model="property.address" required="true"></b-input>
+                    <b-input model="property.city" required="true"></b-input>
                     <b-input type="select" source="states" label="State" model="property.state" require="true">
                     </b-input>
-                    <b-input model="property.zip" require="true"></b-input>
+                    <b-input model="property.zip" required="true"></b-input>
                 </div>
             </div>
         </div>
@@ -33,8 +33,8 @@
                 <div class="form-horizontal">
                     <b-input type="number" model="property.beds"></b-input>
                     <b-input type="number" model="property.baths"></b-input>
-                    <b-input type="number" model="property.sqft"></b-input>
-                    <b-input type="number" model="property.units"></b-input>
+                    <b-input type="number" model="property.sqft" required="true"></b-input>
+                    <b-input type="number" model="property.units" required="true"></b-input>
                     <b-input type="number" model="property.garages"></b-input>
                 </div>
             </div>
@@ -43,8 +43,8 @@
                     <h3><span class="glyphicon glyphicon-stats"></span> Investment Features:</h3>
                 </div>
                 <div class="form-horizontal">
-                    <b-input type="number" model="property.cost"></b-input>
-                    <b-input type="number" model="property.mortgage"></b-input>
+                    <b-input type="number" model="property.cost" required="true"></b-input>
+                    <b-input type="number" model="property.mortgagePrinciple" label="Mortgage" required="true"></b-input>
                 </div>
             </div>
         </div>

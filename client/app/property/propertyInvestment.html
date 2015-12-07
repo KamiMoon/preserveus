@@ -3,9 +3,10 @@
     <div class="row" ng-if="::Auth.isAdmin()">
         <div class="col-md-12">
             <div ng-switch="action">
-                <div ng-switch-when="edit">
-                    <a href="/propertyInvestment/view/{{property._id}}" class="btn btn-default btn-lg" role="button">View</a>
-                </div>
+                <!-- <div ng-switch-when="edit">
+    <a href="/propertyInvestment/view/{{property._id}}" class="btn btn-default btn-lg" role="button">View</a>
+</div>
+ -->
                 <div ng-switch-when="view">
                     <a href="/propertyInvestment/edit/{{property._id}}" class="btn btn-default btn-lg" role="button">Edit</a>
                 </div>
@@ -263,16 +264,14 @@
                                     <td>
                                         <label>Years to Hold</label>:
                                     </td>
-                                    <td ng-switch="action">
-                                        <div ng-switch-when="edit" class="form-inline">
+                                    <td>
+                                        <!--<div ng-switch-when="edit" class="form-inline">
                                             <div class="form-group">
                                                 <label>$</label>
                                                 <input ng-model="property.yearsToHold" type="number" step="1" min="0" class="form-control" size="3" maxlength="3" ng-change="calculateYearBasedData()" />
                                             </div>
-                                        </div>
-                                        <div ng-switch-when="view">
-                                            {{property.yearsToHold}}
-                                        </div>
+                                        </div>-->
+                                        {{property.yearsToHold}}
                                     </td>
                                 </tr>
                                 <tr>

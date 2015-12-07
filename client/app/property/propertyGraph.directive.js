@@ -11,7 +11,9 @@ angular.module('preserveusApp')
             link: function postLink(scope, element, attrs) {
 
                 var buildGraph = function() {
-                    scope.series = ['S&P 500', 'Preserve US'];
+                    //scope.series = ['S&P 500', 'Preserve US'];
+                    scope.series = ['Preserve US'];
+
 
                     scope.options = {
                         scaleBeginAtZero: true,
@@ -26,7 +28,8 @@ angular.module('preserveusApp')
                         }
                     };
 
-                    scope.colours = ['#0000FF', '#FF0000'];
+                    //scope.colours = ['#0000FF', '#FF0000'];
+                    scope.colours = ['#FF0000'];
                 };
 
                 buildGraph();
@@ -43,11 +46,12 @@ angular.module('preserveusApp')
 
                         });
 
-                        var sp = [];
+                        //var sp = [];
                         scope.labels = [];
+
                         for (var i = 0; i < returnData.length; i++) {
                             //TODO - flat S&P returns need to be configurable
-                            sp.push(10000.00);
+                            //sp.push(10000.00);
 
                             if (i === returnData.length - 1) {
                                 scope.labels.push('Exit');
@@ -57,7 +61,7 @@ angular.module('preserveusApp')
                         }
 
                         scope.data = [
-                            sp,
+                            //sp,
                             returnData
                         ];
                     }

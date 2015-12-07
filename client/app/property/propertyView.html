@@ -51,9 +51,9 @@
             </p>
         </div>
         <div class="col-md-4">
-            <h2 ng-if="property.cost">${{::property.cost}}</h2>
-            <h3 ng-if="property.mortgage">Est. Mortgage</h3>
-            <h4 ng-if="property.mortgage">${{::property.mortgage}}</h4>
+            <h2 ng-if="property.cost">{{::property.cost | currency:"$"}}</h2>
+            <h3 ng-if="property.mortgagePrinciple">Est. Mortgage</h3>
+            <h4 ng-if="property.mortgagePrinciple">{{::property.mortgagePrinciple | currency:"$"}}</h4>
         </div>
     </div>
     <div class="row" ng-if="property.features.length">
@@ -90,10 +90,14 @@
     </div>
     <div class="row">
         <div class="col-md-8">
-            <property-graph projected-returns-by-year="property.projectedReturnsByYear"></property-graph>
+            <div ng-if="property.projectedReturnsByYear && property.projectedReturnsByYear.length > 0">
+                <property-graph projected-returns-by-year="property.projectedReturnsByYear"></property-graph>
+            </div>
         </div>
         <div class="col-md-4">
-            <property-financial-summary></property-financial-summary>
+            <div ng-if="property.irr">
+                <property-financial-summary></property-financial-summary>
+            </div>
         </div>
     </div>
     <div class="row" ng-repeat="row in property.photoRows">
