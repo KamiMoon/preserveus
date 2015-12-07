@@ -1,10 +1,10 @@
 <br>
 <br>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-8">
             <div id="mapTop"></div>
-            <ui-gmap-google-map center="map.center" zoom="map.zoom">
+            <ui-gmap-google-map id="map" center="map.center" zoom="map.zoom">
                 <ui-gmap-markers models="mapMarkers" coords="'self'" icon="'icon'" click="markerClick">
                     <ui-gmap-windows show="show">
                         <div class="map-window">
