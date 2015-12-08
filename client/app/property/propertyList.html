@@ -17,37 +17,38 @@
                 </ui-gmap-markers>
             </ui-gmap-google-map>
         </div>
-        <div class="col-xs-12 col-md-4 col-lg-4 table-cell">
-            <div class="row" ng-if="::Auth.isAdmin()">
-                <div class="col-md-12">
-                    <br>
-                    <br>
-                    <a href="/property/add/1" class="btn btn-default btn-lg" role="button">Add Property</a>
-                    <br>
-                    <br>
+        <div class="col-xs-12 col-md-4 col-lg-4 table-cell" id="right-column">
+            <div id="scroll-properties">
+                <div class="row" ng-if="::Auth.isAdmin()">
+                    <div class="col-md-12">
+                        <br>
+                        <br>
+                        <a href="/property/add/1" class="btn btn-default btn-lg" role="button">Add Property</a>
+                        <br>
+                    </div>
                 </div>
-            </div>
-            <div class="media" ng-repeat="property in properties">
-                <div class="media-left">
-                    <a href="/property/{{property._id}}">
-                        <b-img public-id="{{property.photo}}" transformation="w_100,h_100,c_fill" alt="{{property.name}}" class="media-object img-property"></b-img>
-                    </a>
-                    <p>
-                        <a href="#" ng-click="zoomToLocation(property)">Show on Map</a>
-                    </p>
-                </div>
-                <div class="media-body">
-                    <h3 class="media-heading">
+                <br>
+                <div class="media" ng-repeat="property in properties">
+                    <div class="media-left">
+                        <a href="/property/{{property._id}}">
+                            <b-img public-id="{{property.photo}}" transformation="w_100,h_100,c_fill" alt="{{property.name}}" class="media-object img-property"></b-img>
+                        </a>
+                        <p>
+                            <br>
+                            <a href="#" class="btn btn-default btn-lg" ng-click="zoomToLocation(property)">Show on Map</a>
+                        </p>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">
                     <a href="/property/{{property._id}}">{{::property.name}}</a>
                     <h6>{{::property.fullAddress}}</h6>
-
                     </h3>
-                    <p>
-                        {{::property.description | limitTo:200}}...
-                    </p>
+                        <p>
+                            {{::property.description | limitTo:200}}...
+                        </p>
+                    </div>
+                    <hr>
                 </div>
-                <br>
-                <br>
             </div>
         </div>
     </div>
@@ -85,6 +86,16 @@
 
 #left-column {
     padding: 0px;
+}
+
+#right-column {
+    padding-right: 0px;
+}
+
+#scroll-properties {
+    overflow-y: auto;
+    overflow-x: auto;
+    max-height: 700px;
 }
 
 @media only screen and (max-width: 480px) {
