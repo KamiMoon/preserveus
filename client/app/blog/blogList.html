@@ -17,9 +17,11 @@
     </h1>
                     <hr>
                     <ul>
-                        <li property="author" typeof="person">By Eric Kizaki</li>
+                        <li property="author" typeof="person">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> By Eric Kizaki
+                        </li>
                         <li id="datePublished" class="date" property="datePublished" content="{{::post.createdAt | date:'MM/dd/yyyy'}}">
-                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span>{{::post.createdAt | date:'MM/dd/yyyy'}}
+                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{::post.createdAt | date:'MM/dd/yyyy'}}
                         </li>
                         <li class="tags" property="keywords" ng-if="post.keywords.length">
                             <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
@@ -32,7 +34,7 @@
                         </li>
                     </ul>
                     <br>
-                    <p ng-bind-html="post.heading | sanitize"></p>
+                    <q ng-if="post.headingQuote" ng-bind-html="post.headingQuote | sanitize"></q>
                     <figure>
                         <a href="/#/blog/{{post._id}}">
                             <b-img public-id="{{post.photo}}" transformation="w_365,h_365,c_fill" alt="{{post.title}}"></b-img>
