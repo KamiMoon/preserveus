@@ -20,8 +20,8 @@
     </h1>
                     <hr>
                     <ul>
-                        <li property="author" typeof="person">
-                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> By Eric Kizaki
+                        <li property="author" typeof="person" ng-if="post.user_name">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> By {{::post.user_name}}
                         </li>
                         <li id="datePublished" class="date" property="datePublished" content="{{::post.createdAt | date:'MM/dd/yyyy'}}">
                             <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{::post.createdAt | date:'MM/dd/yyyy'}}

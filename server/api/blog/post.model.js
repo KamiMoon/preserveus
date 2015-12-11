@@ -39,7 +39,20 @@ var PostSchema = new Schema({
     },
     photo: {
         type: String
-    }
+    },
+    user_id: Schema.Types.ObjectId,
+    user_name: String,
+    headingQuote: {
+        type: String,
+        validate: [
+            validate({
+                validator: 'isLength',
+                arguments: [3, 500],
+                message: 'Title should be between {ARGS[0]} and {ARGS[1]} characters'
+            })
+        ]
+    },
+    keywords: []
 });
 
 PostSchema

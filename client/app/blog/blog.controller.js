@@ -34,7 +34,8 @@ angular.module('preserveusApp')
             $scope.showSlug = true;
 
             $scope.post = {
-                user_id: user._id
+                user_id: user._id,
+                user_name: user.name
             };
 
             $scope.updateSlug = function() {
