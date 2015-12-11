@@ -94,8 +94,12 @@
 
 #scroll-properties {
     overflow-y: auto;
-    overflow-x: auto;
+    overflow-x: hidden;
     max-height: 700px;
+}
+
+#footer {
+    /*display: none;*/
 }
 
 @media only screen and (max-width: 480px) {
@@ -123,6 +127,11 @@
     }
     #left-column {
         padding: inherit;
+    }
+    #scroll-properties {
+        overflow-y: none;
+        overflow-x: hidden;
+        max-height: none;
     }
 }
 </style>
