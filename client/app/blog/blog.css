@@ -1,0 +1,12 @@
+#blog-column article li {
+    color: rgba(0, 0, 0, .3);
+    display: inline-block;
+    padding-right: 2em;
+}
+
+@media(max-width:767px) {
+    #blog-column article li {
+        display: block;
+        margin-top: 15px;
+    }
+}

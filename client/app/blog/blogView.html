@@ -1,7 +1,7 @@
 <br>
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-9" id="blog-column">
             <a href="/blog" class="btn btn-default btn-lg" role="button"> ← Back to Blog</a>
             <br>
             <div ng-if="::Auth.isAdmin()">
@@ -12,12 +12,44 @@
                 <a ng-click="delete(post._id)" class="btn btn-default btn-lg" role="button">Delete</a>
                 <br>
             </div>
-            <h1 ng-bind="post.title"></h1>
-            <h6>Posted on: {{::post.createdAt | date:'MM/dd/yyyy h:mm a'}}</h6>
-            <b-img public-id="{{post.photo}}" transformation="w_300,h_300,c_fill" class="img-responsive team-pic" alt="{{post.title}}"></b-img>
             <br>
-            <p ng-bind-html="post.postHtml | sanitize">
-            </p>
+            <div class="panel panel-default">
+                <article vocab="http://schema.org/" typeof="TechArticle" class="panel-body">
+                    <h1>
+        <a property="url" href="blog/{{post._id}}" rel="bookmark" title="{{::post.title}}"><span property="name">{{::post.title}}</span></a>
+    </h1>
+                    <hr>
+                    <ul>
+                        <li property="author" typeof="person">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> By Eric Kizaki
+                        </li>
+                        <li id="datePublished" class="date" property="datePublished" content="{{::post.createdAt | date:'MM/dd/yyyy'}}">
+                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{::post.createdAt | date:'MM/dd/yyyy'}}
+                        </li>
+                        <li class="tags" property="keywords" ng-if="post.keywords.length">
+                            <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
+                            <a ng-repeat="keyword in post.keywords" href="">{{::keyword}}</a>
+                        </li>
+                        <!-- <li class="comments" property="discussionUrl">
+    <button class="btn btn-primary" type="button">
+        Comments <span class="badge">4</span>
+    </button>
+</li>
+ -->
+                    </ul>
+                    <br>
+                    <q ng-if="post.headingQuote" ng-bind-html="post.headingQuote | sanitize"></q>
+                    <figure>
+                        <a href="/#/blog/{{post._id}}">
+                            <b-img public-id="{{post.photo}}" transformation="w_365,h_365,c_fill" alt="{{post.title}}"></b-img>
+                        </a>
+                    </figure>
+                    <br>
+                    <p ng-bind-html="post.postHtml | sanitize"></p>
+                </article>
+            </div>
+        </div>
+        <div class="col-md-3">
         </div>
     </div>
 </div>
