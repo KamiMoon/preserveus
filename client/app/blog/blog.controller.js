@@ -88,6 +88,9 @@ angular.module('preserveusApp')
                             file: file
                         }).success(function(data, status, headers, config) {
                             var file_location = data.secure_url;
+
+                            //$scope.editable.addClass('img-responsive');
+
                             editor.insertImage($scope.editable, file_location, file_location);
                         });
                     }
