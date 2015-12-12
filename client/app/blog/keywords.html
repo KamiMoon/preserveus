@@ -1,10 +1,8 @@
 <div class="panel panel-primary">
     <div class="panel-heading">Keywords</div>
     <div class="panel-body">
-        <ul class="list-group">
-            <li class="list-group-item" ng-repeat="keyword in keywords">
-                <a href="/blogKeyword/{{keyword._id}}">{{::keyword._id}}</a>
-            </li>
-        </ul>
+        <div class="list-group" ng-repeat="keyword in keywords">
+            <a class="list-group-item" href="/blogKeyword/{{keyword._id}}">{{::keyword._id}}</a>
+        </div>
     </div>
 </div>
