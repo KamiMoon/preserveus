@@ -6,10 +6,7 @@
             <div class="col-md-12">
                 <h3><span class="glyphicon glyphicon-globe"></span> Post Info:</h3>
                 <div class="form-horizontal">
-                    <div ng-if="showSlug">
-                        <b-input model="post.title" required="true" change="updateSlug()"></b-input>
-                        <b-input model="post.slug" required="true"></b-input>
-                    </div>
+                    <b-input model="post.title" required="true"></b-input>
                     <b-input type="file" model="post.photo" transformation="w_100,h_100,c_thumb,g_face"></b-input>
                     <b-input type="textarea" model="post.headingQuote" label="Heading Quote" cols="5" rows="3"></b-input>
                     <div class="form-group">

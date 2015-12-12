@@ -1,20 +1,5 @@
 'use strict';
 
-function slugify(text) {
-
-    if (text) {
-        return text.toString().toLowerCase()
-            .replace(/\s+/g, '-') // Replace spaces with -
-            .replace(/[^\w\-]+/g, '') // Remove all non-word chars
-            .replace(/\-\-+/g, '-') // Replace multiple - with single -
-            .replace(/^-+/, '') // Trim - from start of text
-            .replace(/-+$/, ''); // Trim - from end of text
-    } else {
-        return '';
-    }
-
-}
-
 angular.module('preserveusApp')
     .controller('BlogCtrl', function($scope, BlogService) {
         $scope.posts = BlogService.query();
@@ -25,21 +10,13 @@ angular.module('preserveusApp')
         var user = Auth.getCurrentUser();
 
         if (action === 'edit') {
-            $scope.showSlug = false;
-
             $scope.post = BlogService.get({
                 id: id
             });
         } else {
-            $scope.showSlug = true;
-
             $scope.post = {
                 user_id: user._id,
                 user_name: user.name
-            };
-
-            $scope.updateSlug = function() {
-                $scope.post.slug = slugify($scope.post.title);
             };
         }
 
