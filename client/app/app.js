@@ -13,7 +13,8 @@ angular.module('preserveusApp', [
         'chart.js',
         'summernote',
         'uiGmapgoogle-maps',
-        'cloudinary'
+        'cloudinary',
+        'angularUtils.directives.dirDisqus'
     ])
     .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, uiGmapGoogleMapApiProvider) {
         $urlRouterProvider

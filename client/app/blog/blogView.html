@@ -14,6 +14,8 @@
             </div>
             <br>
             <blog-post post="post"></blog-post>
+            <dir-disqus disqus-shortname="preserveus" disqus-identifier="{{post._id}}" disqus-url="https://www.preservedfw.com/blog/{{post._id}}" disqus-title="{{post.title}}" ready-to-bind="{{contentLoaded}}">
+            </dir-disqus>
         </div>
         <div class="col-md-3">
             <blog-keywords></blog-keywords>

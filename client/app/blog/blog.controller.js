@@ -109,11 +109,13 @@ angular.module('preserveusApp')
     }).controller('BlogViewCtrl', function($scope, $stateParams, Auth, BlogService, ValidationService, $location, ControllerUtil) {
 
         var id = $stateParams.id;
+        $scope.contentLoaded = false;
 
         BlogService.get({
             id: id
         }).$promise.then(function(post) {
             $scope.post = post;
+            $scope.contentLoaded = true;
         });
 
         $scope.delete = function() {
