@@ -23,7 +23,8 @@ angular.module('preserveusApp')
         } else {
             $scope.post = {
                 user_id: user._id,
-                user_name: user.name
+                user_name: user.name,
+                keywords: []
             };
         }
 
