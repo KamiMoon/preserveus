@@ -4,18 +4,22 @@ var Post = require('./post.model');
 var ControllerUtil = require('../../components/controllerUtil');
 
 
-exports.keyword = function(req, res) {
-    var keyword = req.id;
-
-    Post.find({
-        'keywords.text': keyword
-    }).sort({
-        'createdAt': -1
-    }).exec(function(err, data) {
+exports.keywords = function(req, res) {
+    Post.aggregate([{
+        '$unwind': '$keywords'
+    }, {
+        '$group': {
+            '_id': '$keywords.text'
+        }
+    }, {
+        '$sort': {
+            '_id': 1
+        }
+    }]).exec(function(err, keywords) {
         if (err) {
             return ControllerUtil.handleError(res, err);
         }
-        return res.status(200).json(data);
+        return res.json(keywords);
     });
 };
 

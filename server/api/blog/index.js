@@ -5,7 +5,7 @@ var controller = require('./post.controller');
 
 var router = express.Router();
 
-router.get('/keyword/:id', controller.keyword);
+router.get('/keywords', controller.keywords);
 router.get('/', controller.index);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
