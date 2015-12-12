@@ -4,6 +4,10 @@
     padding-right: 2em;
 }
 
+#blog-column .keywords {
+    margin-left: 20px;
+}
+
 @media(max-width:767px) {
     #blog-column article li {
         display: block;

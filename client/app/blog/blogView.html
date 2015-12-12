@@ -28,7 +28,7 @@
                         </li>
                         <li class="tags" property="keywords" ng-if="post.keywords.length">
                             <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
-                            <a ng-repeat="keyword in post.keywords" href="">{{::keyword}}</a>
+                            <a ng-repeat="keyword in post.keywords" class="btn btn-default btn-sm keywords" href="/blogKeyword/{{keyword.text}}">{{::keyword.text}}</a>
                         </li>
                         <!-- <li class="comments" property="discussionUrl">
     <button class="btn btn-primary" type="button">
@@ -39,7 +39,7 @@
                     </ul>
                     <br>
                     <q ng-if="post.headingQuote" ng-bind-html="post.headingQuote | sanitize"></q>
-                    <figure>
+                    <figure ng-if="post.photo">
                         <a href="/#/blog/{{post._id}}">
                             <b-img public-id="{{post.photo}}" transformation="w_365,h_365,c_fill" alt="{{post.title}}" class="img-responsive"></b-img>
                         </a>

@@ -3,6 +3,22 @@
 var Post = require('./post.model');
 var ControllerUtil = require('../../components/controllerUtil');
 
+
+exports.keyword = function(req, res) {
+    var keyword = req.id;
+
+    Post.find({
+        'keywords.text': keyword
+    }).sort({
+        'createdAt': -1
+    }).exec(function(err, data) {
+        if (err) {
+            return ControllerUtil.handleError(res, err);
+        }
+        return res.status(200).json(data);
+    });
+};
+
 // Get list of events
 exports.index = function(req, res) {
     ControllerUtil.find(req, res, Post, {}, {

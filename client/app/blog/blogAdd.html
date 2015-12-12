@@ -8,6 +8,31 @@
                 <div class="form-horizontal">
                     <b-input model="post.title" required="true"></b-input>
                     <b-input type="file" model="post.photo" transformation="w_100,h_100,c_thumb,g_face"></b-input>
+                    <div class="form-group">
+                        <div class="col-lg-2 control-label">Keywords</div>
+                        <div class="col-lg-10">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tr ng-repeat="keyword in post.keywords">
+                                        <td>
+                                            <input type="text" ng-model="keyword.text" class="form-control">
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-danger" type="button" ng-click="deleteKeyword(keyword)">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="text" ng-model="keywordToAdd.text" class="form-control">
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-info" type="button" ng-click="addKeyword()">Add</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                     <b-input type="textarea" model="post.headingQuote" label="Heading Quote" cols="5" rows="3"></b-input>
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Content</label>

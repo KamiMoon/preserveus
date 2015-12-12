@@ -14,5 +14,9 @@ angular.module('preserveusApp')
             url: '/blog/:id',
             templateUrl: 'app/blog/blogView.html',
             controller: 'BlogViewCtrl'
+        }).state('blogKeyword', {
+            url: '/blogKeyword/:keyword',
+            templateUrl: 'app/blog/blogList.html',
+            controller: 'BlogCtrl'
         });
     });

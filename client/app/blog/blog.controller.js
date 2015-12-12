@@ -1,8 +1,15 @@
 'use strict';
 
 angular.module('preserveusApp')
-    .controller('BlogCtrl', function($scope, BlogService) {
-        $scope.posts = BlogService.query();
+    .controller('BlogCtrl', function($scope, $stateParams, BlogService) {
+
+        var searchParams = {};
+
+        if ($stateParams.keyword) {
+            searchParams['keywords.text'] = $stateParams.keyword;
+        }
+
+        $scope.posts = BlogService.query(searchParams);
 
     }).controller('BlogAddEditCtrl', function($scope, $stateParams, $location, BlogService, ValidationService, Auth, Upload, ControllerUtil) {
         var action = $stateParams.action;
@@ -19,6 +26,29 @@ angular.module('preserveusApp')
                 user_name: user.name
             };
         }
+
+        var createKeywordRow = function() {
+            return {
+                text: ''
+            };
+        };
+
+        $scope.keywordToAdd = createKeywordRow();
+
+        $scope.deleteKeyword = function(keyword) {
+            for (var i = 0; i < $scope.post.keywords.length; i++) {
+                if ($scope.post.keywords[i].$$hashKey === keyword.$$hashKey) {
+                    $scope.post.keywords.splice(i, 1);
+                    break;
+                }
+            }
+        };
+
+        $scope.addKeyword = function() {
+            $scope.post.keywords.push($scope.keywordToAdd);
+
+            $scope.keywordToAdd = createKeywordRow();
+        };
 
         $scope.save = function(form) {
             var request;
