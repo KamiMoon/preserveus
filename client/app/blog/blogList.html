@@ -11,43 +11,7 @@
     <div class="row">
         <div class="col-md-9" id="blog-column">
             <div ng-repeat="post in posts">
-                <div class="panel panel-default">
-                    <article vocab="http://schema.org/" typeof="TechArticle" class="panel-body">
-                        <h1>
-        <a property="url" href="blog/{{post._id}}" rel="bookmark" title="{{::post.title}}"><span property="name">{{::post.title}}</span></a>
-    </h1>
-                        <hr>
-                        <ul>
-                            <li property="author" typeof="person" ng-if="post.user_name">
-                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> By {{::post.user_name}}
-                            </li>
-                            <li id="datePublished" class="date" property="datePublished" content="{{::post.createdAt | date:'MM/dd/yyyy'}}">
-                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{::post.createdAt | date:'MM/dd/yyyy'}}
-                            </li>
-                            <li class="tags" property="keywords" ng-if="post.keywords.length">
-                                <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
-                                <a ng-repeat="keyword in post.keywords" class="btn btn-default btn-sm keywords" href="/blogKeyword
-/{{keyword.text}}">{{::keyword.text}}</a>
-                            </li>
-                            <!-- <li class="comments" property="discussionUrl">
-    <button class="btn btn-primary" type="button">
-        Comments <span class="badge">4</span>
-    </button>
-</li>
- -->
-                        </ul>
-                        <br>
-                        <q ng-if="post.headingQuote" ng-bind-html="post.headingQuote | sanitize"></q>
-                        <figure ng-if="post.photo">
-                            <a href="/blog/{{post._id}}">
-                                <b-img public-id="{{post.photo}}" transformation="w_365,h_365,c_fill" alt="{{post.title}}" class="img-responsive"></b-img>
-                            </a>
-                        </figure>
-                        <br>
-                        <p ng-bind-html="post.postHtml | sanitize"></p>
-                        <a href="blog/{{post._id}}" class="btn btn-primary btn-lg" role="button">Read more...</a>
-                    </article>
-                </div>
+                <blog-post post="post"></blog-post>
                 <br>
                 <br>
             </div>
