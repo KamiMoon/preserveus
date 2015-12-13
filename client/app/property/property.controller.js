@@ -39,7 +39,6 @@ angular.module('preserveusApp')
                 });
 
                 $scope.markerClick = function(marker, eventName, model) {
-                    console.log("Clicked!");
                     model.show = !model.show;
                 };
 
