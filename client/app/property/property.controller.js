@@ -3,9 +3,11 @@
 angular.module('preserveusApp')
     .controller('PropertyCtrl', function($scope, PropertyService, uiGmapGoogleMapApi) {
 
+        $scope.loaded = false;
 
         var buildMap = function() {
             if ($scope.properties.length) {
+
                 var firstLocation = $scope.properties[0].geoLocation;
 
                 $scope.map = {
@@ -17,6 +19,13 @@ angular.module('preserveusApp')
                 };
 
                 $scope.mapMarkers = $scope.properties.map(function(property) {
+
+                    var photo = '';
+
+                    if (property.photo) {
+                        photo = 'https://res.cloudinary.com/ddovrks1z/image/upload/w_100,h_100,c_fill/' + property.photo + '.jpg';
+                    }
+
                     return {
                         latitude: property.geoLocation.lat,
                         longitude: property.geoLocation.lng,
@@ -25,7 +34,7 @@ angular.module('preserveusApp')
                         show: false,
                         address: property.fullAddress,
                         description: property.description,
-                        photo: property.photo
+                        photo: photo
                     };
                 });
 
@@ -45,6 +54,9 @@ angular.module('preserveusApp')
 
                     $('#mapTop')[0].scrollIntoView();
                 };
+
+                $scope.loaded = true;
+
             }
         };
 
