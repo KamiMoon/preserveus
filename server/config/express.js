@@ -19,6 +19,7 @@ var passport = require('passport');
 module.exports = function(app) {
     var env = app.get('env');
 
+    app.use(require('prerender-node').set('prerenderToken', 'NUuMTGS4XUnoEkf1pP8v'));
     app.set('views', config.root + '/server/views');
     app.engine('html', require('ejs').renderFile);
     app.set('view engine', 'html');
@@ -28,7 +29,7 @@ module.exports = function(app) {
     }));
     app.use(bodyParser.json());
     app.use(methodOverride());
-    app.use(require('prerender-node'));
+
 
     app.use(cookieParser());
     app.use(passport.initialize());

@@ -21,6 +21,8 @@ angular.module('preserveusApp', [
             .otherwise('/');
 
         $locationProvider.html5Mode(true);
+        $locationProvider.hashPrefix('!');
+
         $httpProvider.interceptors.push('authInterceptor');
 
         uiGmapGoogleMapApiProvider.configure({
@@ -85,6 +87,12 @@ angular.module('preserveusApp', [
 
     $rootScope.$on('$stateChangeSuccess', function(event, next) {
         $('html, body').scrollTop(0);
+    });
+
+    $timeout(function() {
+        $timeout(function() {
+            window.prerenderReady = true;
+        });
     });
 
 });
