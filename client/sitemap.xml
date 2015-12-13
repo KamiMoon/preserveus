@@ -2,35 +2,33 @@
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
         <url>
-            <loc>https://www.preservedfw.com/</loc>
-            <lastmod>2015-11-16T00:10:35+00:00</lastmod>
+            <loc>http://www.preservedfw.com/#!/terms</loc>
         </url>
         <url>
-            <loc>https://www.preservedfw.com/team</loc>
-            <lastmod>2015-11-16T00:10:35+00:00</lastmod>
+            <loc>http://www.preservedfw.com/#!/privacy</loc>
         </url>
         <url>
-            <loc>https://www.preservedfw.com/services</loc>
-            <lastmod>2015-11-16T00:10:35+00:00</lastmod>
+            <loc>http://www.preservedfw.com/#!/login</loc>
         </url>
         <url>
-            <loc>http://www.preservedfw.com/properties</loc>
-            <lastmod>2015-11-16T00:10:35+00:00</lastmod>
+            <loc>http://www.preservedfw.com/#!/signup</loc>
         </url>
         <url>
-            <loc>https://www.preservedfw.com/blog</loc>
-            <lastmod>2015-21-16T00:10:35+00:00</lastmod>
+            <loc>http://www.preservedfw.com/#!/contact</loc>
         </url>
         <url>
-            <loc>https://www.preservedfw.com/contact</loc>
-            <lastmod>2015-11-16T00:10:35+00:00</lastmod>
+            <loc>http://www.preservedfw.com/#!/blog</loc>
         </url>
         <url>
-            <loc>https://www.preservedfw.com/privacy</loc>
-            <lastmod>2015-11-16T00:10:35+00:00</lastmod>
+            <loc>http://www.preservedfw.com/#!/property</loc>
         </url>
         <url>
-            <loc>https://www.preservedfw.com/terms</loc>
-            <lastmod>2015-11-16T00:10:35+00:00</lastmod>
+            <loc>http://www.preservedfw.com/#!/services</loc>
+        </url>
+        <url>
+            <loc>http://www.preservedfw.com/#!/team</loc>
+        </url>
+        <url>
+            <loc>http://www.preservedfw.com/</loc>
         </url>
     </urlset>
