@@ -69,7 +69,7 @@ angular.module('preserveusApp', [
             description: 'Preserve US:  Restoring Historic Properties in Dallas, TX',
             keywords: 'Dallas, Real Estate, Investment, Rent',
             author: 'Eric Kizaki',
-            url: window.location.href,
+            url: 'https://www.preservedfw.com/?_escaped_fragment_',
             type: 'article',
             image: 'https://www.preservedfw.com/assets/Preserve_US_nav_bar.png'
         };
