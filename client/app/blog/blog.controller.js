@@ -106,7 +106,7 @@ angular.module('preserveusApp')
             }
         }
 
-    }).controller('BlogViewCtrl', function($scope, $stateParams, Auth, BlogService, ValidationService, $location, ControllerUtil) {
+    }).controller('BlogViewCtrl', function($scope, $rootScope, $stateParams, Auth, BlogService, ValidationService, $location, ControllerUtil) {
 
         var id = $stateParams.id;
         $scope.contentLoaded = false;
@@ -116,6 +116,10 @@ angular.module('preserveusApp')
         }).$promise.then(function(post) {
             $scope.post = post;
             $scope.contentLoaded = true;
+            if (post.photo) {
+                $rootScope.seo.image = post.photo;
+            }
+
         });
 
         $scope.delete = function() {

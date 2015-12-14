@@ -37,6 +37,13 @@ var PostSchema = new Schema({
         type: String
     },
     keywords: []
+}, {
+    toObject: {
+        virtuals: true
+    },
+    toJSON: {
+        virtuals: true
+    }
 });
 
 PostSchema
@@ -50,6 +57,13 @@ PostSchema
             next();
         }
     });
+
+PostSchema
+    .virtual('fullUrl')
+    .get(function() {
+        return 'https://www.preservedfw.com/blog/' + this._id;
+    });
+
 
 //TODO - refactor - this is becoming repetitive
 PostSchema.plugin(timestamps);
