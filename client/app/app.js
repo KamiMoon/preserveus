@@ -71,7 +71,7 @@ angular.module('preserveusApp', [
             author: 'Eric Kizaki',
             url: window.location.href,
             type: 'article',
-            image: '/assets/Preserve_US_nav_bar.png'
+            image: 'https://www.preservedfw.com/assets/Preserve_US_nav_bar.png'
         };
     };
 
