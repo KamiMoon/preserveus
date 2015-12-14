@@ -3,25 +3,24 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js" lang="en">
+<html class="no-js" lang="en" ng-app="preserveusApp">
 <!--<![endif]-->
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <base href="/">
-    <title>Preserve US</title>
-    <meta name="description" content="Preserve US:  Restoring Historic Properties in Dallas, TX">
+    <title>Preseve US</title>
+    <meta name="description" content="{{seo.description}}">
     <meta name="fragment" content="!">
-    <meta name="keywords" content="Dallas, Real Estate, Investment, Rent">
-    <meta name="author" content="Eric Kizaki">
+    <meta name="keywords" content="{{seo.keywords}}">
+    <meta name="author" content="{{seo.author}}">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
-    <!-- <meta property="og:url" content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="When Great Minds Don’t Think Alike" />
-<meta property="og:description" content="How much does culture influence creative thinking?" />
-<meta property="og:image" content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
- -->
+    <meta property="og:url" content="{{seo.url}}" />
+    <meta property="og:type" content="{{seo.type}}" />
+    <meta property="og:title" content="{{seo.title}}" />
+    <meta property="og:description" content="{{seo.description}}" />
+    <meta property="og:image" content="{{seo.image}}" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -46,7 +45,7 @@
     <script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async defer></script>
 </head>
 
-<body ng-app="preserveusApp">
+<body>
     <div class="g-recaptcha" data-sitekey="6Le_ghATAAAAAMM48AswiVMZleNQhJ27w8deJD7j"></div>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -77,14 +76,29 @@
     ga('create', 'UA-70406711-1', 'auto');
     ga('send', 'pageview');
     </script>
-    <!--
     <script>
     window.fbAsyncInit = function() {
         FB.init({
-            appId: '1511936659132440',
+            appId: '1511899365802836',
             xfbml: true,
             version: 'v2.5'
         });
+
+        // FB.ui({
+        //     method: 'share',
+        //     href: 'https://developers.facebook.com/docs/'
+        // }, function(response) {});
+
+        // FB.ui({
+        //     method: 'share_open_graph',
+        //     action_type: 'og.likes',
+        //     action_properties: JSON.stringify({
+        //         object: 'https://developers.facebook.com/docs/',
+        //     })
+        // }, function(response) {
+        //     // Debug response (optional)
+        //     console.log(response);
+        // });
     };
 
     (function(d, s, id) {
@@ -98,7 +112,6 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
     </script>
-    -->
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
@@ -124,6 +137,7 @@
     <script src="bower_components/angular-ui-mask/dist/mask.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angularUtils-disqus/dirDisqus.js"></script>
+    <script src="bower_components/angulike/angulike.js"></script>
     <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
     <script src="bower_components/ng-file-upload-shim/ng-file-upload-shim.js"></script>
     <script src="bower_components/ngstorage/ngStorage.js"></script>

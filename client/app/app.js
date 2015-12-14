@@ -14,7 +14,8 @@ angular.module('preserveusApp', [
         'summernote',
         'uiGmapgoogle-maps',
         'cloudinary',
-        'angularUtils.directives.dirDisqus'
+        'angularUtils.directives.dirDisqus',
+        'angulike'
     ])
     .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, uiGmapGoogleMapApiProvider) {
         $urlRouterProvider
@@ -59,6 +60,24 @@ angular.module('preserveusApp', [
 
 .run(function($rootScope, $location, $timeout, Auth) {
     $rootScope.Auth = Auth;
+
+    $rootScope.facebookAppId = '1511899365802836'; // set your facebook app id here
+
+    var getDefaultSEO = function() {
+        return {
+            title: 'Preserve US',
+            description: 'Preserve US:  Restoring Historic Properties in Dallas, TX',
+            keywords: 'Dallas, Real Estate, Investment, Rent',
+            author: 'Eric Kizaki',
+            url: window.location.href,
+            type: 'article',
+            image: '/assets/Preserve_US_nav_bar.png'
+        };
+    };
+
+    //Defaults
+    $rootScope.seo = getDefaultSEO();
+
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function(event, next, toParams, fromState, fromParams) {
         Auth.isLoggedInAsync(function(loggedIn) {
@@ -85,14 +104,18 @@ angular.module('preserveusApp', [
         });
     });
 
-    $rootScope.$on('$stateChangeSuccess', function(event, next) {
+    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
         $('html, body').scrollTop(0);
-    });
 
-    $timeout(function() {
+        $rootScope.seo = getDefaultSEO();
+
         $timeout(function() {
-            window.prerenderReady = true;
+            $timeout(function() {
+                window.prerenderReady = true;
+            });
         });
+
+
     });
 
 });
