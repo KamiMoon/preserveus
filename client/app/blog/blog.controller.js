@@ -117,7 +117,7 @@ angular.module('preserveusApp')
             $scope.post = post;
             $scope.contentLoaded = true;
             if (post.photo) {
-                $rootScope.seo.image = post.photo;
+                $rootScope.seo.image = $rootScope.generateImage(post.photo);
             }
 
         });

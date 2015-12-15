@@ -14,8 +14,7 @@ angular.module('preserveusApp', [
         'summernote',
         'uiGmapgoogle-maps',
         'cloudinary',
-        'angularUtils.directives.dirDisqus',
-        'angulike'
+        'angularUtils.directives.dirDisqus'
     ])
     .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, uiGmapGoogleMapApiProvider) {
         $urlRouterProvider
@@ -61,7 +60,9 @@ angular.module('preserveusApp', [
 .run(function($rootScope, $location, $timeout, Auth) {
     $rootScope.Auth = Auth;
 
-    $rootScope.facebookAppId = '1511899365802836'; // set your facebook app id here
+    $rootScope.generateImage = function(cloudinaryId, transform) {
+        return 'https://res.cloudinary.com/ddovrks1z/image/upload/' + (transform || '') + cloudinaryId;
+    };
 
     var getDefaultSEO = function() {
         return {
