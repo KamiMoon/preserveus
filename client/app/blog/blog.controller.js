@@ -120,6 +120,7 @@ angular.module('preserveusApp')
             //set SEO
             $rootScope.seo.title = post.title;
             $rootScope.seo.description = post.headingQuote;
+            $rootScope.seo.author = post.user_name;
             if (post.photo) {
                 $rootScope.seo.image = $rootScope.generateImage(post.photo);
             }
