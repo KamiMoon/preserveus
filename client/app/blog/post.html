@@ -23,7 +23,7 @@
 </li>
  -->
             <li>
-                <add-to-any title="{{post.title}}" url="/blog/{{post._id}}"></add-to-any>
+                <add-to-any ng-if="post._id" title="{{post.title}}" url="/blog/{{post._id}}"></add-to-any>
             </li>
         </ul>
         <br>
