@@ -71,7 +71,7 @@ angular.module('preserveusApp', [
             keywords: 'Dallas, Real Estate, Investment, Rent',
             author: 'Eric Kizaki',
             url: window.location.href,
-            type: 'article',
+            type: 'website',
             image: 'https://www.preservedfw.com/assets/Preserve_US_nav_bar.png'
         };
     };
