@@ -61,7 +61,7 @@ angular.module('preserveusApp', [
     $rootScope.Auth = Auth;
 
     $rootScope.generateImage = function(cloudinaryId, transform) {
-        return 'https://res.cloudinary.com/ddovrks1z/image/upload/' + (transform || '') + cloudinaryId;
+        return 'https://res.cloudinary.com/ddovrks1z/image/upload/' + (transform || '') + cloudinaryId + '.jpg';
     };
 
     var getDefaultSEO = function() {
