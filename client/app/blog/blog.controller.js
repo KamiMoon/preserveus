@@ -116,6 +116,10 @@ angular.module('preserveusApp')
         }).$promise.then(function(post) {
             $scope.post = post;
             $scope.contentLoaded = true;
+
+            //set SEO
+            $rootScope.seo.title = post.title;
+            $rootScope.seo.description = post.headingQuote;
             if (post.photo) {
                 $rootScope.seo.image = $rootScope.generateImage(post.photo);
             }
