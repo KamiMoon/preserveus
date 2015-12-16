@@ -34,7 +34,16 @@ var PostSchema = new Schema({
     user_id: Schema.Types.ObjectId,
     user_name: String,
     headingQuote: {
-        type: String
+        type: String,
+        required: 'A Summary is required',
+        validate: [
+            validate({
+                validator: 'isLength',
+                arguments: [3, 100],
+                message: 'Summary should be between {ARGS[0]} and {ARGS[1]} characters'
+            })
+        ]
+
     },
     keywords: []
 }, {
