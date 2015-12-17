@@ -1,23 +1,6 @@
 <div class="container-fluid table-container">
     <div class="row table-row">
-        <div class="col-xs-12 col-md-8 col-lg-8 table-cell" id="left-column">
-            <div id="mapTop"></div>
-            <ui-gmap-google-map id="map" center="map.center" zoom="map.zoom">
-                <ui-gmap-markers models="mapMarkers" coords="'self'" icon="'icon'" click="markerClick">
-                    <ui-gmap-windows show="show">
-                        <div class="map-window">
-                            <a ng-non-bindable href="/property/{{id}}">
-                                <img ng-non-bindable class="media-object img-property" src="{{photo}}" alt="{{title}}">
-                            </a>
-                            <h4 ng-non-bindable>{{title}}</h4>
-                            <h6 ng-non-bindable>{{address}}</h6>
-                            <p ng-non-bindable>{{description | limitTo: 200}}</p>
-                        </div>
-                    </ui-gmap-windows>
-                </ui-gmap-markers>
-            </ui-gmap-google-map>
-        </div>
-        <div class="col-xs-12 col-md-4 col-lg-4 table-cell" id="right-column">
+        <div class="col-xs-12 col-md-4 col-lg-4 table-cell" id="left-column">
             <div id="scroll-properties">
                 <div class="row" ng-if="::Auth.isAdmin()">
                     <div class="col-md-12">
@@ -50,6 +33,23 @@
                     <hr>
                 </div>
             </div>
+        </div>
+        <div class="col-xs-12 col-md-8 col-lg-8 table-cell" id="right-column">
+            <div id="mapTop"></div>
+            <ui-gmap-google-map id="map" center="map.center" zoom="map.zoom">
+                <ui-gmap-markers models="mapMarkers" coords="'self'" icon="'icon'" click="markerClick">
+                    <ui-gmap-windows show="show">
+                        <div class="map-window">
+                            <a ng-non-bindable href="/property/{{id}}">
+                                <img ng-non-bindable class="media-object img-property" src="{{photo}}" alt="{{title}}">
+                            </a>
+                            <h4 ng-non-bindable>{{title}}</h4>
+                            <h6 ng-non-bindable>{{address}}</h6>
+                            <p ng-non-bindable>{{description | limitTo: 200}}</p>
+                        </div>
+                    </ui-gmap-windows>
+                </ui-gmap-markers>
+            </ui-gmap-google-map>
         </div>
     </div>
 </div>
@@ -84,11 +84,11 @@
     vertical-align: top;
 }
 
-#left-column {
+#right-column {
     padding: 0px;
 }
 
-#right-column {
+#left-column {
     padding-right: 0px;
 }
 
@@ -98,15 +98,11 @@
     max-height: 700px;
 }
 
-#footer {
-    /*display: none;*/
-}
-
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 768px) {
     .angular-google-map,
     .angular-google-map-container {
         width: 100%;
-        min-height: 400px;
+        min-height: 300px;
     }
     #map {
         position: relative;
@@ -124,9 +120,6 @@
         float: left;
         display: block;
         vertical-align: none;
-    }
-    #left-column {
-        padding: inherit;
     }
     #scroll-properties {
         overflow-y: none;
