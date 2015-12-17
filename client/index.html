@@ -3,29 +3,35 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js" lang="en" ng-app="preserveusApp">
+<html class="no-js" lang="en-US" ng-app="preserveusApp">
 <!--<![endif]-->
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
     <base href="/">
     <title>Preseve US</title>
-    <meta name="description" content="{{seo.description}}">
     <meta name="fragment" content="!">
     <meta name="keywords" content="{{seo.keywords}}">
     <meta name="author" content="{{seo.author}}">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
-    <meta property="og:url" content="{{seo.url}}" />
-    <meta property="og:type" content="{{seo.type}}" />
+    <meta name="description" content="{{seo.description}}" />
+    <link rel="canonical" href="{{seo.url}}" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
     <meta property="og:title" content="{{seo.title}}" />
     <meta property="og:description" content="{{seo.description}}" />
+    <meta property="og:url" content="{{seo.url}}" />
+    <meta property="og:site_name" content="Preserve US" />
+    <meta property="article:publisher" content="https://www.facebook.com/PreserveDFW" />
+    <meta property="article:author" content="https://www.facebook.com/PreserveDFW" />
     <meta property="og:image" content="{{seo.image}}" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@WePreserve" />
     <meta name="twitter:title" content="{{seo.title}}" />
     <meta name="twitter:description" content="{{seo.description}}" />
     <meta name="twitter:image" content="{{seo.image}}" />
+    <meta name="twitter:creator" content="@WePreserve" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">

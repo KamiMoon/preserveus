@@ -122,7 +122,7 @@ angular.module('preserveusApp')
             $rootScope.seo.description = post.headingQuote;
             $rootScope.seo.author = post.user_name;
             if (post.photo) {
-                $rootScope.seo.image = $rootScope.generateImage(post.photo);
+                $rootScope.seo.image = $rootScope.generateImage(post.photo, 'w_200,h_200,c_fill');
             }
 
         });
