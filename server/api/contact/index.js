@@ -6,7 +6,6 @@ var ControllerUtil = require('../../components/controllerUtil');
 
 var router = express.Router();
 
-
 router.post('/contactus', function(req, res) {
 
     if (!req.body.name || !req.body.email || !req.body.message) {

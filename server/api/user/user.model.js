@@ -7,7 +7,7 @@ var authTypes = ['github', 'twitter', 'facebook', 'google'];
 var validate = require('mongoose-validator');
 var timestamps = require('mongoose-timestamp');
 var uniqueValidator = require('mongoose-unique-validator');
-var MemberSchema = require('../member/member.model');
+var MemberSchema = require('./member.model');
 
 var UserSchema = new Schema({
     roles: [MemberSchema],
