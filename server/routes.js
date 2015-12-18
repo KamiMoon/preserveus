@@ -14,6 +14,8 @@ module.exports = function(app) {
     app.use('/api/contacts', require('./api/contact'));
     app.use('/api/blog', require('./api/blog'));
     app.use('/api/properties', require('./api/property'));
+    app.use('/api/stripe', require('./api/stripe'));
+
 
     app.use('/auth', require('./auth'));
 
