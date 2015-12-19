@@ -7,91 +7,168 @@ var ControllerUtil = require('../../components/controllerUtil');
 // See your keys here https://dashboard.stripe.com/account/apikeys
 var stripe = require('stripe')('sk_test_hdEpFYjqCu8t9QHg1DwXdCta');
 var EmailUtil = require('../../components/emailUtil');
+var Receipt = require('./receipt.model');
+var User = require('../user/user.model');
+var Property = require('../property/property.model');
 
 var router = express.Router();
 
-router.post('/once', function(request, res) {
 
-    // (Assuming you're using express - expressjs.com)
-    // Get the credit card details submitted by the form
-    var stripeToken = request.body.stripeToken;
-    var amount = request.body.amount * 100;
-    var description = 'Investment in ' + request.body.item;
+function isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
 
-    console.log(stripeToken);
+function chargeCustomer(receipt, callback) {
+    var amountCents = receipt.amount * 100;
 
-    var charge = stripe.charges.create({
-        amount: amount, // amount in cents, again
+    console.log(receipt);
+
+    stripe.charges.create({
+        amount: amountCents, // amount in cents, again
         currency: 'usd',
-        source: stripeToken,
-        description: description
+        customer: receipt.stripeCustomerId,
+        description: receipt.description
     }, function(err, charge) {
         if (err && err.type === 'StripeCardError') {
             // The card has been declined
-            ControllerUtil.handleError(err);
+            return callback(err);
         }
 
+        console.log('Charge');
         console.log(charge);
 
-        var receipt = {
-            email: 'erickizaki@gmail.com',
-            description: description,
-            amount: request.body.amount,
-            confirmationNumber: charge.id
+        receipt.confirmation = charge.id;
+
+        //save in database
+        Receipt.create(receipt, function(err, createdReceipt) {
+            if (err) {
+                console.log('Error creating receipt');
+                console.log(err);
+
+                return callback(err);
+            }
+
+            console.log('Created Receipt');
+            console.log(createdReceipt);
+            //send receipt email
+            EmailUtil.createReceiptEmail(createdReceipt);
+
+            return callback(err, createdReceipt);
+        });
+    });
+}
+
+router.post('/investInProperty', function(request, res, next) {
+    var stripeToken = request.body.stripeToken;
+    var amount = request.body.amount;
+    var user_id = request.body.user_id;
+    var model_id = request.body.model_id;
+
+    var description = 'Investment in ';
+
+    //validate request
+    if (!stripeToken || !amount || !user_id || !model_id) {
+        return ControllerUtil.handleError(res, 'Invalid request.');
+    }
+
+    //validate payment amount
+    if (!isNumeric(amount) || amount <= 0) {
+        return ControllerUtil.handleError(res, 'Invalid amount.');
+    }
+
+    //validate user exists
+    User.findById(user_id, function(err, user) {
+        if (err) {
+            return ControllerUtil.handleError(res, 'Error looking up user.');
         }
 
-        EmailUtil.createReceiptEmail(receipt);
+        if (!user) {
+            return res.status(401).send('Unauthorized');
+        }
 
-        return res.redirect('/paymentSuccess');
+        if (!user.activated) {
+            return res.status(401).send('User not activated.');
+        }
+
+        console.log('Found user');
+        console.log(user);
+
+        //validate model exists
+        Property.findById(model_id, function(err, property) {
+            if (err) {
+                return ControllerUtil.handleError(res, 'Error looking up property.');
+            }
+
+            if (!property) {
+                return ControllerUtil.handleError(res, 'Invalid property.');
+            }
+
+            console.log('Found property');
+            console.log(property);
+
+            description += property.fullAddress;
+
+            var receipt = {
+                user_id: user._id,
+                user_name: user.name,
+                email: user.email,
+                description: description,
+                amount: amount,
+                stripeCustomerId: null,
+                model: 'Property',
+                model_id: model_id,
+                paymentSystem: 'Stripe',
+                confirmation: null
+            };
+
+            console.log('Initial receipt');
+            console.log(receipt)
+                //create Customer if not existing
+            if (!user.stripeCustomerId) {
+
+                stripe.customers.create({
+                    source: stripeToken,
+                    description: user._id.toString(),
+                    email: user.email
+                }).then(function(customer) {
+
+                    console.log('New Customer');
+                    console.log(customer);
+                    receipt.stripeCustomerId = customer.id;
+
+
+                    chargeCustomer(receipt, function(err, charge) {
+                        if (err) {
+                            return ControllerUtil.handleError(res, 'Error Charging Card.');
+                        }
+
+                        user.stripeCustomerId = receipt.stripeCustomerId;
+                        //save customerId on the user
+                        user.save(function(err) {
+                            if (err) return next(res, err);
+
+                            return res.redirect('/paymentSuccess');
+                        });
+                    });
+                });
+
+            } else {
+                //customer already exists - just recharge to them
+                receipt.stripeCustomerId = user.stripeCustomerId;
+
+                console.log('Existing Customer: ' + receipt.stripeCustomerId);
+
+                chargeCustomer(receipt, function(err, charge) {
+                    if (err) {
+                        return ControllerUtil.handleError(res, 'Error Charging Card.');
+                    }
+
+                    return res.redirect('/paymentSuccess');
+                });
+            }
+        });
     });
 
-
-    //Request
-    //stripeToken
-    //userId
-    //productId
-
-    //Process
-    //lookup product by ID -> is this a valid product?
-    //lookup user by ID -> is this an existing user?
-    //is this user an existing customer?
-    //if not create new stripe customer
-    //create charge to stripe via customer
-    //using price for the product
-    //create invoice - save transaction history
-    //save invoice data in metadata
-    //send email to user
-
-    //Response
-    //redirect
-
-    /*
-        stripe.customers.create({
-            source: stripeToken,
-            description: 'payinguser@example.com'
-        }).then(function(customer) {
-            stripe.charges.create({
-                amount: 1000, // amount in cents, again
-                currency: 'usd',
-                customer: customer.id,
-                description: 'Example Charge',
-                metadata: {
-                    'order_id': '6735'
-                }
-            }, function(err, charge) {
-                if (err && err.type === 'StripeCardError') {
-                    // The card has been declined
-                    ControllerUtil.handleError(err);
-                }
-                console.log('customer:');
-                console.log(customer);
-                console.log('charge:');
-                console.log(charge);
-
-                return res.status(201).json('success');
-            });
-        });
-    */
 });
 
 module.exports = router;

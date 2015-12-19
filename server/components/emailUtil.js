@@ -47,7 +47,7 @@ exports.createReceiptEmail = function(receipt) {
     body += '</tr>'
     body += '</table><br>';
 
-    body += 'Your confirmation number for this transactions is: ' + receipt.confirmationNumber;
+    body += 'Your confirmation number for this transactions is: ' + receipt._id;
 
     var mailOptions = {
         from: process.env.GMAIL, // sender address

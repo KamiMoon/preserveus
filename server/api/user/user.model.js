@@ -10,6 +10,7 @@ var uniqueValidator = require('mongoose-unique-validator');
 var MemberSchema = require('./member.model');
 
 var UserSchema = new Schema({
+    stripeCustomerId: String,
     roles: [MemberSchema],
     name: {
         type: String

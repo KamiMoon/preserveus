@@ -367,7 +367,7 @@
             <br>
             <div ng-switch="Auth.isLoggedIn()">
                 <div ng-switch-when="true">
-                    <stripe-payment-form ng-if="property.fullAddress" item="{{property.fullAddress}}"></stripe-payment-form>
+                    <stripe-payment-form ng-if="property._id && Auth.getCurrentUser()._id" model="{{property._id}}" user="{{Auth.getCurrentUser()._id}}" url="/api/stripe/investInProperty"></stripe-payment-form>
                 </div>
                 <div ng-switch-when="false">
                     <a href="/login" class="btn btn-default btn-lg" role="button">Login in order to Invest</a>

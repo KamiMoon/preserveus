@@ -24,7 +24,9 @@ angular.module('preserveusApp')
             templateUrl: 'components/stripe/paymentForm.directive.html',
             restrict: 'E',
             scope: {
-                item: '@'
+                model: '@',
+                user: '@',
+                url: '@'
             },
             link: function postLink($scope, $element, attrs) {
 

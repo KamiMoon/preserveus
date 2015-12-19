@@ -6,9 +6,10 @@
     </h3>
     </div>
     <div class="panel-body">
-        <form action="/api/stripe/once" novalidate autocomplete="on" method="POST" id="payment-form">
+        <form action="{{url}}" novalidate autocomplete="on" method="POST" id="payment-form">
             <span class="payment-errors"></span>
-            <input type="hidden" name="item" value="{{item}}">
+            <input type="hidden" name="model_id" value="{{model}}">
+            <input type="hidden" name="user_id" value="{{user}}">
             <div class="form-horizontal">
                 <div class="form-group">
                     <label for="cc-number" class="col-lg-2 control-label">Amount</label>
