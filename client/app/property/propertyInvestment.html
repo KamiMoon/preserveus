@@ -365,7 +365,16 @@
             <a href="/contact" class="btn btn-default btn-lg" role="button">Contact Us</a>
             <br>
             <br>
-            <stripe-payment-form ng-if="property.fullAddress" item="{{property.fullAddress}}"></stripe-payment-form>
+            <div ng-switch="Auth.isLoggedIn()">
+                <div ng-switch-when="true">
+                    <stripe-payment-form ng-if="property.fullAddress" item="{{property.fullAddress}}"></stripe-payment-form>
+                </div>
+                <div ng-switch-when="false">
+                    <a href="/login" class="btn btn-default btn-lg" role="button">Login in order to Invest</a>
+                    <br>
+                    <br>
+                </div>
+            </div>
         </div>
     </div>
 </div>
