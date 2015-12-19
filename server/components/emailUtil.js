@@ -34,9 +34,9 @@ exports.createConfirmationEmail = function(req, user) {
 
 exports.createReceiptEmail = function(receipt) {
     var body = 'Thank you. <br><br>';
-    body += 'Your purchase has been processed with Preserve US LLC.  Here is a receipt: <br><br>';
+    body += 'Your purchase has been processed with Preserve US LLC. Here is a receipt: <br><br>';
 
-    body += '<table border="1" style="width:100%">';
+    body += '<table border="1">';
     body += '<tr>'
     body += '<th>Description</th>';
     body += '<th>Cost</th>';
