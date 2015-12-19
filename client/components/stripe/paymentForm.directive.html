@@ -6,8 +6,8 @@
     </h3>
     </div>
     <div class="panel-body">
-        <form action="{{url}}" novalidate autocomplete="on" method="POST" id="payment-form">
-            <span class="payment-errors"></span>
+        <form name="form" ng-submit="save(form)" novalidate autocomplete="on" id="payment-form">
+            <p class="payment-errors" ng-show="errors.payment"></p>
             <input type="hidden" name="model_id" value="{{model}}">
             <input type="hidden" name="user_id" value="{{user}}">
             <div class="form-horizontal">
@@ -15,40 +15,52 @@
                     <label for="cc-number" class="col-lg-2 control-label">Amount</label>
                     <div class="col-lg-10" ng-class="{ 'has-success': form.amount.$valid && submitted, 
                                 'has-error': (form.amount.$invalid && submitted) || errors.amount }">
-                        <input id="amount" type="number" step="0.01" min="0" size="6" maxlength="6" class="input-lg" name="amount" placeholder="$" required>
-                        <p class="help-block" ng-show="form.amount.$error.required && submitted">
-                            Please enter an amount.
+                        <input id="amount" type="number" step="0.01" min="0" size="6" maxlength="6" class="input-lg" name="amount" ng-model="form.amount" placeholder="$" required />
+                        <p class="help-block" ng-show="errors.amount && submitted">
+                            {{errors.amount}}
                         </p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="cc-number" class="col-lg-2 control-label">Card Number</label>
-                    <div class="col-lg-10">
-                        <input id="cc-number" type="tel" size="20" maxlength="20" class="input-lg" autocomplete="cc-number" data-stripe="number" placeholder="•••• •••• •••• ••••" required>
+                    <div class="col-lg-10" ng-class="{ 'has-success': form['cc-number'].$valid && submitted, 
+                                'has-error': (form['cc-number'].$invalid && submitted) || errors['cc-number'] }">
+                        <input id="cc-number" name="cc-number" type="tel" size="20" maxlength="20" class="input-lg" autocomplete="cc-number" data-stripe="number" placeholder="•••• •••• •••• ••••" ng-model="form['cc-number']" required>
                         <img class="payment-cards" src="components/stripe/payment_cards.png">
+                        <p class="help-block" ng-show="errors['cc-number'] && submitted">
+                            {{errors['cc-number']}}
+                        </p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-2 control-label">
                         Expiration Date
                     </label>
-                    <div class="col-lg-10">
-                        <input id="exp-month" type="tel" size="3" maxlength="2" data-stripe="exp-month" class="input-lg" placeholder="MM" />
+                    <div class="col-lg-10" ng-class="{ 'has-success': form['expiry'].$valid && submitted, 
+                                'has-error': (form['expiry'].$invalid && submitted) || errors['expiry'] }">
+                        <input id="exp-month" name="exp-month" type="tel" size="3" maxlength="2" data-stripe="exp-month" class="input-lg" placeholder="MM" ng-model="form['exp-month']" required />
                         <span> / </span>
-                        <input id="exp-year" type="tel" size="5" maxlength="4" data-stripe="exp-year" class="input-lg" placeholder="YYYY" />
+                        <input id="exp-year" name="exp-year" type="tel" size="5" maxlength="4" data-stripe="exp-year" class="input-lg" placeholder="YYYY" ng-model="form['exp-year']" required />
+                        <p class="help-block" ng-show="errors['expiry'] && submitted">
+                            {{errors['expiry']}}
+                        </p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="cc-cvc" class="col-lg-2 control-label">Security Code</label>
-                    <div class="col-lg-10">
-                        <input id="cc-cvc" type="tel" size="4" maxlength="4" data-stripe="cvc" class="input-lg cc-cvc" autocomplete="off" placeholder="•••" required>
+                    <div class="col-lg-10" ng-class="{ 'has-success': form['cc-cvc'].$valid && submitted, 
+                                'has-error': (form['cc-cvc'].$invalid && submitted) || errors['cc-cvc'] }">
+                        <input id="cc-cvc" name="cc-cvc" type="tel" size="4" maxlength="4" data-stripe="cvc" class="input-lg cc-cvc" autocomplete="off" placeholder="•••" required ng-model="form['cc-cvc']" />
                         <img class="payment-cards" src="components/stripe/security_code.png">
+                        <p class="help-block" ng-show="errors['cc-cvc'] && submitted">
+                            {{errors['cc-cvc']}}
+                        </p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="cc-cvc" class="col-lg-2 control-label"></label>
                     <div class="col-lg-10">
-                        <button type="submit" class="btn btn-lg btn-primary">Pay</button>
+                        <button type="submit" class="btn btn-lg btn-primary" ng-disabled="disabled">Pay</button>
                     </div>
                 </div>
             </div>

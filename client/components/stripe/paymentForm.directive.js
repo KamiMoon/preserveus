@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('preserveusApp')
-    .directive('stripePaymentForm', function($q) {
+    .directive('stripePaymentForm', function($q, $http, $location, ValidationService) {
 
 
         var loadScriptIfNeeded = function() {
@@ -26,23 +26,45 @@ angular.module('preserveusApp')
             scope: {
                 model: '@',
                 user: '@',
-                url: '@'
+                url: '@',
+                redirectUrl: '@'
             },
             link: function postLink($scope, $element, attrs) {
+                $scope.submitted = false;
+                $scope.errors = {};
+                $scope.form = {};
+                $scope.disabled = false;
 
                 var stripeResponseHandler = function(status, response) {
-                    var $form = $('#payment-form');
                     if (response.error) {
                         // Show the errors on the form
-                        $form.find('.payment-errors').text(response.error.message);
-                        $form.find('button').prop('disabled', false);
+                        $scope.errors.payment = response.error.message;
+                        $scope.disabled = false;
                     } else {
                         // token contains id, last4, and card type
                         var token = response.id;
-                        // Insert the token into the form so it gets submitted to the server
-                        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
-                        // and re-submit
-                        $form.get(0).submit();
+
+                        var messageToPost = {
+                            stripeToken: token,
+                            amount: $scope.form.amount,
+                            user_id: $scope.user,
+                            model_id: $scope.model
+                        };
+
+                        $http.post($scope.url, messageToPost).then(function(response) {
+                            //success
+                            ValidationService.success('Payment Successful.  An email with your receipt has been sent to you.');
+
+                            $location.path($scope.redirectUrl);
+                        }, function(response) {
+                            //errors
+                            $scope.errors = {};
+                            $scope.errors.payment = response.data;
+
+                            $scope.disabled = false;
+                        });
+
+
                     }
                 };
 
@@ -53,56 +75,59 @@ angular.module('preserveusApp')
                     $('#exp-month').payment('restrictNumeric');
                     $('#exp-year').payment('restrictNumeric');
 
+                    $scope.save = function(form) {
+                        $scope.submitted = true;
 
-                    $('#payment-form').submit(function(e) {
-                        var $form = $(this);
+                        $scope.errors = {};
 
+                        var $form = $('#payment-form');
                         var cardNumber = $("#cc-number").val();
                         var cvc = $("#cc-cvc").val();
                         var month = $("#exp-month").val();
                         var year = $("#exp-year").val();
                         var amount = $('#amount').val();
 
-                        var errorMessage = '';
+                        var valid = true;
 
 
                         if (!amount || amount <= 0) {
-                            errorMessage += 'Enter an amount.\n';
+                            $scope.errors['amount'] = 'Enter an amount.';
+                            valid = false;
                         }
 
                         var carTypeIsValid = $.payment.cardType(cardNumber);
                         if (!carTypeIsValid) {
-                            errorMessage += 'Invalid card type.\n';
+                            $scope.errors['cc-number'] = 'Invalid card type.';
+                            valid = false;
                         }
 
                         var cardNumberIsValid = $.payment.validateCardNumber(cardNumber);
                         if (!cardNumberIsValid) {
-                            errorMessage += 'Invalid card number.\n';
+                            $scope.errors['cc-number'] = 'Invalid Card Number.';
+                            valid = false;
                         }
 
                         var cvcIsValid = $.payment.validateCardCVC(cvc);
                         if (!cvcIsValid) {
-                            errorMessage += 'Invalid CVC.\n';
+                            $scope.errors['cc-cvc'] = 'Invalid CVC.';
+                            valid = false;
                         }
 
                         var expiryIsValid = $.payment.validateCardExpiry(month, year);
                         if (!expiryIsValid) {
-                            errorMessage += 'Invalid Expiry Date.\n';
+                            $scope.errors['expiry'] = 'Invalid Expiry Date.';
+                            valid = false;
                         }
 
-
-                        if (errorMessage) {
-                            $form.find('.payment-errors').text(errorMessage);
-
-                        } else {
+                        if (valid) {
                             // Disable the submit button to prevent repeated clicks
-                            $form.find('button').prop('disabled', true);
+                            $scope.disabled = true;
                             Stripe.card.createToken($form, stripeResponseHandler);
                         }
 
                         // Prevent the form from submitting with the default action
                         return false;
-                    });
+                    };
                 });
 
             }

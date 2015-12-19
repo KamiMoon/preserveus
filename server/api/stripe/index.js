@@ -147,7 +147,7 @@ router.post('/investInProperty', function(request, res, next) {
                         user.save(function(err) {
                             if (err) return next(res, err);
 
-                            return res.redirect('/paymentSuccess');
+                            return ControllerUtil.success(res, 'success');
                         });
                     });
                 });
@@ -163,7 +163,7 @@ router.post('/investInProperty', function(request, res, next) {
                         return ControllerUtil.handleError(res, 'Error Charging Card.');
                     }
 
-                    return res.redirect('/paymentSuccess');
+                    return ControllerUtil.success(res, 'success');
                 });
             }
         });
