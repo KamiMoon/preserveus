@@ -36,5 +36,8 @@ angular.module('preserveusApp')
             }).state('thanks', {
                 url: '/thanks',
                 templateUrl: 'app/main/thanks.html'
+            }).state('paymentSuccess', {
+                url: '/paymentSuccess',
+                templateUrl: 'app/main/paymentSuccess.html'
             });
     });

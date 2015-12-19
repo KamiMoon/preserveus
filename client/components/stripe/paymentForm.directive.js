@@ -23,7 +23,9 @@ angular.module('preserveusApp')
         return {
             templateUrl: 'components/stripe/paymentForm.directive.html',
             restrict: 'E',
-            scope: {},
+            scope: {
+                item: '@'
+            },
             link: function postLink($scope, $element, attrs) {
 
                 var stripeResponseHandler = function(status, response) {

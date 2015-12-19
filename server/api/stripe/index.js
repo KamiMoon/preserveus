@@ -6,6 +6,7 @@ var ControllerUtil = require('../../components/controllerUtil');
 // Set your secret key: remember to change this to your live secret key in production
 // See your keys here https://dashboard.stripe.com/account/apikeys
 var stripe = require('stripe')('sk_test_hdEpFYjqCu8t9QHg1DwXdCta');
+var EmailUtil = require('../../components/emailUtil');
 
 var router = express.Router();
 
@@ -15,6 +16,7 @@ router.post('/once', function(request, res) {
     // Get the credit card details submitted by the form
     var stripeToken = request.body.stripeToken;
     var amount = request.body.amount * 100;
+    var description = 'Investment in ' + request.body.item;
 
     console.log(stripeToken);
 
@@ -22,17 +24,25 @@ router.post('/once', function(request, res) {
         amount: amount, // amount in cents, again
         currency: 'usd',
         source: stripeToken,
-        description: 'Example charge'
+        description: description
     }, function(err, charge) {
         if (err && err.type === 'StripeCardError') {
             // The card has been declined
             ControllerUtil.handleError(err);
         }
 
-
         console.log(charge);
 
-        return res.status(201).json('success');
+        var receipt = {
+            email: 'erickizaki@gmail.com',
+            description: description,
+            amount: request.body.amount,
+            confirmationNumber: charge.id
+        }
+
+        EmailUtil.createReceiptEmail(receipt);
+
+        return res.redirect('/paymentSuccess');
     });
 
 
