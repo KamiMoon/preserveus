@@ -87,24 +87,26 @@
                 </div>
                 <div class="panel-body">
                     <!-- Registartions for events table -->
-                    <table class="table">
-                        <tr>
-                            <th>Date</th>
-                            <th>Amount</th>
-                            <th>Description</th>
-                        </tr>
-                        <tr ng-repeat="receipt in user.receipts">
-                            <td>
-                                {{::receipt.createdAt | date:"EEEE, MMM d, y h:mm a"}}
-                            </td>
-                            <td>
-                                {{receipt.amount | currency:"$"}}
-                            </td>
-                            <td>
-                                <a href="/property/{{receipt.model_id}}">{{::receipt.description}}</a>
-                            </td>
-                        </tr>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tr>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr ng-repeat="receipt in user.receipts">
+                                <td>
+                                    {{::receipt.createdAt | date:"M/d/yy h:mm a"}}
+                                </td>
+                                <td>
+                                    {{receipt.amount | currency:"$"}}
+                                </td>
+                                <td>
+                                    <a href="/property/{{receipt.model_id}}">{{::receipt.description}}</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
