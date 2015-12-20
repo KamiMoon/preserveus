@@ -59,16 +59,29 @@ angular.module('preserveusApp')
 
         };
 
-    }).controller('UserProfileCtrl', function($scope, $stateParams, User) {
+    }).controller('UserProfileCtrl', function($scope, $stateParams, User, ValidationService) {
         var id = $stateParams.id;
 
         if (!id) {
-            $scope.user = User.get();
+            User.get().$promise.then(function(user) {
+                $scope.user = user;
+                showMessageToFillOutProfile(user);
+            });
         } else {
-            $scope.user = User.profile({
+            User.profile({
                 id: id
+            }).$promise.then(function(user) {
+                $scope.user = user;
+                showMessageToFillOutProfile(user);
             });
         }
+
+        var showMessageToFillOutProfile = function(user) {
+            if (!user.name) {
+                ValidationService.info("Your profile has not been filled out.  Click 'Edit' to complete your profile.");
+            }
+        };
+
 
 
     });
