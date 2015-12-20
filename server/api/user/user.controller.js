@@ -129,7 +129,9 @@ exports.profile = function(req, res, next) {
 
         Receipt.find({
             'user_id': userId
-        }, '-stripeCustomerId').lean().exec(function(err, receipts) {
+        }, '-stripeCustomerId').sort({
+            'createdAt': -1
+        }).lean().exec(function(err, receipts) {
             if (err) return next(err);
 
             user.receipts = receipts;
