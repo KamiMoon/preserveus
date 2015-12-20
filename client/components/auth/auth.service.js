@@ -262,8 +262,8 @@ angular.module('preserveusApp')
                 return $cookieStore.get('token');
             },
 
-            refreshUser: function() {
-                currentUser = User.get();
+            getUser: function() {
+                return User.get();
             }
         };
     });
