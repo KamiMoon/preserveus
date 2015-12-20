@@ -79,4 +79,34 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="glyphicon glyphicon-stats"></i> All  Investments</h3>
+                </div>
+                <div class="panel-body">
+                    <!-- Registartions for events table -->
+                    <table class="table">
+                        <tr>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr ng-repeat="receipt in user.receipts">
+                            <td>
+                                {{::receipt.createdAt | date:"EEEE, MMM d, y h:mm a"}}
+                            </td>
+                            <td>
+                                {{receipt.amount | currency:"$"}}
+                            </td>
+                            <td>
+                                <a href="/property/{{receipt.model_id}}">{{::receipt.description}}</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

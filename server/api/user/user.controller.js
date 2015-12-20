@@ -6,7 +6,7 @@ var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 var ControllerUtil = require('../../components/controllerUtil');
 var config = require('../../config/environment');
-
+var Receipt = require('../stripe/receipt.model');
 var EmailUtil = require('../../components/emailUtil');
 
 
@@ -126,7 +126,16 @@ exports.profile = function(req, res, next) {
     }, '-salt -hashedPassword -activationHash').lean().exec(function(err, user) { // don't ever give out the password or salt
         if (err) return next(err);
         if (!user) return res.status(401).send('Unauthorized');
-        res.json(user);
+
+        Receipt.find({
+            'user_id': userId
+        }, '-stripeCustomerId').lean().exec(function(err, receipts) {
+            if (err) return next(err);
+
+            user.receipts = receipts;
+
+            res.json(user);
+        });
     });
 };
 
