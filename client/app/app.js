@@ -89,7 +89,7 @@ angular.module('preserveusApp', [
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function(event, next, toParams, fromState, fromParams) {
         Auth.isLoggedInAsync(function(loggedIn) {
-            if (next.authenticate || next.roles && !loggedIn) {
+            if ((next.authenticate || next.roles) && !loggedIn) {
                 event.preventDefault();
 
 
