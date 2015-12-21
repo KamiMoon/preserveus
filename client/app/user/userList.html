@@ -30,7 +30,7 @@
         <table class="table" ng-if="Auth.isAdmin()">
             <tr>
                 <th>Name</th>
-                <th>Created</th>
+                <th>Roles</th>
                 <th>Address</th>
                 <th>City</th>
                 <th>State</th>
@@ -41,7 +41,9 @@
             </tr>
             <tr ng-repeat="user in users">
                 <td><a href="/profile/{{::user._id}}">{{::user.name}}</a></td>
-                <td>{{::user.createdAt | date:'MMM d, y'}}</td>
+                <td>
+                    <div ng-repeat="role in user.roles">{{::role.role}}</div>
+                </td>
                 <td>{{::user.address}}</td>
                 <td>{{::user.city}}</td>
                 <td>{{::user.state}}</td>
@@ -49,8 +51,8 @@
                 <td>{{::user.email}}</td>
                 <td>{{::user.phone | tel}}</td>
                 <td>
-                    <a href="/user/edit/{{::user._id}}" class="btn btn-default" role="button">Edit</a>
-                    <a ng-click="delete(user._id)" class="btn btn-default" role="button">Delete</a>
+                    <a href="/user/edit/{{::user._id}}" class="btn btn-default btn-lg" role="button">Edit</a>
+                    <a ng-click="delete(user._id)" class="btn btn-default btn-lg" role="button">Delete</a>
                 </td>
             </tr>
         </table>

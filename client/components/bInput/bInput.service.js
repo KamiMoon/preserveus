@@ -201,6 +201,14 @@ angular.module('preserveusApp')
         }];
 
 
+        var roles = [{
+            role: 'user'
+        }, {
+            role: 'admin'
+        }, {
+            role: 'blogger'
+        }];
+
         this.get = function(key, url) {
             var objs = $localStorage[key];
             var deferred = $q.defer();
@@ -220,6 +228,10 @@ angular.module('preserveusApp')
 
         this.getStates = function() {
             return states;
-        }
+        };
+
+        this.getRoles = function() {
+            return roles;
+        };
 
     });

@@ -257,8 +257,8 @@ angular.module('preserveusApp')
                     attrs.options = "school.name as school.name for school in schools";
                     break;
                 case 'roles':
-                    populateDefault(attrs.source, scope);
-                    attrs.options = "role.name as role.name for role in roles";
+                    scope[attrs.source] = InputService.getRoles();
+                    attrs.options = "role as role.role for role in roles track by role.role";
                     break;
                 case 'interests':
                     populateDefault(attrs.source, scope);
