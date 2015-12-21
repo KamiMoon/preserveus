@@ -1,11 +1,14 @@
 'use strict';
 
 angular.module('preserveusApp')
-    .controller('PropertyInvestmentCtrl', function($scope, $stateParams, $location, PropertyService, ValidationService, PropertyInvestmentService) {
+    .controller('PropertyInvestmentCtrl', function($scope, $stateParams, $location, PropertyService, ValidationService, PropertyInvestmentService, Auth) {
         $scope.action = $stateParams.action;
 
         var id = $stateParams.id;
 
+        if ($scope.action === 'edit' && !Auth.isAdmin()) {
+            $location.path('/notAuthorized').replace();
+        }
 
         //in all cases a property must exist before adding
         PropertyService.get({

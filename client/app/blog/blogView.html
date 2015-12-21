@@ -4,7 +4,7 @@
         <div class="col-md-9" id="blog-column">
             <a href="/blog" class="btn btn-default btn-lg" role="button"> ← Back to Blog</a>
             <br>
-            <div ng-if="::Auth.isAdmin()">
+            <div ng-if="Auth.hasRoles(['admin', 'blogger'])">
                 <br>
                 <a href="/blog/edit/{{post._id}}" class="btn btn-default btn-lg" role="button">Edit</a>
                 <br>

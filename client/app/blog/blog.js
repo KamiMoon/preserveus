@@ -9,7 +9,8 @@ angular.module('preserveusApp')
         }).state('blogAddEdit', {
             url: '/blog/:action/:id',
             templateUrl: 'app/blog/blogAdd.html',
-            controller: 'BlogAddEditCtrl'
+            controller: 'BlogAddEditCtrl',
+            roles: ['admin', 'blogger']
         }).state('blogView', {
             url: '/blog/:id',
             templateUrl: 'app/blog/blogView.html',

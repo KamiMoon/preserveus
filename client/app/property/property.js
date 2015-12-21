@@ -9,7 +9,8 @@ angular.module('preserveusApp')
         }).state('propertyAddEdit', {
             url: '/property/:action/:id',
             templateUrl: 'app/property/propertyAdd.html',
-            controller: 'PropertyAddEditCtrl'
+            controller: 'PropertyAddEditCtrl',
+            roles: ['admin']
         }).state('propertyView', {
             url: '/property/:id',
             templateUrl: 'app/property/propertyView.html',

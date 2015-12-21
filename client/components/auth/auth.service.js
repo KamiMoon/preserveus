@@ -252,7 +252,7 @@ angular.module('preserveusApp')
                     return false;
                 }
 
-                return currentUser._id === userId || this.isAdmin();
+                return currentUser._id === userId;
             },
 
             /**
