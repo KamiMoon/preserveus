@@ -170,7 +170,9 @@ angular.module('preserveusApp')
                 html = wrapInBoostrapForm(attrs, html);
             } else if (attrs.type === 'select') {
                 html += '<select ';
-                if (attrs.multiple) {
+                //stupid but required for prod
+                if (attrs.multiple || attrs.multiple === '') {
+
                     html += ' multiple="true" ';
                 }
 
