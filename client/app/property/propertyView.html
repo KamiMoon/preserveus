@@ -35,7 +35,7 @@
                 <br>
                 <br>
             </div>
-            <div ng-if="property.allowRent">
+            <div ng-if="property.allowRent && property.projectedMonthlyRentalRevenue">
                 <h4>Apply to become a renter at this property</h4>
                 <a href="/propertyRent/{{property._id}}" class="btn btn-warning btn-lg" role="button">Rent</a>
             </div>

@@ -128,7 +128,8 @@ exports.profile = function(req, res, next) {
         if (!user) return res.status(401).send('Unauthorized');
 
         Receipt.find({
-            'user_id': userId
+            'user_id': userId,
+            'type': 'Investment'
         }, '-stripeCustomerId').sort({
             'createdAt': -1
         }).lean().exec(function(err, receipts) {
@@ -136,7 +137,18 @@ exports.profile = function(req, res, next) {
 
             user.receipts = receipts;
 
-            res.json(user);
+            Receipt.find({
+                'user_id': userId,
+                'type': 'Rent'
+            }, '-stripeCustomerId').sort({
+                'createdAt': -1
+            }).lean().exec(function(err, rentalPayments) {
+                if (err) return next(err);
+
+                user.rentalPayments = rentalPayments;
+
+                res.json(user);
+            });
         });
     });
 };

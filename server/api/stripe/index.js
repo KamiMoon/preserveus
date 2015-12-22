@@ -113,4 +113,30 @@ router.post('/investInProperty', function(request, res) {
 
 });
 
+router.post('/payRentForPropertyOnce', function(request, res) {
+    var stripeToken = request.body.stripeToken;
+    var description = 'One time rental payment for ';
+
+    validateAndCreateReceiptForProperty(request, function(err, result) {
+        if (err) {
+            return ControllerUtil.handleError(res, err);
+        }
+
+        var receipt = result.receipt;
+        var user = result.user;
+
+        receipt.description = description + receipt.description;
+        receipt.type = 'Rent';
+
+        StripeService.chargeCustomer(stripeToken, user, receipt, function(err, finalResult) {
+            if (err) {
+                return ControllerUtil.handleError(res, err);
+            }
+
+            return ControllerUtil.success(res, 'success');
+        })
+    });
+
+});
+
 module.exports = router;

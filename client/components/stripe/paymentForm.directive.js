@@ -47,7 +47,7 @@ angular.module('preserveusApp')
 
                         var messageToPost = {
                             stripeToken: token,
-                            amount: $scope.form.amount,
+                            amount: $scope.amount || $scope.form.amount,
                             user_id: $scope.user,
                             model_id: $scope.model
                         };

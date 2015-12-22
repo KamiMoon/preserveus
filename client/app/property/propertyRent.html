@@ -8,7 +8,7 @@
         <br>
         <br>
         <h4>Pay Once</h4>
-        <stripe-payment-form ng-if="property._id && Auth.getCurrentUser()._id" model="{{property._id}}" user="{{Auth.getCurrentUser()._id}}" url="/api/stripe/payRentOnce" redirect-url="/profile/{{Auth.getCurrentUser()._id}}" amount="{{property.projectedMonthlyRentalRevenue}}"></stripe-payment-form>
+        <stripe-payment-form ng-if="property._id && Auth.getCurrentUser()._id" model="{{property._id}}" user="{{Auth.getCurrentUser()._id}}" url="/api/stripe/payRentForPropertyOnce" redirect-url="/profile/{{Auth.getCurrentUser()._id}}" amount="{{property.projectedMonthlyRentalRevenue}}"></stripe-payment-form>
         <hr> OR
         <h4>Automatic Monthly Withdrawal</h4>
         <br>

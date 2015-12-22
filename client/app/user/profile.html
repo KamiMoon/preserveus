@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <div class="panel panel-danger">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> Basic Info</h3>
                 </div>
@@ -84,7 +84,7 @@
     </div>
     <div class="row" ng-if="user.receipts && user.receipts.length > 0">
         <div class="col-md-12">
-            <div class="panel panel-warning">
+            <div class="panel panel-success">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="glyphicon glyphicon-stats"></i> All  Investments</h3>
                 </div>
@@ -106,6 +106,38 @@
                                 </td>
                                 <td>
                                     <a href="/property/{{receipt.model_id}}">{{::receipt.description}}</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-if="user.rentalPayments && user.rentalPayments.length > 0">
+        <div class="col-md-12">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="glyphicon glyphicon-calendar"></i> All  Rental Payments</h3>
+                </div>
+                <div class="panel-body">
+                    <!-- Registartions for events table -->
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tr>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr ng-repeat="rentalPayments in user.rentalPayments">
+                                <td>
+                                    {{::rentalPayments.createdAt | date:"M/d/yy h:mm a"}}
+                                </td>
+                                <td>
+                                    {{rentalPayments.amount | currency:"$"}}
+                                </td>
+                                <td>
+                                    <a href="/property/{{rentalPayments.model_id}}">{{::rentalPayments.description}}</a>
                                 </td>
                             </tr>
                         </table>
