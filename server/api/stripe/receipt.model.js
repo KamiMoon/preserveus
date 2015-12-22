@@ -15,7 +15,8 @@ var ReceiptSchema = new Schema({
     model: String,
     model_id: String,
     paymentSystem: String,
-    confirmation: String
+    confirmation: String,
+    type: String
 });
 
 
