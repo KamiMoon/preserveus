@@ -27,7 +27,8 @@ angular.module('preserveusApp')
                 model: '@',
                 user: '@',
                 url: '@',
-                redirectUrl: '@'
+                redirectUrl: '@',
+                amount: '@'
             },
             link: function postLink($scope, $element, attrs) {
                 $scope.submitted = false;

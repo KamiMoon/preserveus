@@ -13,7 +13,11 @@
             <div class="form-horizontal">
                 <div class="form-group">
                     <label for="cc-number" class="col-lg-2 control-label">Amount</label>
-                    <div class="col-lg-10" ng-class="{ 'has-success': form.amount.$valid && submitted, 
+                    <div ng-if="amount" class="col-lg-10">
+                        <div>{{amount | currency:"$"}}</div>
+                        <input type="hidden" id="amount" name="amount" value="{{amount}}">
+                    </div>
+                    <div ng-if="!amount" class="col-lg-10" ng-class="{ 'has-success': form.amount.$valid && submitted, 
                                 'has-error': (form.amount.$invalid && submitted) || errors.amount }">
                         <input id="amount" type="number" step="0.01" min="0" size="6" maxlength="6" class="input-lg" name="amount" ng-model="form.amount" placeholder="$" required />
                         <p class="help-block" ng-show="errors.amount && submitted">
