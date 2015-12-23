@@ -39,6 +39,11 @@
                 <h4>Apply to become a renter at this property</h4>
                 <a href="/propertyRent/{{property._id}}" class="btn btn-warning btn-lg" role="button">Rent</a>
             </div>
+            <div>
+                <br>
+                <br>
+                <add-to-any ng-if="property._id" title="{{property.fullAdress}}" url="/property/{{property._id}}"></add-to-any>
+            </div>
         </div>
     </div>
     <div class="row">

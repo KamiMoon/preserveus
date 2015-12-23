@@ -57,7 +57,7 @@ angular.module('preserveusApp', [
     };
 })
 
-.run(function($rootScope, $location, $timeout, Auth) {
+.run(function($rootScope, $location, $timeout, Auth, SEOService) {
     $rootScope.Auth = Auth;
 
     $rootScope.generateImage = function(cloudinaryId, transform) {
@@ -71,20 +71,8 @@ angular.module('preserveusApp', [
         return 'http://res.cloudinary.com/ddovrks1z/image/upload/' + transform + cloudinaryId + '.png';
     };
 
-    var getDefaultSEO = function() {
-        return {
-            title: 'Preserve US',
-            description: 'Preserve US:  Restoring Historic Properties in Dallas, TX',
-            keywords: 'Dallas, Real Estate, Investment, Rent',
-            author: 'Eric Kizaki',
-            url: window.location.href,
-            type: 'article',
-            image: 'https://www.preservedfw.com/assets/Preserve_US_nav_bar.png'
-        };
-    };
-
     //Defaults
-    $rootScope.seo = getDefaultSEO();
+    SEOService.setSEO(SEOService.getDefaultSEO());
 
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function(event, next, toParams, fromState, fromParams) {
@@ -115,7 +103,7 @@ angular.module('preserveusApp', [
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
         $('html, body').scrollTop(0);
 
-        $rootScope.seo = getDefaultSEO();
+        SEOService.setSEO(SEOService.getDefaultSEO());
 
         $timeout(function() {
             $timeout(function() {

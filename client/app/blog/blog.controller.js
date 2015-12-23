@@ -106,7 +106,7 @@ angular.module('preserveusApp')
             }
         }
 
-    }).controller('BlogViewCtrl', function($scope, $rootScope, $stateParams, Auth, BlogService, ValidationService, $location, ControllerUtil) {
+    }).controller('BlogViewCtrl', function($scope, SEOService, $stateParams, Auth, BlogService, ValidationService, $location, ControllerUtil) {
 
         var id = $stateParams.id;
         $scope.contentLoaded = false;
@@ -117,14 +117,12 @@ angular.module('preserveusApp')
             $scope.post = post;
             $scope.contentLoaded = true;
 
-            //set SEO
-            $rootScope.seo.title = post.title;
-            $rootScope.seo.description = post.headingQuote;
-            $rootScope.seo.author = post.user_name;
-            if (post.photo) {
-                $rootScope.seo.image = $rootScope.generateImage(post.photo, 'w_200,h_200,c_fill');
-            }
-
+            SEOService.setSEO({
+                title: post.title,
+                description: post.headingQuote,
+                author: post.user_name,
+                image: post.photo
+            });
         });
 
         $scope.delete = function() {

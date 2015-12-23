@@ -146,7 +146,7 @@ angular.module('preserveusApp')
 
         };
 
-    }).controller('PropertyViewCtrl', function($scope, $stateParams, $location, Auth, PropertyService, ValidationService, ControllerUtil) {
+    }).controller('PropertyViewCtrl', function($scope, $stateParams, SEOService, $location, Auth, PropertyService, ValidationService, ControllerUtil) {
 
         var id = $stateParams.id;
 
@@ -156,6 +156,12 @@ angular.module('preserveusApp')
             $scope.property = property;
             //photoRows
             $scope.property.photoRows = _.chunk($scope.property.photos, 4);
+
+            SEOService.setSEO({
+                title: property.name,
+                description: property.fullAdress,
+                image: property.photo
+            });
         });
 
         $scope.delete = function() {
