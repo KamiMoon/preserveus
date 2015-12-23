@@ -159,7 +159,7 @@ angular.module('preserveusApp')
 
             SEOService.setSEO({
                 title: property.name,
-                description: property.fullAdress,
+                description: property.fullAddress,
                 image: property.photo
             });
         });
