@@ -5,9 +5,22 @@ var ControllerUtil = require('../../components/controllerUtil');
 
 
 exports.keywords = function(req, res) {
-    Post.aggregate([{
+
+    var aggregationPipeline = [{
         '$unwind': '$keywords'
-    }, {
+    }];
+
+    if (req.query.search) {
+        aggregationPipeline.push({
+            '$match': {
+                'keywords.text': {
+                    '$regex': req.query.search
+                }
+            }
+        });
+    }
+
+    aggregationPipeline.push({
         '$group': {
             '_id': '$keywords.text'
         }
@@ -15,7 +28,9 @@ exports.keywords = function(req, res) {
         '$sort': {
             '_id': 1
         }
-    }]).exec(function(err, keywords) {
+    });
+
+    Post.aggregate(aggregationPipeline).exec(function(err, keywords) {
         if (err) {
             return ControllerUtil.handleError(res, err);
         }

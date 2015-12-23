@@ -11,7 +11,7 @@ angular.module('preserveusApp')
 
         $scope.posts = BlogService.query(searchParams);
 
-    }).controller('BlogAddEditCtrl', function($scope, $stateParams, $location, BlogService, ValidationService, Auth, Upload, ControllerUtil) {
+    }).controller('BlogAddEditCtrl', function($scope, $stateParams, $location, BlogService, ValidationService, Auth, Upload, ControllerUtil, $http) {
         var action = $stateParams.action;
         var id = $stateParams.id;
         var user = Auth.getCurrentUser();
@@ -105,6 +105,19 @@ angular.module('preserveusApp')
                 });
             }
         }
+
+        $scope.getKeywords = function(val) {
+            return $http.get('/api/blog/keywords', {
+                params: {
+
+                    search: val
+                }
+            }).then(function(response) {
+                return response.data.map(function(item) {
+                    return item._id;
+                });
+            });
+        };
 
     }).controller('BlogViewCtrl', function($scope, SEOService, $stateParams, Auth, BlogService, ValidationService, $location, ControllerUtil) {
 

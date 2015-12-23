@@ -21,7 +21,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="text" ng-model="keywordToAdd.text" class="form-control">
+                                            <input type="text" ng-model="keywordToAdd.text" uib-typeahead="keyword for keyword in getKeywords($viewValue)" typeahead-focus-first="false" class="form-control">
                                         </td>
                                         <td>
                                             <button class="btn btn-info" type="button" ng-click="addKeyword()">Add</button>
