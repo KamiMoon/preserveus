@@ -2,32 +2,19 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <div style="height: 340px">
-                <p style="text-decoration:underline"><b>Main Office</b></p>
-                <p itemprop="telephone">Phone: (817)-372-1742
-                </p>
-                <p>johnny@preservedfw.com</p>
-                <address itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">
-                    <br>Preserve US
-                    <br><span itemprop="streetAddress">3140 N. Hall St. Suite 319</span>
-                    <br><span itemprop="addressLocality">Dallas</span>, <span itemprop="addressRegion">TX</span> <span itemprop="postalCode">75204</span>
-                </address>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="google-maps">
+            <!-- <div class="google-maps">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3353.484196166801!2d-96.80312108503564!3d32.8059333898181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864e9ed2e8494ab1%3A0xc28d677eba5cf0df!2s3140+N+Hall+St+%23319%2C+Dallas%2C+TX+75204!5e0!3m2!1sen!2sus!4v1446770419373" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
+            </div> -->
             <form name="form" ng-submit="save(form)" novalidate>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-horizontal">
-                            <h3><span class="glyphicon glyphicon-globe"></span> Send us a Message:</h3>
-                            <b-feedback></b-feedback>
+                            <div class="form-group">
+                                <div class="col-lg-2"></div>
+                                <div class="col-lg-10">
+                                    <h3>CONTACT US</h3>
+                                </div>
+                            </div>
                             <b-input model="contact.name" required="true"></b-input>
                             <b-input type="email" model="contact.email" required="true"></b-input>
                             <b-input type="textarea" rows="6" cols="5" model="contact.message" required="true"></b-input>
@@ -44,13 +31,27 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div align="center">
-                            <b-input type="submit"></b-input>
+                            <b-input type="submit" label="SEND US THE MESSAGE"></b-input>
                         </div>
                         <br>
                         <br>
                     </div>
                 </div>
             </form>
+        </div>
+        <div class="col-md-6">
+            <div class="contact-info text-center">
+                <h3></h3>
+                <p style="text-decoration:underline"><b>Main Office</b></p>
+                <p itemprop="telephone">Phone: (817)-372-1742
+                </p>
+                <p>johnny@preservedfw.com</p>
+                <address itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">
+                    <br>Preserve US
+                    <br><span itemprop="streetAddress">3140 N. Hall St. Suite 319</span>
+                    <br><span itemprop="addressLocality">Dallas</span>, <span itemprop="addressRegion">TX</span> <span itemprop="postalCode">75204</span>
+                </address>
+            </div>
         </div>
     </div>
 </div>

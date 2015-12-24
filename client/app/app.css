@@ -423,3 +423,8 @@ legend {
         float: none;
     }
 }
+
+.contact-info {
+    font-size: 1.375em;
+    text-transform: uppercase;
+}
