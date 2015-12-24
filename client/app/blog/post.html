@@ -1,14 +1,17 @@
 <div class="panel panel-default">
-    <article vocab="http://schema.org/" typeof="TechArticle" class="panel-body">
+    <article itemscope itemtype="http://schema.org/NewsArticle" class="panel-body">
+        <meta itemscope itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" itemid="{{seo.url}}" />
         <h1>
-        <a property="url" href="blog/{{post._id}}" rel="bookmark" title="{{::post.title}}"><span property="name">{{::post.title}}</span></a>
+        <a itemprop="headline" href="blog/{{post._id}}" rel="bookmark" title="{{::post.title}}">{{::post.title}}</a>
     </h1>
         <hr>
         <ul>
-            <li property="author" typeof="person" ng-if="post.user_name">
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> By {{::post.user_name}}
+            <li itemprop="author" itemscope itemtype="https://schema.org/Person" ng-if="post.user_name">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> By <span itemprop="name">{{::post.user_name}}</span>
             </li>
-            <li id="datePublished" class="date" property="datePublished" content="{{::post.createdAt | date:'MM/dd/yyyy'}}">
+            <li id="datePublished" class="date">
+                <meta itemprop="datePublished" content="{{::post.createdAt | date:'yyyy-MM-ddTHH:mm:ss.sssZ'}}" />
+                <meta itemprop="dateModified" content="{{::post.updatedAt | date:'yyyy-MM-ddTHH:mm:ss.sssZ'}}" />
                 <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{::post.createdAt | date:'MM/dd/yyyy'}}
             </li>
             <li class="tags" property="keywords" ng-if="post.keywords.length">
@@ -27,13 +30,24 @@
             </li>
         </ul>
         <br>
-        <blockquote ng-bind-html="post.headingQuote | sanitize"></blockquote>
+        <blockquote itemprop="description" ng-bind-html="post.headingQuote | sanitize"></blockquote>
         <br>
-        <figure ng-if="post.photo">
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" ng-if="post.photo">
+            <meta itemprop="url" content="{{post.photo}}">
+            <meta itemprop="width" content="365">
+            <meta itemprop="height" content="365">
             <a href="/blog/{{post._id}}">
                 <b-img public-id="{{post.photo}}" transformation="w_365,h_365,c_fill" alt="{{post.title}}" class="img-responsive"></b-img>
             </a>
         </figure>
+        <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+            <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+                <meta itemprop="url" content="https://www.preservedfw.com/assets/Preserve_US_nav_bar.png">
+                <meta itemprop="width" content="76">
+                <meta itemprop="height" content="99">
+            </div>
+            <meta itemprop="name" content="Preserve US">
+        </div>
         <br>
         <p ng-bind-html="post.postHtml | sanitize"></p>
     </article>
