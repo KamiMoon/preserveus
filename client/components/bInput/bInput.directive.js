@@ -135,10 +135,14 @@ angular.module('preserveusApp')
 
             if (!doNotAddFormControl) {
                 if (attrs.class) {
-                    html += ' class="form-control ' + attrs.class + '" ';
+                    html += ' class="form-control input-lg ' + attrs.class + '" ';
                 } else {
-                    html += ' class="form-control" ';
+                    html += ' class="form-control input-lg" ';
                 }
+            }
+
+            if (attrs.placeholder) {
+                html += getAttribute('placeholder', attrs.placeholder);
             }
 
             if (attrs.style) {
