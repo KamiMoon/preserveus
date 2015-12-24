@@ -3,8 +3,30 @@
 var Property = require('./property.model');
 var ControllerUtil = require('../../components/controllerUtil');
 var Receipt = require('../stripe/receipt.model');
+var ReceiptService = require('../stripe/receipt.service');
 
+exports.propertyTotalReport = function(req, res) {
 
+    var totals = {};
+
+    ReceiptService.getTotalReceiptsByType('Investment', function(err, investmentTotals) {
+        if (err) {
+            return ControllerUtil.handleError(res, err);
+        }
+
+        totals.investmentTotals = investmentTotals;
+
+        ReceiptService.getTotalReceiptsByType('Rent', function(err, rentTotals) {
+            if (err) {
+                return ControllerUtil.handleError(res, err);
+            }
+
+            totals.rentTotals = rentTotals;
+
+            res.json(totals);
+        });
+    });
+};
 
 exports.propertyIncomeReport = function(req, res) {
     Property.findById(req.params.id).lean().exec(function(err, property) {

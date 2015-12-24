@@ -12,6 +12,10 @@ angular.module('preserveusApp')
             getIncomeReport: {
                 method: 'GET',
                 url: 'api/properties/propertyIncomeReport/:id'
+            },
+            getPropertyTotalReport: {
+                method: 'GET',
+                url: 'api/properties/propertyTotalReport'
             }
         });
     });

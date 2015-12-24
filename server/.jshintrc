@@ -11,5 +11,6 @@
     "smarttabs": true,
     "asi": true,
     "debug": true,
-    "strict": false
+    "strict": false,
+    "quotmark": false
 }

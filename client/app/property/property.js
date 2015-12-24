@@ -28,5 +28,10 @@ angular.module('preserveusApp')
             templateUrl: 'app/property/propertyIncomeReport.html',
             controller: 'PropertyIncomeReportCtrl',
             roles: ['admin']
+        }).state('propertyTotalReport', {
+            url: '/propertyTotalReport',
+            templateUrl: 'app/property/propertyTotalReport.html',
+            controller: 'PropertyTotalReportCtrl',
+            roles: ['admin']
         });
     });

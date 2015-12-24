@@ -1,0 +1,88 @@
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>All Property Income</h1>
+            </div>
+            <br>
+            <br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="glyphicon glyphicon-stats"></i> Investment Totals by Property</h3>
+                </div>
+                <div class="panel-body">
+                    <!-- Registartions for events table -->
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Description</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="receipt in totals.investmentTotals.propertyReceipts">
+                                    <td>
+                                        <a href="/propertyIncomeReport/{{receipt._id}}">{{::receipt.description}}</a>
+                                    </td>
+                                    <td>
+                                        {{::receipt.total | currency:"$"}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>Total</td>
+                                    <td>{{::totals.investmentTotals.total[0].total | currency:"$"}}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="glyphicon glyphicon-stats"></i> Total Rent by Property</h3>
+                </div>
+                <div class="panel-body">
+                    <!-- Registartions for events table -->
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Description</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="receipt in totals.rentTotals.propertyReceipts">
+                                    <td>
+                                        <a href="/propertyIncomeReport/{{receipt._id}}">{{::receipt.description}}</a>
+                                    </td>
+                                    <td>
+                                        {{::receipt.total | currency:"$"}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>Total</td>
+                                    <td>{{::totals.rentTotals.total[0].total | currency:"$"}}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
