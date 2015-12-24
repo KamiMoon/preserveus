@@ -23,5 +23,10 @@ angular.module('preserveusApp')
             url: '/propertyRent/:id',
             templateUrl: 'app/property/propertyRent.html',
             controller: 'PropertyRentCtrl'
+        }).state('propertyIncomeReport', {
+            url: '/propertyIncomeReport/:id',
+            templateUrl: 'app/property/propertyIncomeReport.html',
+            controller: 'PropertyIncomeReportCtrl',
+            roles: ['admin']
         });
     });

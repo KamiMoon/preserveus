@@ -96,6 +96,7 @@
                                 <th>Date</th>
                                 <th>Amount</th>
                                 <th>Description</th>
+                                <th>Confirmation</th>
                                 <th>Action</th>
                             </tr>
                             <tr ng-repeat="receipt in user.receipts">
@@ -107,6 +108,9 @@
                                 </td>
                                 <td>
                                     <a href="/property/{{receipt.model_id}}">{{::receipt.description}}</a>
+                                </td>
+                                <td>
+                                    {{::receipt.confirmation}}
                                 </td>
                                 <td>
                                     <a href="/propertyInvestment/view/{{receipt.model_id}}" class="btn btn-default btn-lg">Invest Again</a>
@@ -132,20 +136,24 @@
                                 <th>Date</th>
                                 <th>Amount</th>
                                 <th>Description</th>
+                                <th>Confirmation</th>
                                 <th>Action</th>
                             </tr>
-                            <tr ng-repeat="rentalPayments in user.rentalPayments">
+                            <tr ng-repeat="rentalPayment in user.rentalPayments">
                                 <td>
-                                    {{::rentalPayments.createdAt | date:"M/d/yy h:mm a"}}
+                                    {{::rentalPayment.createdAt | date:"M/d/yy h:mm a"}}
                                 </td>
                                 <td>
-                                    {{rentalPayments.amount | currency:"$"}}
+                                    {{rentalPayment.amount | currency:"$"}}
                                 </td>
                                 <td>
-                                    <a href="/property/{{rentalPayments.model_id}}">{{::rentalPayments.description}}</a>
+                                    <a href="/property/{{rentalPayment.model_id}}">{{::rentalPayment.description}}</a>
                                 </td>
                                 <td>
-                                    <a href="/propertyRent/{{rentalPayments.model_id}}" class="btn btn-default btn-lg">Pay Rent Again</a>
+                                    {{::rentalPayment.confirmation}}
+                                </td>
+                                <td>
+                                    <a href="/propertyRent/{{rentalPayment.model_id}}" class="btn btn-default btn-lg">Pay Rent Again</a>
                                 </td>
                             </tr>
                         </table>

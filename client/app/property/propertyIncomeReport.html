@@ -1,0 +1,100 @@
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="/property/{{property._id}}" class="btn btn-default btn-lg" role="button"> ← Back to {{::property.name}}</a>
+            <br>
+            <br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>Income Report for {{::property.name}}</h1>
+            </div>
+            {{::property.fullAddress}}
+            <br>
+            <br>
+        </div>
+    </div>
+    <div class="row" ng-if="property.receipts && property.receipts.length > 0">
+        <div class="col-md-12">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="glyphicon glyphicon-stats"></i> All  Investments</h3>
+                </div>
+                <div class="panel-body">
+                    <!-- Registartions for events table -->
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tr>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Confirmation</th>
+                            </tr>
+                            <tr ng-repeat="receipt in property.receipts">
+                                <td>
+                                    {{::receipt.createdAt | date:"M/d/yy h:mm a"}}
+                                </td>
+                                <td>
+                                    {{receipt.amount | currency:"$"}}
+                                </td>
+                                <td>
+                                    <a href="/profile/{{receipt.user_id}}">{{::receipt.user_name}}</a>
+                                </td>
+                                <td>
+                                    {{::receipt.email}}
+                                </td>
+                                <td>
+                                    {{::receipt.confirmation}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-if="property.rentalPayments && property.rentalPayments.length > 0">
+        <div class="col-md-12">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="glyphicon glyphicon-calendar"></i> All  Rental Payments</h3>
+                </div>
+                <div class="panel-body">
+                    <!-- Registartions for events table -->
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tr>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Confirmation</th>
+                            </tr>
+                            <tr ng-repeat="rentalPayment in property.rentalPayments">
+                                <td>
+                                    {{::rentalPayment.createdAt | date:"M/d/yy h:mm a"}}
+                                </td>
+                                <td>
+                                    {{rentalPayment.amount | currency:"$"}}
+                                </td>
+                                <td>
+                                    <a href="/profile/{{rentalPayment.user_id}}">{{::rentalPayment.user_name}}</a>
+                                </td>
+                                <td>
+                                    {{::rentalPayment.email}}
+                                </td>
+                                <td>
+                                    {{::rentalPayment.confirmation}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

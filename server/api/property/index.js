@@ -6,6 +6,7 @@ var auth = require('../../auth/auth.service');
 
 var router = express.Router();
 
+router.get('/propertyIncomeReport/:id', auth.hasRole('admin'), controller.propertyIncomeReport);
 router.get('/', controller.index);
 router.get('/:id', controller.show);
 router.post('/', auth.hasRole('admin'), controller.create);

@@ -2,6 +2,48 @@
 
 var Property = require('./property.model');
 var ControllerUtil = require('../../components/controllerUtil');
+var Receipt = require('../stripe/receipt.model');
+
+
+
+exports.propertyIncomeReport = function(req, res) {
+    Property.findById(req.params.id).lean().exec(function(err, property) {
+        if (err) {
+            return ControllerUtil.handleError(res, err);
+        }
+        if (!property) {
+            return res.status(404).send('Not Found');
+        }
+
+        Receipt.find({
+            'model_id': property._id,
+            'type': 'Investment'
+        }, '-stripeCustomerId').sort({
+            'createdAt': -1
+        }).lean().exec(function(err, receipts) {
+            if (err) {
+                return ControllerUtil.handleError(res, err);
+            }
+
+            property.receipts = receipts;
+
+            Receipt.find({
+                'model_id': property._id,
+                'type': 'Rent'
+            }, '-stripeCustomerId').sort({
+                'createdAt': -1
+            }).lean().exec(function(err, rentalPayments) {
+                if (err) {
+                    return ControllerUtil.handleError(res, err);
+                }
+
+                property.rentalPayments = rentalPayments;
+
+                res.json(property);
+            });
+        });
+    });
+};
 
 // Get list of events
 exports.index = function(req, res) {

@@ -8,6 +8,10 @@ angular.module('preserveusApp')
             update: {
                 method: 'PUT',
 
+            },
+            getIncomeReport: {
+                method: 'GET',
+                url: 'api/properties/propertyIncomeReport/:id'
             }
         });
     });
