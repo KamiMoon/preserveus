@@ -16,7 +16,9 @@
     <meta name="keywords" content="{{seo.keywords}}">
     <meta name="author" content="{{seo.author}}">
     <meta name="description" content="{{seo.description}}" />
+    <!--Canonical URL https://support.google.com/webmasters/answer/139066-->
     <link rel="canonical" href="{{seo.url}}" />
+    <!-- Required for Facebook -->
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="{{seo.title}}" />
@@ -26,6 +28,7 @@
     <meta property="article:publisher" content="https://www.facebook.com/PreserveDFW" />
     <meta property="article:author" content="https://www.facebook.com/PreserveDFW" />
     <meta property="og:image" content="{{seo.image}}" />
+    <!-- Required for Twitter -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@WePreserve" />
     <meta name="twitter:title" content="{{seo.title}}" />
@@ -87,6 +90,11 @@
 
     ga('create', 'UA-70406711-1', 'auto');
     ga('send', 'pageview');
+    </script>
+    <!-- SEO -->
+    <!--LOGO:  https://developers.google.com/structured-data/customize/logos-->
+    <script type="application/ld+json">
+        { "@context": "http://schema.org", "@type": "Organization", "url": "https://www.preservedfw.com", "logo": "https://www.preservedfw.com/assets/Preserve_US_nav_bar.png", "contactPoint" : [{ "@type" : "ContactPoint", "telephone" : "+1-817-372-1742", "contactType" : "sales", "areaServed": ["US"], "availableLanguage": ["English"] }], "sameAs" : [ "https://www.facebook.com/profile.php?id=100010634611299", "https://twitter.com/WePreserve", "https://www.youtube.com/channel/UCFsPB98ozoCtkKXiMm4jUkw", "https://www.linkedin.com/in/PreserveUs" ] }
     </script>
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
