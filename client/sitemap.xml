@@ -2,33 +2,33 @@
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
         <url>
-            <loc>http://www.preservedfw.com/#!/terms</loc>
+            <loc>https://www.preservedfw.com/terms</loc>
         </url>
         <url>
-            <loc>http://www.preservedfw.com/#!/privacy</loc>
+            <loc>https://www.preservedfw.com/privacy</loc>
         </url>
         <url>
-            <loc>http://www.preservedfw.com/#!/login</loc>
+            <loc>https://www.preservedfw.com/login</loc>
         </url>
         <url>
-            <loc>http://www.preservedfw.com/#!/signup</loc>
+            <loc>https://www.preservedfw.com/signup</loc>
         </url>
         <url>
-            <loc>http://www.preservedfw.com/#!/contact</loc>
+            <loc>https://www.preservedfw.com/contact</loc>
         </url>
         <url>
-            <loc>http://www.preservedfw.com/#!/blog</loc>
+            <loc>https://www.preservedfw.com/blog</loc>
         </url>
         <url>
-            <loc>http://www.preservedfw.com/#!/property</loc>
+            <loc>https://www.preservedfw.com/property</loc>
         </url>
         <url>
-            <loc>http://www.preservedfw.com/#!/services</loc>
+            <loc>https://www.preservedfw.com/services</loc>
         </url>
         <url>
-            <loc>http://www.preservedfw.com/#!/team</loc>
+            <loc>https://www.preservedfw.com/team</loc>
         </url>
         <url>
-            <loc>http://www.preservedfw.com/</loc>
+            <loc>https://www.preservedfw.com/</loc>
         </url>
     </urlset>
