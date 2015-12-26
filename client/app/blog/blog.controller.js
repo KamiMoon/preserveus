@@ -119,6 +119,12 @@ angular.module('preserveusApp')
             });
         };
 
+        $scope.options = {
+            tabsize: 2,
+            // close prettify Html
+            prettifyHtml: false
+        };
+
     }).controller('BlogViewCtrl', function($scope, SEOService, $stateParams, Auth, BlogService, ValidationService, $location, ControllerUtil) {
 
         var id = $stateParams.id;
