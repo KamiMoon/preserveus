@@ -50,7 +50,6 @@
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
     <!-- injector:css -->
-    <link rel="stylesheet" href="app/admin/admin.css">
     <link rel="stylesheet" href="app/app.css">
     <link rel="stylesheet" href="app/blog/blog.css">
     <link rel="stylesheet" href="components/modal/modal.css">
@@ -59,8 +58,10 @@
     <link rel="stylesheet" href="assets/swipebox-master/src/css/swipebox.css">
     <script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async defer></script>
     <script type="text/javascript" src="//static.addtoany.com/menu/page.js" async defer></script>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/default.min.css">
+    <!--
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/zenburn.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js" async defer></script>
+    -->
 </head>
 
 <body>
@@ -140,8 +141,6 @@
     <script src="app/account/login/login.controller.js"></script>
     <script src="app/account/settings/settings.controller.js"></script>
     <script src="app/account/signup/signup.controller.js"></script>
-    <script src="app/admin/admin.controller.js"></script>
-    <script src="app/admin/admin.js"></script>
     <script src="app/blog/blog.controller.js"></script>
     <script src="app/blog/blog.js"></script>
     <script src="app/blog/blog.keywords.directive.js"></script>
@@ -172,6 +171,7 @@
     <script src="components/bInput/bUpload.directive.js"></script>
     <script src="components/bInput/filters.js"></script>
     <script src="components/controllerUtil/controllerUtil.js"></script>
+    <script src="components/filters/filters.js"></script>
     <script src="components/modal/modal.service.js"></script>
     <script src="components/mongoose-error/mongoose-error.directive.js"></script>
     <script src="components/navbar/navbar.directive.js"></script>

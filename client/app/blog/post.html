@@ -30,7 +30,7 @@
             </li>
         </ul>
         <br>
-        <blockquote itemprop="description" ng-bind-html="post.headingQuote | sanitize"></blockquote>
+        <blockquote itemprop="description" ng-bind-html="post.headingQuote"></blockquote>
         <br>
         <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" ng-if="post.photo">
             <meta itemprop="url" content="{{post.photo}}">
@@ -49,6 +49,6 @@
             <meta itemprop="name" content="Preserve US">
         </div>
         <br>
-        <p ng-bind-html="post.postHtml | sanitize"></p>
+        <p ng-bind-html="post.postHtml | sanitize" class="post-html"></p>
     </article>
 </div>

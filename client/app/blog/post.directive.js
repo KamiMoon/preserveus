@@ -7,7 +7,7 @@ angular.module('preserveusApp')
             restrict: 'E',
             link: function postLink(scope, element, attrs) {
 
-
+                /*
                 $timeout(function() {
                     $timeout(function() {
                         $(element).find('pre code').each(function(i, block) {
@@ -15,6 +15,7 @@ angular.module('preserveusApp')
                         });
                     });
                 });
+*/
             }
         };
     });
