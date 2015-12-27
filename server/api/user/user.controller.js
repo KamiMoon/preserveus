@@ -6,7 +6,7 @@ var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 var ControllerUtil = require('../../components/controllerUtil');
 var config = require('../../config/environment');
-var Receipt = require('../stripe/receipt.model');
+var ReceiptService = require('../stripe/receipt.service');
 var EmailUtil = require('../../components/emailUtil');
 
 
@@ -127,28 +127,15 @@ exports.profile = function(req, res, next) {
         if (err) return next(err);
         if (!user) return res.status(401).send('Unauthorized');
 
-        Receipt.find({
-            'user_id': userId,
-            'type': 'Investment'
-        }, '-stripeCustomerId').sort({
-            'createdAt': -1
-        }).lean().exec(function(err, receipts) {
+        ReceiptService.getTotalReceiptsByUser(userId, function(err, result) {
             if (err) return next(err);
 
-            user.receipts = receipts;
+            user.receipts = result.receipts;
+            user.receiptsTotal = result.receiptsTotal;
+            user.rentalPayments = result.rentalPayments;
+            user.rentalPaymentsTotal = result.rentalPaymentsTotal;
 
-            Receipt.find({
-                'user_id': userId,
-                'type': 'Rent'
-            }, '-stripeCustomerId').sort({
-                'createdAt': -1
-            }).lean().exec(function(err, rentalPayments) {
-                if (err) return next(err);
-
-                user.rentalPayments = rentalPayments;
-
-                res.json(user);
-            });
+            res.json(user);
         });
     });
 };

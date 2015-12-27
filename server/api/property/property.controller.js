@@ -2,7 +2,6 @@
 
 var Property = require('./property.model');
 var ControllerUtil = require('../../components/controllerUtil');
-var Receipt = require('../stripe/receipt.model');
 var ReceiptService = require('../stripe/receipt.service');
 
 exports.propertyTotalReport = function(req, res) {
@@ -37,32 +36,17 @@ exports.propertyIncomeReport = function(req, res) {
             return res.status(404).send('Not Found');
         }
 
-        Receipt.find({
-            'model_id': property._id,
-            'type': 'Investment'
-        }, '-stripeCustomerId').sort({
-            'createdAt': -1
-        }).lean().exec(function(err, receipts) {
+        ReceiptService.getTotalReceiptsByProperty(property._id, function(err, result) {
             if (err) {
                 return ControllerUtil.handleError(res, err);
             }
 
-            property.receipts = receipts;
+            property.receipts = result.receipts;
+            property.receiptsTotal = result.receiptsTotal;
+            property.rentalPayments = result.rentalPayments;
+            property.rentalPaymentsTotal = result.rentalPaymentsTotal;
 
-            Receipt.find({
-                'model_id': property._id,
-                'type': 'Rent'
-            }, '-stripeCustomerId').sort({
-                'createdAt': -1
-            }).lean().exec(function(err, rentalPayments) {
-                if (err) {
-                    return ControllerUtil.handleError(res, err);
-                }
-
-                property.rentalPayments = rentalPayments;
-
-                res.json(property);
-            });
+            res.json(property);
         });
     });
 };

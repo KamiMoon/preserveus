@@ -93,30 +93,40 @@
                     <!-- Registartions for events table -->
                     <div class="table-responsive">
                         <table class="table">
-                            <tr>
-                                <th>Date</th>
-                                <th>Amount</th>
-                                <th>Description</th>
-                                <th>Confirmation</th>
-                                <th>Action</th>
-                            </tr>
-                            <tr ng-repeat="receipt in user.receipts">
-                                <td>
-                                    {{::receipt.createdAt | date:"M/d/yy h:mm a"}}
-                                </td>
-                                <td>
-                                    {{receipt.amount | currency:"$"}}
-                                </td>
-                                <td>
-                                    <a href="/property/{{receipt.model_id}}">{{::receipt.description}}</a>
-                                </td>
-                                <td>
-                                    {{::receipt.confirmation}}
-                                </td>
-                                <td>
-                                    <a href="/propertyInvestment/view/{{receipt.model_id}}" class="btn btn-default btn-lg">Invest Again</a>
-                                </td>
-                            </tr>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Description</th>
+                                    <th>Confirmation</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="receipt in user.receipts">
+                                    <td>
+                                        {{::receipt.createdAt | date:"M/d/yy h:mm a"}}
+                                    </td>
+                                    <td>
+                                        {{receipt.amount | currency:"$"}}
+                                    </td>
+                                    <td>
+                                        <a href="/property/{{receipt.model_id}}">{{::receipt.description}}</a>
+                                    </td>
+                                    <td>
+                                        {{::receipt.confirmation}}
+                                    </td>
+                                    <td>
+                                        <a href="/propertyInvestment/view/{{receipt.model_id}}" class="btn btn-default btn-lg">Invest Again</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>Total</td>
+                                    <td colspan="4">{{::user.receiptsTotal[0].total | currency:"$"}}</td>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
@@ -133,30 +143,40 @@
                     <!-- Registartions for events table -->
                     <div class="table-responsive">
                         <table class="table">
-                            <tr>
-                                <th>Date</th>
-                                <th>Amount</th>
-                                <th>Description</th>
-                                <th>Confirmation</th>
-                                <th>Action</th>
-                            </tr>
-                            <tr ng-repeat="rentalPayment in user.rentalPayments">
-                                <td>
-                                    {{::rentalPayment.createdAt | date:"M/d/yy h:mm a"}}
-                                </td>
-                                <td>
-                                    {{rentalPayment.amount | currency:"$"}}
-                                </td>
-                                <td>
-                                    <a href="/property/{{rentalPayment.model_id}}">{{::rentalPayment.description}}</a>
-                                </td>
-                                <td>
-                                    {{::rentalPayment.confirmation}}
-                                </td>
-                                <td>
-                                    <a href="/propertyRent/{{rentalPayment.model_id}}" class="btn btn-default btn-lg">Pay Rent Again</a>
-                                </td>
-                            </tr>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Description</th>
+                                    <th>Confirmation</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="rentalPayment in user.rentalPayments">
+                                    <td>
+                                        {{::rentalPayment.createdAt | date:"M/d/yy h:mm a"}}
+                                    </td>
+                                    <td>
+                                        {{rentalPayment.amount | currency:"$"}}
+                                    </td>
+                                    <td>
+                                        <a href="/property/{{rentalPayment.model_id}}">{{::rentalPayment.description}}</a>
+                                    </td>
+                                    <td>
+                                        {{::rentalPayment.confirmation}}
+                                    </td>
+                                    <td>
+                                        <a href="/propertyRent/{{rentalPayment.model_id}}" class="btn btn-default btn-lg">Pay Rent Again</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>Total</td>
+                                    <td colspan="4">{{::user.rentalPaymentsTotal[0].total| currency:"$"}}</td>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
