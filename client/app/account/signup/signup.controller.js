@@ -17,6 +17,12 @@ angular.module('preserveusApp')
 
                 if (form.$valid) {
 
+
+                    if ($scope.user.password !== $scope.user.confirmPassword) {
+                        ValidationService.error('Passwords do not match.');
+                        return;
+                    }
+
                     Auth.createUser($scope.user)
                         .then(function() {
                             ValidationService.success('You have been registered. Check your email to verify.');

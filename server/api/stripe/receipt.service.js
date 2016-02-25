@@ -113,7 +113,6 @@ function getReceiptsAndRentByQuery(key, value, callback) {
 
 
 exports.getTotalReceiptsByUser = function(userId, callback) {
-
     getReceiptsAndRentByQuery('user_id', userId, function(err, result) {
         if (err) return callback(err);
 

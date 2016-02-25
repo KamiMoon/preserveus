@@ -19,6 +19,25 @@ exports.index = function(req, res) {
     ControllerUtil.find(req, res, User, '-salt -hashedPassword -activationHash')
 };
 
+
+var createNewUser = function(req, callback) {
+    var newUser = new User(req.body);
+    newUser.provider = 'local';
+    newUser.save(function(err, user) {
+        if (err) return validationError(res, err);
+        var token = jwt.sign({
+            _id: user._id
+        }, config.secrets.session, {
+            expiresIn: 60 * 60 * 5
+        });
+
+        //create an email with the activation hash in it
+        EmailUtil.createConfirmationEmail(req, user);
+
+        callback(null, token);
+    });
+};
+
 /**
  * Creates a new user
  */
@@ -29,19 +48,7 @@ exports.create = function(req, res, next) {
             return ControllerUtil.handleError(res, 'Invalid Captcha');
         }
 
-        var newUser = new User(req.body);
-        newUser.provider = 'local';
-        newUser.save(function(err, user) {
-            if (err) return validationError(res, err);
-            var token = jwt.sign({
-                _id: user._id
-            }, config.secrets.session, {
-                expiresIn: 60 * 60 * 5
-            });
-
-            //create an email with the activation hash in it
-            EmailUtil.createConfirmationEmail(req, user);
-
+        createNewUser(req, function(error, token) {
             res.json({
                 token: token
             });
@@ -49,6 +56,17 @@ exports.create = function(req, res, next) {
     });
 
 };
+
+exports.createMobile = function(req, res, next) {
+
+    createNewUser(req, function(error, token) {
+        res.json({
+            token: token
+        });
+    });
+
+};
+
 
 /**
  * Get a single user

@@ -17,7 +17,10 @@ router.put('/:id', auth.isAuthenticated(), controller.update);
 
 router.get('/:id', auth.isAuthenticated(), controller.show);
 
+
 router.post('/', controller.create);
+router.post('/mobile', controller.createMobile);
+
 router.get('/activate/:id/:activationHash', controller.activate);
 
 router.get('/profile/:id', auth.isAuthenticated(), controller.show);
