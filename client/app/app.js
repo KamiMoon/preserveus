@@ -15,7 +15,8 @@ angular.module('preserveusApp', [
         'uiGmapgoogle-maps',
         'cloudinary',
         'angularUtils.directives.dirDisqus',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'btford.socket-io'
     ])
     .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, uiGmapGoogleMapApiProvider) {
         $urlRouterProvider

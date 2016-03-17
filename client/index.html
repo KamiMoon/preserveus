@@ -98,7 +98,21 @@
     <!-- SEO -->
     <!--LOGO:  https://developers.google.com/structured-data/customize/logos-->
     <script type="application/ld+json">
-        { "@context": "http://schema.org", "@type": "Organization", "url": "https://www.preservedfw.com", "name": "Preserve US", "logo": "https://www.preservedfw.com/assets/Preserve_US_nav_bar.png", "contactPoint": [{ "@type": "ContactPoint", "telephone": "+1-817-372-1742", "contactType": "sales", "areaServed": ["US"], "availableLanguage": ["English"] }], "sameAs": ["https://www.facebook.com/profile.php?id=100010634611299", "https://twitter.com/WePreserve", "https://www.youtube.com/channel/UCFsPB98ozoCtkKXiMm4jUkw", "https://www.linkedin.com/in/PreserveUs"] }
+    {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "url": "https://www.preservedfw.com",
+        "name": "Preserve US",
+        "logo": "https://www.preservedfw.com/assets/Preserve_US_nav_bar.png",
+        "contactPoint": [{
+            "@type": "ContactPoint",
+            "telephone": "+1-817-372-1742",
+            "contactType": "sales",
+            "areaServed": ["US"],
+            "availableLanguage": ["English"]
+        }],
+        "sameAs": ["https://www.facebook.com/profile.php?id=100010634611299", "https://twitter.com/WePreserve", "https://www.youtube.com/channel/UCFsPB98ozoCtkKXiMm4jUkw", "https://www.linkedin.com/in/PreserveUs"]
+    }
     </script>
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -124,6 +138,7 @@
     <script src="bower_components/angular-summernote/dist/angular-summernote.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-ui-mask/dist/mask.js"></script>
+    <script src="bower_components/angular-socket-io/socket.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angularUtils-disqus/dirDisqus.js"></script>
     <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
@@ -131,6 +146,7 @@
     <script src="bower_components/ngstorage/ngStorage.js"></script>
     <script src="bower_components/swipebox/src/js/jquery.swipebox.js"></script>
     <!-- endbower -->
+    <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
     <!-- build:js({.tmp,client}) app/app.js -->
     <script src="app/app.js"></script>
@@ -146,6 +162,8 @@
     <script src="app/blog/blog.keywords.directive.js"></script>
     <script src="app/blog/blog.service.js"></script>
     <script src="app/blog/post.directive.js"></script>
+    <script src="app/chat/chat.controller.js"></script>
+    <script src="app/chat/chat.js"></script>
     <script src="app/main/main.controller.js"></script>
     <script src="app/main/main.js"></script>
     <script src="app/property/property.controller.js"></script>
@@ -180,6 +198,7 @@
     <script src="components/partials/registrationsList.directive.js"></script>
     <script src="components/seo/seo.service.js"></script>
     <script src="components/social/addToAny.directive.js"></script>
+    <script src="components/socket/socket.service.js"></script>
     <script src="components/stripe/jquery.payment.js"></script>
     <script src="components/stripe/paymentForm.directive.js"></script>
     <script src="components/validation/validationService.js"></script>

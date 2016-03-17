@@ -188,4 +188,7 @@ PropertySchema
 
     });
 
+PropertySchema.set('versionKey', false);
+
+
 module.exports = mongoose.model('Property', PropertySchema);
