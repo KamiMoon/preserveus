@@ -19,7 +19,8 @@ angular.module('preserveusApp', [
         'btford.socket-io'
     ])
     .constant('CONSTANTS', {
-        'DOMAIN': 'https://preserveus.herokuapp.com'
+        //'DOMAIN': 'https://preserveus.herokuapp.com'
+        'DOMAIN': ''
     })
     .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, uiGmapGoogleMapApiProvider) {
         $urlRouterProvider
