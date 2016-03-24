@@ -12,8 +12,7 @@ var ChatDetailSchema = require('./chatDetail.model');
 
 var ChatSchema = new Schema({
     users: [],
-    messages: []
-
+    messages: [ChatDetailSchema]
 });
 
 

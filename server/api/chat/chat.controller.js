@@ -4,9 +4,10 @@ var async = require('async');
 var Chat = require('./chat.model');
 var User = require('../user/user.model');
 var ControllerUtil = require('../../components/controllerUtil');
+var ChatSocket = require('./chat.socket');
 
 
-// Get list of events
+// Get list of chats
 exports.index = function(req, res) {
     ControllerUtil.find(req, res, Chat);
 };
@@ -109,25 +110,62 @@ exports.create = function(req, res) {
     });
 };
 
-// Updates an existing event in the DB.
+// Updates an existing chat in the DB.
 exports.update = function(req, res) {
     ControllerUtil.update(req, res, Chat);
 };
 
-// Deletes a event from the DB.
+// Deletes a chat from the DB.
 exports.destroy = function(req, res) {
-    Chat.findById(req.params.id, function(err, event) {
+    Chat.findById(req.params.id, function(err, chat) {
         if (err) {
             return ControllerUtil.handleError(res, err);
         }
-        if (!event) {
+        if (!chat) {
             return res.status(404).send('Not Found');
         }
-        event.remove(function(err) {
+        chat.remove(function(err) {
             if (err) {
                 return ControllerUtil.handleError(res, err);
             }
             return res.status(204).send('No Content');
         });
     });
+};
+
+exports.sendMessage = function(req, res) {
+    var body = req.body;
+    var chatId = body.chatId;
+    var messageObj = body.messageObj;
+
+    if (!chatId && !messageObj) {
+        return ControllerUtil.handleError(res, 'Invalid message');
+    }
+
+    //find the existing chat
+    Chat.findById(chatId, function(err, chat) {
+        if (err) {
+            return ControllerUtil.handleError(res, err);
+        }
+        if (!chat) {
+            return res.status(404).send('Not Found');
+        }
+
+        chat.messages.push(messageObj);
+
+        chat.save(function(err, chat) {
+            if (err) {
+                return ControllerUtil.handleError(res, err);
+            }
+
+            ChatSocket.sendMessage({
+                chatId: chatId,
+                messageObj: chat.messages[chat.messages.length - 1]
+            });
+
+            res.status(200).send('OK');
+        });
+
+    });
+
 };
