@@ -62,7 +62,7 @@ angular.module('preserveusApp')
 
             }
         };
-      
+
         PropertyService.query().$promise.then(function(properties) {
             $scope.properties = properties;
 
@@ -153,6 +153,8 @@ angular.module('preserveusApp')
     }).controller('PropertyViewCtrl', function($scope, $stateParams, SEOService, $location, Auth, PropertyService, ValidationService, ControllerUtil) {
 
         var id = $stateParams.id;
+
+        console.log('example commit');
 
         PropertyService.get({
             id: id
