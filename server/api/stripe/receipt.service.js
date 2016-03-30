@@ -127,3 +127,4 @@ exports.getTotalReceiptsByProperty = function(propertyId, callback) {
         callback(err, result);
     });
 };
+

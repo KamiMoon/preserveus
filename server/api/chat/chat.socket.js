@@ -4,22 +4,21 @@
 
 'use strict';
 
-var chat = require('./chat.model');
+//var chat = require('./chat.model');
 
-var socket = null;
+var AppEvents = require('../../components/events');
 
-exports.register = function(sock) {
-    socket = sock;
+
+
+
+exports.register = function(socket) {
+
+    console.log('registering a socket');
+
+    AppEvents.on('chatDetail:save', function(messageObj) {
+        chatDetailSave(socket, messageObj, null);
+    });
 };
-
-exports.sendMessage = function(messageObj, cb) {
-
-    console.log('sendMessage');
-    console.log(messageObj);
-
-    socket.emit('chatDetail:save', messageObj);
-};
-
 /*
 function onSave(socket, doc, cb) {
     socket.emit('chatDetail:save', doc);
@@ -29,3 +28,10 @@ function onRemove(socket, doc, cb) {
     socket.emit('chatDetail:remove', doc);
 }
 */
+
+
+function chatDetailSave(socket, doc, cb) {
+    console.log('received event - chatDetail:save');
+
+    socket.emit('chatDetail:save', doc);
+}

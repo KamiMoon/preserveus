@@ -5,6 +5,7 @@ angular.module('preserveusApp')
 
         $scope.loaded = false;
 
+
         var buildMap = function() {
             if ($scope.properties.length) {
 
@@ -18,7 +19,10 @@ angular.module('preserveusApp')
                     zoom: 14
                 };
 
+
+
                 $scope.mapMarkers = $scope.properties.map(function(property) {
+
 
                     var photo = '';
 
@@ -58,7 +62,7 @@ angular.module('preserveusApp')
 
             }
         };
-
+      
         PropertyService.query().$promise.then(function(properties) {
             $scope.properties = properties;
 

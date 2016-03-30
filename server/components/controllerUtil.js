@@ -1,3 +1,5 @@
+'use strict';
+
 var getHostFromRequest = function(req) {
     var host = '';
 

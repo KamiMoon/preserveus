@@ -11,5 +11,6 @@ router.get('/detail/:id', controller.getChatDetail);
 router.post('/create', controller.create);
 router.post('/sendMessage', controller.sendMessage);
 
+router.put('/markChatDeletedForUser/:id/:user_id', controller.markChatDeletedForUser);
 
 module.exports = router;

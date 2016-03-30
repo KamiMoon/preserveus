@@ -127,6 +127,10 @@ angular.module('preserveusApp')
 
     }).controller('BlogViewCtrl', function($scope, SEOService, $stateParams, Auth, BlogService, ValidationService, $location, ControllerUtil) {
 
+
+  
+  
+  
         var id = $stateParams.id;
         $scope.contentLoaded = false;
 

@@ -3,7 +3,6 @@
 var Post = require('./post.model');
 var ControllerUtil = require('../../components/controllerUtil');
 
-
 exports.keywords = function(req, res) {
 
     var aggregationPipeline = [{

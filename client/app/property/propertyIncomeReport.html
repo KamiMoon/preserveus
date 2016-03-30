@@ -39,7 +39,7 @@
                             <tbody>
                                 <tr ng-repeat="receipt in property.receipts">
                                     <td>
-                                        {{::receipt.createdAt | date:"M/d/yy h:mm a"}}
+                                        {{::receipt.createAt | date:"M/d/yy h:mm a"}}
                                     </td>
                                     <td>
                                         {{receipt.amount | currency:"$"}}

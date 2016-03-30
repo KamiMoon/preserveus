@@ -4,8 +4,7 @@ var async = require('async');
 var Chat = require('./chat.model');
 var User = require('../user/user.model');
 var ControllerUtil = require('../../components/controllerUtil');
-var ChatSocket = require('./chat.socket');
-
+var AppEvents = require('../../components/events');
 
 // Get list of chats
 exports.index = function(req, res) {
@@ -53,7 +52,15 @@ function populateChat(chat, showAllMesssages, cb) {
 
 
 exports.getChatsForUser = function(req, res) {
-    Chat.find({ 'users.user_id': req.params.user_id }).exec(function(err, chats) {
+
+    Chat.find({
+        'users': {
+            '$elemMatch': {
+                'user_id': req.params.user_id,
+                'deleted': false
+            }
+        }
+    }).exec(function (err, chats) {
         if (err) {
             return ControllerUtil.handleError(res, err);
         }
@@ -158,7 +165,9 @@ exports.sendMessage = function(req, res) {
                 return ControllerUtil.handleError(res, err);
             }
 
-            ChatSocket.sendMessage({
+            console.log('emitting chatDetail:save');
+
+            AppEvents.emit('chatDetail:save', {
                 chatId: chatId,
                 messageObj: chat.messages[chat.messages.length - 1]
             });
@@ -168,4 +177,38 @@ exports.sendMessage = function(req, res) {
 
     });
 
+};
+
+
+exports.markChatDeletedForUser = function (req, res) {
+    var chatId = req.params.id;
+    var userId = req.params.user_id;
+
+    Chat.findById(chatId, function (err, chat) {
+        if (err) {
+            return ControllerUtil.handleError(res, err);
+        }
+
+        //find the user on this chat
+        for (var i = 0; i < chat.users.length; i++) {
+            var user = chat.users[i];
+
+            if (user.user_id === userId) {
+                chat.users[i].deleted = true;
+                chat.markModified('users');
+                break;
+            }
+        }
+
+        chat.save(function (err, chat) {
+            if (err) {
+                return ControllerUtil.handleError(res, err);
+            }
+
+            console.log('successfully marked chat ' + chatId + ' deleted for user  ' + userId);
+
+            res.status(200).send('OK');
+        });
+
+    });
 };

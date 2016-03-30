@@ -5,13 +5,14 @@ var Schema = mongoose.Schema;
 var timestamps = require('mongoose-timestamp');
 var uniqueValidator = require('mongoose-unique-validator');
 var ChatDetailSchema = require('./chatDetail.model');
+var ChatUserSchema = require('./chatUser.model');
 
 
 //chat has an array of users - any such user can pull up this chat
 
 
 var ChatSchema = new Schema({
-    users: [],
+    users: [ChatUserSchema],
     messages: [ChatDetailSchema]
 });
 
