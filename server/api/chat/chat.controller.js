@@ -158,6 +158,14 @@ exports.sendMessage = function(req, res) {
             return res.status(404).send('Not Found');
         }
 
+        //mark all users as not deleted because someone added to the conversation
+        for (var i = 0; i < chat.users.length; i++) {
+            var user = chat.users[i];
+            user.deleted = false;
+        }
+        chat.markModified('users');
+
+        //add message to the conversation
         chat.messages.push(messageObj);
 
         chat.save(function(err, chat) {
