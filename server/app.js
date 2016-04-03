@@ -27,7 +27,8 @@ var app = express();
 var server = require('http').createServer(app);
 
 var socketio = require('socket.io')(server, {
-    serveClient: config.env !== 'production',
+    //serveClient: config.env !== 'production',
+    serveClient: false,
     path: '/socket.io-client'
 });
 require('./config/socketio')(socketio);
@@ -42,8 +43,8 @@ server.listen(config.port, config.ip, function() {
 
 process.on('uncaughtException', function(err) {
     console.error(new Date().toUTCString() + ' uncaughtException:', err.message);
-    console.error(err.stack)
-    process.exit(1)
+    console.error(err.stack);
+    process.exit(1);
 });
 
 // Expose app
