@@ -20,7 +20,8 @@ angular.module('preserveusApp', [
     ])
     .constant('CONSTANTS', {
         //'DOMAIN': 'https://preserveus.herokuapp.com'
-        'DOMAIN': ''
+        'DOMAIN': '',
+        'SOCKET_IO_URL': 'https://preserveus.herokuapp.com'
     })
     .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, uiGmapGoogleMapApiProvider) {
         $urlRouterProvider

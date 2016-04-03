@@ -9,8 +9,6 @@ function AppEvents() {
 
 util.inherits(AppEvents, EventEmitter);
 
-
-
 var AppEventsInstance = new AppEvents();
 
 module.exports = AppEventsInstance;

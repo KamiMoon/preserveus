@@ -8,7 +8,7 @@ var getHostFromRequest = function(req) {
     }
 
     return host;
-}
+};
 
 exports.getHostFromRequest = getHostFromRequest;
 
