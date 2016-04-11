@@ -1,6 +1,6 @@
 'use strict';
 
-var should = require('should');
+var assert = require('chai').assert;
 var Chat = require('./chat.model');
 
 var chat = new Chat({
@@ -37,7 +37,7 @@ describe('Chat Model', function() {
 
     it('should begin with no chats', function(done) {
         Chat.find({}, function(err, chats) {
-            chats.should.have.length(0);
+            assert.equal(chats.length, 0);
             done();
         });
     });
@@ -46,25 +46,10 @@ describe('Chat Model', function() {
         chat.save(function() {
             var chatDup = new Chat(chat);
             chatDup.save(function(err) {
-                should.exist(err);
+                assert.isDefined(err);
                 done();
             });
         });
-    });
-
-    it('should find chats for a specific user', function(done) {
-        chat.save(function(err, chat) {
-
-            console.log(chat);
-
-            Chat.find({}, function(err, chats) {
-                chats.should.have.length(1);
-                done();
-            });
-        });
-
-
-
     });
 
 });

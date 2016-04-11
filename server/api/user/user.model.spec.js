@@ -1,7 +1,6 @@
 'use strict';
 
-var should = require('should');
-var app = require('../../app');
+var assert = require('chai').assert;
 var User = require('./user.model');
 
 var user = new User({
@@ -10,6 +9,7 @@ var user = new User({
   email: 'test@test.com',
   password: 'password'
 });
+
 
 describe('User Model', function() {
   before(function(done) {
@@ -27,7 +27,7 @@ describe('User Model', function() {
 
   it('should begin with no users', function(done) {
     User.find({}, function(err, users) {
-      users.should.have.length(0);
+        assert.equal(users.length, 0);
       done();
     });
   });
@@ -36,7 +36,7 @@ describe('User Model', function() {
     user.save(function() {
       var userDup = new User(user);
       userDup.save(function(err) {
-        should.exist(err);
+          assert.isDefined(err);
         done();
       });
     });
@@ -45,16 +45,16 @@ describe('User Model', function() {
   it('should fail when saving without an email', function(done) {
     user.email = '';
     user.save(function(err) {
-      should.exist(err);
+        assert.isDefined(err);
       done();
     });
   });
 
   it("should authenticate user if password is valid", function() {
-    return user.authenticate('password').should.be.true;
+      return assert.equal(user.authenticate('password'), true);
   });
 
   it("should not authenticate user if password is invalid", function() {
-    return user.authenticate('blah').should.not.be.true;
+      return assert.equal(user.authenticate('blah'), false);
   });
 });

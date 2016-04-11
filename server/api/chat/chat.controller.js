@@ -4,8 +4,6 @@ var async = require('async');
 var Chat = require('./chat.model');
 var User = require('../user/user.model');
 var ControllerUtil = require('../../components/controllerUtil');
-var AppEvents = require('../../components/events');
-
 // Get list of chats
 exports.index = function(req, res) {
     ControllerUtil.find(req, res, Chat);
@@ -60,7 +58,7 @@ exports.getChatsForUser = function(req, res) {
                 'deleted': false
             }
         }
-    }).exec(function (err, chats) {
+    }).exec(function(err, chats) {
         if (err) {
             return ControllerUtil.handleError(res, err);
         }
@@ -172,15 +170,16 @@ exports.sendMessage = function(req, res) {
             if (err) {
                 return ControllerUtil.handleError(res, err);
             }
+            //this does not scale well with event emitters
+            //AppEvents.emit('chatDetail:save', {
+            //    chatId: chatId,
+            //    messageObj: chat.messages[chat.messages.length - 1]
+            //});
 
-            console.log('emitting chatDetail:save');
-
-            AppEvents.emit('chatDetail:save', {
+            return ControllerUtil.success(res, {
                 chatId: chatId,
                 messageObj: chat.messages[chat.messages.length - 1]
             });
-
-            res.status(200).send('OK');
         });
 
     });
@@ -188,11 +187,11 @@ exports.sendMessage = function(req, res) {
 };
 
 
-exports.markChatDeletedForUser = function (req, res) {
+exports.markChatDeletedForUser = function(req, res) {
     var chatId = req.params.id;
     var userId = req.params.user_id;
 
-    Chat.findById(chatId, function (err, chat) {
+    Chat.findById(chatId, function(err, chat) {
         if (err) {
             return ControllerUtil.handleError(res, err);
         }
@@ -208,7 +207,7 @@ exports.markChatDeletedForUser = function (req, res) {
             }
         }
 
-        chat.save(function (err, chat) {
+        chat.save(function(err, chat) {
             if (err) {
                 return ControllerUtil.handleError(res, err);
             }

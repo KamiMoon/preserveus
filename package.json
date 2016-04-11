@@ -47,6 +47,7 @@
     "stripe": "^4.0.0"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "connect-livereload": "~0.4.0",
     "grunt": "~0.4.4",
     "grunt-angular-templates": "^0.5.4",
