@@ -10,8 +10,8 @@ angular.module('preserveusApp')
         this.getDefaultSEO = function() {
             return {
                 title: 'Preserve US',
-                description: 'Preserve US:  Restoring Historic Properties in Dallas, TX',
-                keywords: 'Dallas, Real Estate, Investment, Rent',
+                description: 'Preserve US:  Property Management in Dallas and Fort Worth, TX',
+                keywords: 'Dallas, Fort Worth, TX, Property Management, Real Estate, Investment, Rent',
                 author: 'Eric Kizaki',
                 url: window.location.href,
                 type: 'article',

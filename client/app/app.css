@@ -95,7 +95,7 @@ body > .container-fluid {
 
 #main-logo {
     font-family: "Playfair Display SC";
-    color: gold;
+    color: rgb(234, 222, 158);
     font-size: 70px;
     text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
@@ -107,7 +107,7 @@ body > .container-fluid {
 }
 
 .mission-statement {
-    color: gold;
+    color: rgb(234, 222, 158);
     border: none;
     font-family: "Playfair Display SC";
     text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
