@@ -44,6 +44,7 @@ body > .container-fluid {
     background: url("/assets/images/Golden_Archer.jpg") no-repeat;
     /*background: url("/assets/images/Brick.jpg") no-repeat center center;*/
     background-size: cover;
+    background-position: right top;
 }
 
 #main-container {
