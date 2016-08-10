@@ -12,12 +12,16 @@ var GoogleMapsAPI = require('googlemaps')
 // the same transporter object for all e-mails
 
 var transporter = nodemailer.createTransport({
-    service: 'Gmail',
+    host: 'smtp.office365.com',
+    port: '587',
     auth: {
         user: process.env.GMAIL,
         pass: process.env.GMAIL_PASSWORD
-    }
+    },
+    secureConnection: 'false',
+    tls: { ciphers: 'SSLv3' }
 });
+
 
 var googleMapsConfig = {
     key: process.env.GOOGLE_API,

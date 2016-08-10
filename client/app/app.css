@@ -41,7 +41,8 @@ body > .container-fluid {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url("/assets/images/brick.jpg") no-repeat center center;
+    background: url("/assets/images/Golden_Archer.jpg") no-repeat;
+    /*background: url("/assets/images/Brick.jpg") no-repeat center center;*/
     background-size: cover;
 }
 

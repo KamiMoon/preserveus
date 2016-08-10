@@ -28,7 +28,7 @@ angular.module('preserveusApp', [
         //'DOMAIN': '',
         //'SOCKET_IO_URL': 'http://localhost:5000'
     })
-    .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, uiGmapGoogleMapApiProvider) {
+    .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, uiGmapGoogleMapApiProvider, vcRecaptchaServiceProvider) {
         $urlRouterProvider
             .otherwise('/');
 
@@ -42,6 +42,9 @@ angular.module('preserveusApp', [
             //v: '3.20', //defaults to latest 3.X anyhow
             //libraries: 'weather,geometry,visualization'
         });
+
+
+        vcRecaptchaServiceProvider.setSiteKey('6Lf16R4TAAAAACGBXlRPtcE3dmcztUOG1ti2QDn5');
     })
 
 .factory('authInterceptor', function($rootScope, $q, $cookieStore, $location) {
