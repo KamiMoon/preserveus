@@ -43,8 +43,8 @@ body > .container-fluid {
     color: #f8f8f8;
     background: url("/assets/images/Golden_Archer.jpg") no-repeat;
     /*background: url("/assets/images/Brick.jpg") no-repeat center center;*/
+    background-position: 18% 0%;
     background-size: cover;
-    background-position: right top;
 }
 
 #main-container {
