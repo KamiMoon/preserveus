@@ -19,7 +19,7 @@ var passport = require('passport');
 module.exports = function(app) {
     var env = app.get('env');
 
-    app.use(require('prerender-node').set('prerenderToken', 'NUuMTGS4XUnoEkf1pP8v'));
+    //app.use(require('prerender-node').set('prerenderToken', 'NUuMTGS4XUnoEkf1pP8v'));
     app.set('views', config.root + '/server/views');
     app.engine('html', require('ejs').renderFile);
     app.set('view engine', 'html');
